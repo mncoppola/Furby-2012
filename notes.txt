@@ -1,0 +1,33 @@
+flashlight through PCB, no shadowing -> 2 layer PCB
+
+Jetta company manufactured the board
+
+IOC0-7 hints at 8-bit I/O port on MCU
+
+figure out size of memory array -> measure size of unit cell -> divide entire length by measurement (check wiki for values)
+
+tracing the possible I/O around the chip and out to the pads
+
+internal clock from RC oscillator (capacitor + resistor)
+
+HF bath (~3% HF) for 1.5 minutes at a time, took 2 baths
+HF heated in water bath to heat evenly and limit temp to 100C
+delayered top metal layer + overglass
+
+unknown chip was 1 metal, 1 poly, 1 active
+
+likely implant mask ROM
+    - no visible bits (not via, metal)
+    - can't be optically read out
+    - need to perform dash etching
+        - nitric acid, glacial acetic acid, stronger HF acid
+
+mask ROM types:
+via: Transistor is there all the time, connect or disconnect it with a via
+metal: Transistor is there all the time, short it out or don't with the metal
+implant: Transistor is there all the time, fabricate the transistor to have a higher or lower voltage threshold (Vt) to either be always on or always off
+Transistor is there or not
+
+It's likely NOT mask ROM anymore
+    It has a VPP pin, which hints at programming capabilities
+

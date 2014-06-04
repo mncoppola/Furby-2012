@@ -1,0 +1,7 @@
+Address         Function                                Source
+00000-00fff     SRAM (4K words)                         Confirmation sheet
+04000-0427f     DPRAM (640 words)                       Confirmation sheet
+08000-0fc00     Page0 ROM (31K words)                   Confirmation sheet
+10000-47fff     Non-Page0 ROM (224K words)              Confirmation sheet
+48000-4ffff     Reserved flash (32K words)              Confirmation sheet
+fc00-ffef       GENERALPLUS test program (1k words)     Confirmation sheet
