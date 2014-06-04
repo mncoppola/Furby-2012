@@ -1,0 +1,16 @@
+Port        Function                    Source
+
+7006        Reset flag                  AN0075
+7007        Clock control               Confirmation sheet
+700a        Watchdog reset control      AN0075
+700b        Watchdog clear              Confirmation sheet
+7031        LCD config                  Confirmation sheet
+7032        GPIO config                 Confirmation sheet
+7035        ADC config control          Confirmation sheet
+704c        Internal memory config      Confirmation sheet
+70b8        TimeBase Reset control      AN0075
+7102        UART/IrDA Reset control     AN0075
+7102        SPI Reset control (same)    AN0075
+7180        LCD setup                   Confirmation sheet
+718a        VLCD setting                Confirmation sheet
+
