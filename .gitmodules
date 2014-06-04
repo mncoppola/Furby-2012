@@ -1,3 +1,6 @@
 [submodule "unsp_tools"]
 	path = unsp_tools
 	url = git://github.com/davidcarne/unsp_tools
+[submodule "GPCE063A_Example_Code"]
+	path = GPCE063A_Example_Code
+	url = git://github.com/cctsao1008/GPCE063A_Example_Code
