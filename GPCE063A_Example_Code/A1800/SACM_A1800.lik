@@ -1,0 +1,45 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.3\startupcode\startupD.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1800\Debug\Resource.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1800\Debug\Isr.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1800\Debug\main.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1800\Debug\System.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1800\Debug\SACM_A1800_User.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1800\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1800\Debug\e316k_a18.res"
+Lib: "D:\GPCE_Serial\GPCE063\SACM_N\A1800\..\library\SACM_A1800_V41b_Beta02.lib"
+Output: "D:\GPCE_Serial\GPCE063\SACM_N\A1800\Debug\SACM_A1800.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at A65D  linkat 570 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 568 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_A1800_User.obj" at 56C 
+;Align: RAM in "SACM_A1800_User.obj" with 0 
+;Locate: OVERLAP_A1800_API_BLOCK in "SACM_A1800_API" of "SACM_A1800_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_A1800_API_BLOCK in "SACM_A1800_API" of "SACM_A1800_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_A1800_RAM_BLOCK in "SACM_A1800_Decode" of "SACM_A1800_V41b_Beta02.lib"  at 18 
+;Align: OVERLAP_A1800_RAM_BLOCK in "SACM_A1800_Decode" of "SACM_A1800_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_A1800_DM_BLOCK in "A1800_~1" of "SACM_A1800_V41b_Beta02.lib"  at 2DC 
+;Align: OVERLAP_A1800_DM_BLOCK in "A1800_~1" of "SACM_A1800_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at A262 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at A488 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_A1800_User.obj" at A56A 
+;Align: CODE in "SACM_A1800_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 9EE8 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_E316K_A18 in "e316k_a18.res" at A666 
+;Align: __sn_section_RES_E316K_A18 in "e316k_a18.res" with 0 
+;Locate: CODE in "SACM_A1800_API" of "SACM_A1800_V41b_Beta02.lib"  at A5E7 
+;Align: CODE in "SACM_A1800_API" of "SACM_A1800_V41b_Beta02.lib"  with 0 
+;Locate: SACM_A1800_ROM_BLOCK in "SACM_A1800_API" of "SACM_A1800_V41b_Beta02.lib"  at A0EC 
+;Align: SACM_A1800_ROM_BLOCK in "SACM_A1800_API" of "SACM_A1800_V41b_Beta02.lib"  with 0 
+;Locate: SACM_A1800_DECODE_ROM_BLOCK in "SACM_A1800_Decode" of "SACM_A1800_V41b_Beta02.lib"  at A381 
+;Align: SACM_A1800_DECODE_ROM_BLOCK in "SACM_A1800_Decode" of "SACM_A1800_V41b_Beta02.lib"  with 0 
+;Locate: SACM_A1800_IM_BLOCK in "A1800_~1" of "SACM_A1800_V41b_Beta02.lib"  at 96A2 
+;Align: SACM_A1800_IM_BLOCK in "A1800_~1" of "SACM_A1800_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

@@ -1,0 +1,53 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.4\startupcode\startupD.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\Resource.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\Isr.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\main.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\System.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\SACM_DVR1600_User.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\t09_a_a16.res"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\t09_b_a16.res"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\t09_c_a16.res"
+Lib: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\..\library\SACM_DVR1600_V41b_Beta03.lib"
+Output: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1600\Debug\SACM_DVR1600.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at 9875  linkat 210 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 208 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_DVR1600_User.obj" at 20C 
+;Align: RAM in "SACM_DVR1600_User.obj" with 0 
+;Locate: OVERLAP_DVR1600_API_BLOCK in "SACM_DVR1600_API" of "SACM_DVR1600_V41b_Beta03.lib"  at 1 
+;Align: OVERLAP_DVR1600_API_BLOCK in "SACM_DVR1600_API" of "SACM_DVR1600_V41b_Beta03.lib"  with 0 
+;Locate: OVERLAP_DVR1600_RAM_BLOCK in "SACM_DVR1600_Decode" of "SACM_DVR1600_V41b_Beta03.lib"  at 3A 
+;Align: OVERLAP_DVR1600_RAM_BLOCK in "SACM_DVR1600_Decode" of "SACM_DVR1600_V41b_Beta03.lib"  with 0 
+;Locate: OVERLAP_DVR1600_DM_BLOCK in "DVR160~1" of "SACM_DVR1600_V41b_Beta03.lib"  at 180 
+;Align: OVERLAP_DVR1600_DM_BLOCK in "DVR160~1" of "SACM_DVR1600_V41b_Beta03.lib"  with 0 
+;Locate: CODE in "main.obj" at 9507 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at 9734 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_DVR1600_User.obj" at 966B 
+;Align: CODE in "SACM_DVR1600_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 8FA6 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_T09_A_A16 in "t09_a_a16.res" at 987F 
+;Align: __sn_section_RES_T09_A_A16 in "t09_a_a16.res" with 0 
+;Locate: __sn_section_RES_T09_B_A16 in "t09_b_a16.res" at A172 
+;Align: __sn_section_RES_T09_B_A16 in "t09_b_a16.res" with 0 
+;Locate: __sn_section_RES_T09_C_A16 in "t09_c_a16.res" at AA45 
+;Align: __sn_section_RES_T09_C_A16 in "t09_c_a16.res" with 0 
+;Locate: CODE in "SACM_DVR1600_API" of "SACM_DVR1600_V41b_Beta03.lib"  at 97F7 
+;Align: CODE in "SACM_DVR1600_API" of "SACM_DVR1600_V41b_Beta03.lib"  with 0 
+;Locate: SACM_DVR1600_ROM_BLOCK in "SACM_DVR1600_API" of "SACM_DVR1600_V41b_Beta03.lib"  at 8D5D 
+;Align: SACM_DVR1600_ROM_BLOCK in "SACM_DVR1600_API" of "SACM_DVR1600_V41b_Beta03.lib"  with 0 
+;Locate: SACM_DVR1600_DECODE_ROM_BLOCK in "SACM_DVR1600_Decode" of "SACM_DVR1600_V41b_Beta03.lib"  at 9381 
+;Align: SACM_DVR1600_DECODE_ROM_BLOCK in "SACM_DVR1600_Decode" of "SACM_DVR1600_V41b_Beta03.lib"  with 0 
+;Locate: CODE in "DVR160~1" of "SACM_DVR1600_V41b_Beta03.lib"  at 8774 
+;Align: CODE in "DVR160~1" of "SACM_DVR1600_V41b_Beta03.lib"  with 0 
+;Locate: CODE in "fft64" of "SACM_DVR1600_V41b_Beta03.lib"  at 91AA 
+;Align: CODE in "fft64" of "SACM_DVR1600_V41b_Beta03.lib"  with 0 
+;Locate: __sn_init_table at 8000 

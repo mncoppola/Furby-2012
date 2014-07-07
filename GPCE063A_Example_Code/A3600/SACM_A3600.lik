@@ -1,0 +1,48 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.3\startupcode\startupD.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\Debug\Resource.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\Debug\Isr.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\Debug\main.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\Debug\System.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\Debug\SACM_A3600_User.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\Debug\duck1_a36.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\Debug\duck2_a36.res"
+Lib: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\..\library\SACM_A3600_V41b_Beta02.lib"
+Output: "D:\GPCE_Serial\GPCE063\SACM_N\A3600\Debug\SACM_A3600.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at 89D2  linkat 7C 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 74 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_A3600_User.obj" at 78 
+;Align: RAM in "SACM_A3600_User.obj" with 0 
+;Locate: OVERLAP_A3600_API_BLOCK in "SACM_A3600_API" of "SACM_A3600_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_A3600_API_BLOCK in "SACM_A3600_API" of "SACM_A3600_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_A3600_RAM_BLOCK in "SACM_A3600_Decode" of "SACM_A3600_V41b_Beta02.lib"  at 18 
+;Align: OVERLAP_A3600_RAM_BLOCK in "SACM_A3600_Decode" of "SACM_A3600_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_A3600_DM_BLOCK in "SACM_A3600" of "SACM_A3600_V41b_Beta02.lib"  at 70 
+;Align: OVERLAP_A3600_DM_BLOCK in "SACM_A3600" of "SACM_A3600_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at 8531 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at 8754 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_A3600_User.obj" at 88DD 
+;Align: CODE in "SACM_A3600_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 81B9 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_DUCK1_A36 in "duck1_a36.res" at BCE4 
+;Align: __sn_section_RES_DUCK1_A36 in "duck1_a36.res" with 0 
+;Locate: __sn_section_RES_DUCK2_A36 in "duck2_a36.res" at 89D8 
+;Align: __sn_section_RES_DUCK2_A36 in "duck2_a36.res" with 0 
+;Locate: CODE in "SACM_A3600_API" of "SACM_A3600_V41b_Beta02.lib"  at 895A 
+;Align: CODE in "SACM_A3600_API" of "SACM_A3600_V41b_Beta02.lib"  with 0 
+;Locate: SACM_A3600_ROM_BLOCK in "SACM_A3600_API" of "SACM_A3600_V41b_Beta02.lib"  at 83BD 
+;Align: SACM_A3600_ROM_BLOCK in "SACM_A3600_API" of "SACM_A3600_V41b_Beta02.lib"  with 0 
+;Locate: SACM_A3600_DECODE_ROM_BLOCK in "SACM_A3600_Decode" of "SACM_A3600_V41b_Beta02.lib"  at 8654 
+;Align: SACM_A3600_DECODE_ROM_BLOCK in "SACM_A3600_Decode" of "SACM_A3600_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "SACM_A3600" of "SACM_A3600_V41b_Beta02.lib"  at 8836 
+;Align: CODE in "SACM_A3600" of "SACM_A3600_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

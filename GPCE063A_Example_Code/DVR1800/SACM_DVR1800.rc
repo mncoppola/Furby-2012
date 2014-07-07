@@ -1,0 +1,11 @@
+# Begin Project
+# Begin SubItem "DVR1800  Resources"
+# Begin Source File
+SOURCE=voice\e316k.a18
+USEPARAM=FALSE
+PARAM=
+ID=RES_E316K_A18
+EXPORT=3
+# End Source File
+# End SubItem
+# End Project

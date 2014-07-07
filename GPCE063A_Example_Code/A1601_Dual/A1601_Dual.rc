@@ -1,0 +1,25 @@
+# Begin Project
+# Begin SubItem "DVR1600  Resources"
+# Begin Source File
+SOURCE=voice\t09a.a16
+USEPARAM=FALSE
+PARAM=
+ID=RES_T09A_A16
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=voice\t09b.a16
+USEPARAM=FALSE
+PARAM=
+ID=RES_T09B_A16
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=voice\t09c.a16
+USEPARAM=FALSE
+PARAM=
+ID=RES_T09C_A16
+EXPORT=3
+# End Source File
+# End SubItem
+# End Project

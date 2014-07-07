@@ -1,0 +1,72 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.3\startupcode\startupD.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\Resource.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\main.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\Isr.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\SACM_A1601_CH2_User.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\System.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\SACM_A1601_User.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\t09a_a16.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\t09b_a16.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\t09c_a16.res"
+Lib: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\..\library\SACM_A1601_Dual_V41b_Beta02.lib"
+Output: "D:\GPCE_Serial\GPCE063\SACM_N\A1601_Dual\Debug\A1601_Dual.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at AA15  linkat 399 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "Isr.obj" at 38C 
+;Align: RAM in "Isr.obj" with 0 
+;Locate: RAM in "SACM_A1601_CH2_User.obj" at 38D 
+;Align: RAM in "SACM_A1601_CH2_User.obj" with 0 
+;Locate: RAM in "System.obj" at 391 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_A1601_User.obj" at 395 
+;Align: RAM in "SACM_A1601_User.obj" with 0 
+;Locate: OVERLAP_A1601_CH2_API_BLOCK in "SACM_A1601_CH2_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_A1601_CH2_API_BLOCK in "SACM_A1601_CH2_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_A1601_API_BLOCK in "SACM_A1601_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  at 19 
+;Align: OVERLAP_A1601_API_BLOCK in "SACM_A1601_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_A1601_RAM_BLOCK in "SACM_A1601_Decode" of "SACM_A1601_Dual_V41b_Beta02.lib"  at 30 
+;Align: OVERLAP_A1601_RAM_BLOCK in "SACM_A1601_Decode" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_A1601_Kernel_RAM in "A1601_~2" of "SACM_A1601_Dual_V41b_Beta02.lib"  at 17A 
+;Align: OVERLAP_A1601_Kernel_RAM in "A1601_~2" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_A1601_CH2_RAM_BLOCK in "SACM_A1601_CH2_Decode" of "SACM_A1601_Dual_V41b_Beta02.lib"  at 1DE 
+;Align: OVERLAP_A1601_CH2_RAM_BLOCK in "SACM_A1601_CH2_Decode" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at A2E4 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "SACM_A1601_CH2_User.obj" at A89A 
+;Align: CODE in "SACM_A1601_CH2_User.obj" with 0 
+;Locate: CODE in "System.obj" at A66C 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_A1601_User.obj" at A91C 
+;Align: CODE in "SACM_A1601_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 9BC8 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_T09A_A16 in "t09a_a16.res" at AA1B 
+;Align: __sn_section_RES_T09A_A16 in "t09a_a16.res" with 0 
+;Locate: __sn_section_RES_T09B_A16 in "t09b_a16.res" at B312 
+;Align: __sn_section_RES_T09B_A16 in "t09b_a16.res" with 0 
+;Locate: __sn_section_RES_T09C_A16 in "t09c_a16.res" at BBE9 
+;Align: __sn_section_RES_T09C_A16 in "t09c_a16.res" with 0 
+;Locate: CODE in "SACM_A1601_CH2_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  at A7F6 
+;Align: CODE in "SACM_A1601_CH2_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: SACM_A1601_CH2_ROM_BLOCK in "SACM_A1601_CH2_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  at A144 
+;Align: SACM_A1601_CH2_ROM_BLOCK in "SACM_A1601_CH2_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "SACM_A1601_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  at A99D 
+;Align: CODE in "SACM_A1601_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: SACM_A1601_ROM_BLOCK in "SACM_A1601_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  at 9FA3 
+;Align: SACM_A1601_ROM_BLOCK in "SACM_A1601_API" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: SACM_A1601_DECODE_ROM_BLOCK in "SACM_A1601_Decode" of "SACM_A1601_Dual_V41b_Beta02.lib"  at A56C 
+;Align: SACM_A1601_DECODE_ROM_BLOCK in "SACM_A1601_Decode" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "A1601_~2" of "SACM_A1601_Dual_V41b_Beta02.lib"  at 96AC 
+;Align: CODE in "A1601_~2" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: SACM_A1601_CH2_DECODE_ROM_BLOCK in "SACM_A1601_CH2_Decode" of "SACM_A1601_Dual_V41b_Beta02.lib"  at A46C 
+;Align: SACM_A1601_CH2_DECODE_ROM_BLOCK in "SACM_A1601_CH2_Decode" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "FFT64_~1" of "SACM_A1601_Dual_V41b_Beta02.lib"  at 9DCC 
+;Align: CODE in "FFT64_~1" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "ADPCM_~1" of "SACM_A1601_Dual_V41b_Beta02.lib"  at A74E 
+;Align: CODE in "ADPCM_~1" of "SACM_A1601_Dual_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

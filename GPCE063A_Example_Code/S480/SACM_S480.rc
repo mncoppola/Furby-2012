@@ -1,0 +1,32 @@
+# Begin Project
+# Begin SubItem "SACM_XXXX  Resources"
+# Begin Source File
+SOURCE=voice\d2.s72
+USEPARAM=FALSE
+PARAM=
+ID=RES_D2_S72
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=voice\d1.s72
+USEPARAM=FALSE
+PARAM=
+ID=RES_D1_S72
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=voice\d2.s48
+USEPARAM=FALSE
+PARAM=
+ID=RES_D2_S48
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=voice\d1.s48
+USEPARAM=FALSE
+PARAM=
+ID=RES_D1_S48
+EXPORT=3
+# End Source File
+# End SubItem
+# End Project

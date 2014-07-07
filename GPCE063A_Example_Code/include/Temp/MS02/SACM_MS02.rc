@@ -1,0 +1,37 @@
+# Begin Project
+# Begin SubItem "SACM_XXXX  Resources"
+# Begin Group "MIDI"
+#PROP Default_Filter=
+USEPARAM=FALSE
+PARAM=
+EXPORT=3
+# Begin Source File
+SOURCE=voice\LAPUTA_1.bin
+USEPARAM=FALSE
+PARAM=
+ID=RES_LAPUTA_1_BIN
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=voice\joysong_1.bin
+USEPARAM=FALSE
+PARAM=
+ID=RES_JOYSONG_1_BIN
+EXPORT=3
+# End Source File
+# End Group
+# Begin Group "ToneColor"
+#PROP Default_Filter=
+USEPARAM=FALSE
+PARAM=
+EXPORT=3
+# Begin Source File
+SOURCE=voice\MS02_GPF8.lib
+USEPARAM=FALSE
+PARAM=
+ID=RES_MS02_GPF8_LIB
+EXPORT=3
+# End Source File
+# End Group
+# End SubItem
+# End Project

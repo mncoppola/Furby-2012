@@ -1,0 +1,924 @@
+.stabs "startup_code.",0x3c,0,0,0
+.stabs "__sn_main:F15",36,0,0,     51542
+.stabs "__sn_end:F15",36,0,0,     32804
+.stabs "__sn_exception:F15",36,0,0,     32805
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Resource.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,         0
+.stabn 0xe0,0,0,         0
+.stabn 0xc0,0,0,     32806
+.stabn 0xe0,0,0,     32811
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Isr.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,         0
+.stabn 0xe0,0,0,         0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\GPCE063.inc", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,         0
+.stabn 0xe0,0,0,         0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Isr.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,         0
+.stabn 0xe0,0,0,         0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\DVR1800.inc", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,         0
+.stabn 0xe0,0,0,         0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Isr.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,         0
+.stabn 0xe0,0,0,         0
+.stabn 0xc0,0,0,     32811
+.stabn 0x44,0,68,     32811
+.stabn 0x44,0,70,     32812
+.stabn 0x44,0,71,     32814
+.stabn 0x44,0,72,     32816
+.stabn 0x44,0,73,     32817
+.stabn 0x44,0,74,     32819
+.stabn 0x44,0,80,     32820
+.stabn 0x44,0,116,     32822
+.stabn 0x44,0,117,     32824
+.stabn 0x44,0,118,     32826
+.stabn 0x44,0,119,     32827
+.stabn 0x44,0,126,     32828
+.stabn 0x44,0,127,     32830
+.stabn 0x44,0,128,     32832
+.stabn 0x44,0,129,     32833
+.stabn 0x44,0,135,     32834
+.stabn 0x44,0,136,     32836
+.stabn 0x44,0,137,     32838
+.stabn 0x44,0,138,     32839
+.stabn 0x44,0,142,     32840
+.stabn 0x44,0,144,     32841
+.stabn 0x44,0,145,     32842
+.stabn 0x44,0,148,     32843
+.stabn 0x44,0,150,     32844
+.stabn 0x44,0,151,     32845
+.stabn 0x44,0,154,     32846
+.stabn 0x44,0,156,     32847
+.stabn 0x44,0,157,     32848
+.stabn 0x44,0,160,     32849
+.stabn 0x44,0,162,     32850
+.stabn 0x44,0,163,     32851
+.stabn 0x44,0,166,     32852
+.stabn 0x44,0,168,     32853
+.stabn 0x44,0,169,     32854
+.stabn 0x44,0,172,     32855
+.stabn 0x44,0,174,     32856
+.stabn 0x44,0,175,     32857
+.stabn 0x44,0,178,     32858
+.stabn 0x44,0,180,     32859
+.stabn 0x44,0,181,     32860
+.stabn 0x44,0,184,     32861
+.stabn 0x44,0,186,     32862
+.stabn 0x44,0,187,     32863
+.stabn 0x44,0,190,     32864
+.stabn 0x44,0,192,     32865
+.stabn 0x44,0,193,     32866
+.stabn 0xe0,0,0,     32867
+.stabs "D:/WorkingFolder/Library_Release/SACMV41b_Beta/GPCE063A_Example_V41b/GPCE063A Example Code/DVR1800/",0x64,0,3,     51542
+.stabs "D:/WorkingFolder/Library_Release/SACMV41b_Beta/GPCE063A_Example_V41b/GPCE063A Example Code/DVR1800/main.c",0x64,0,3,     51542
+.stabs "int:t1=r1;-32768;32767;",128,0,0,0
+.stabs "char:t2=r2;0;127;",128,0,0,0
+.stabs "long int:t3=r3;-2147483648;2147483647;",128,0,0,0
+.stabs "unsigned int:t4=r4;0;65535;",128,0,0,0
+.stabs "long unsigned int:t5=r5;0;4294967295;",128,0,0,0
+.stabs "long long int:t6=r6;-2147483648;2147483647;",128,0,0,0
+.stabs "long long unsigned int:t7=r7;0;4294967295;",128,0,0,0
+.stabs "short int:t8=r8;-32768;32767;",128,0,0,0
+.stabs "short unsigned int:t9=r9;0;65535;",128,0,0,0
+.stabs "signed char:t10=r10;-32768;32767;",128,0,0,0
+.stabs "unsigned char:t11=r11;0;65535;",128,0,0,0
+.stabs "float:t12=r1;2;0;",128,0,0,0
+.stabs "double:t13=r1;2;0;",128,0,0,0
+.stabs "long double:t14=r1;2;0;",128,0,0,0
+.stabs "complex int:t15=s2real:1,0,16;imag:1,16,16;;",128,0,0,0
+.stabs "complex float:t16=r16;2;0;",128,0,0,0
+.stabs "complex double:t17=r17;2;0;",128,0,0,0
+.stabs "complex long double:t18=r18;2;0;",128,0,0,0
+.stabs "void:t19=19",128,0,0,0
+.stabs "Key:G4",32,0,0,      1427
+.stabs "SpeechIndex:G4",32,0,0,      1428
+.stabs "VolumeIndex:G4",32,0,0,      1429
+.stabs "BitRate:G4",32,0,0,      1430
+.stabs "ADC_Channel:G4",32,0,0,      1431
+.stabs "ADC_FIR_Type:G4",32,0,0,      1432
+.stabs "DAC_FIR_Type:G4",32,0,0,      1433
+.stabs "PauseFlag:G4",32,0,0,      1434
+.stabs "PlayCon:G4",32,0,0,      1435
+.stabs "Mode:G4",32,0,0,      1436
+.stabs "main:F1",36,0,0,     51542
+.stabn 0x44,0,102,         0
+.stabn 0xa6,0,0,1
+.stabn 0x44,0,103,         7
+.stabn 0x44,0,104,        10
+.stabn 0x44,0,105,        13
+.stabn 0x44,0,106,        16
+.stabn 0x44,0,107,        19
+.stabn 0x44,0,108,        22
+.stabn 0x44,0,109,        25
+.stabn 0x44,0,110,        28
+.stabn 0x44,0,112,        31
+.stabn 0x44,0,113,        33
+.stabn 0x44,0,114,        35
+.stabn 0x44,0,116,        37
+.stabn 0x44,0,118,        41
+.stabn 0x44,0,119,        45
+.stabn 0x44,0,122,        99
+.stabn 0x44,0,125,       101
+.stabn 0x44,0,126,       104
+.stabn 0x44,0,127,       107
+.stabn 0x44,0,128,       112
+.stabn 0x44,0,129,       119
+.stabn 0x44,0,130,       122
+.stabn 0x44,0,132,       125
+.stabn 0x44,0,133,       136
+.stabn 0x44,0,136,       138
+.stabn 0x44,0,137,       141
+.stabn 0x44,0,138,       143
+.stabn 0x44,0,141,       145
+.stabn 0x44,0,142,       148
+.stabn 0x44,0,143,       151
+.stabn 0x44,0,144,       158
+.stabn 0x44,0,145,       167
+.stabn 0x44,0,146,       172
+.stabn 0x44,0,149,       174
+.stabn 0x44,0,150,       185
+.stabn 0x44,0,151,       188
+.stabn 0x44,0,152,       191
+.stabn 0x44,0,153,       194
+.stabn 0x44,0,154,       204
+.stabn 0x44,0,157,       206
+.stabn 0x44,0,158,       211
+.stabn 0x44,0,159,       217
+.stabn 0x44,0,161,       221
+.stabn 0x44,0,162,       223
+.stabn 0x44,0,165,       225
+.stabn 0x44,0,166,       236
+.stabn 0x44,0,167,       239
+.stabn 0x44,0,168,       245
+.stabn 0x44,0,171,       247
+.stabn 0x44,0,172,       258
+.stabn 0x44,0,173,       261
+.stabn 0x44,0,174,       267
+.stabn 0x44,0,177,       269
+.stabn 0x44,0,178,       272
+.stabn 0x44,0,179,       275
+.stabn 0x44,0,180,       278
+.stabn 0x44,0,181,       284
+.stabn 0x44,0,182,       293
+.stabn 0x44,0,185,       295
+.stabn 0x44,0,186,       297
+.stabn 0x44,0,187,       297
+.stabn 0x44,0,189,       303
+.stabn 0x44,0,191,       310
+.stabn 0x44,0,192,       321
+.stabn 0x44,0,193,       324
+.stabn 0x44,0,194,       330
+.stabn 0x44,0,195,       339
+.stabn 0x44,0,198,       339
+.stabn 0x44,0,199,       341
+.stabn 0x44,0,200,       343
+.stabn 0x44,0,201,       345
+.stabn 0x44,0,202,       348
+.stabn 0x44,0,202,       348
+.stabn 0xc0,0,0,         7
+.stabn 0xc0,0,0,        99
+.stabn 0xe0,0,0,       297
+.stabn 0xc0,0,0,       310
+.stabn 0xe0,0,0,       339
+.stabn 0xe0,0,0,       348
+.stabf        351
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\System.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     52094
+.stabn 0xe0,0,0,     52094
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\GPCE063.inc", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     52094
+.stabn 0xe0,0,0,     52094
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\System.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     52094
+.stabn 0xe0,0,0,     52094
+.stabn 0xc0,0,0,      1419
+.stabs "R_DebounceReg:S1",38,0,0,      1419
+.stabs "R_DebounceCnt:S1",38,0,0,      1420
+.stabs "R_KeyBuf:S1",38,0,0,      1421
+.stabs "R_KeyStrobe:S1",38,0,0,      1422
+.stabn 0xe0,0,0,      1423
+.stabn 0xc0,0,0,     52094
+.stabn 0x44,0,69,     52094
+.stabn 0x44,0,70,     52096
+.stabn 0x44,0,72,     52097
+.stabn 0x44,0,73,     52098
+.stabn 0x44,0,74,     52099
+.stabn 0x44,0,76,     52101
+.stabn 0x44,0,77,     52103
+.stabn 0x44,0,79,     52104
+.stabn 0x44,0,80,     52106
+.stabn 0x44,0,82,     52108
+.stabn 0x44,0,85,     52109
+.stabn 0x44,0,87,     52111
+.stabn 0x44,0,88,     52113
+.stabn 0x44,0,90,     52114
+.stabn 0x44,0,91,     52115
+.stabn 0x44,0,94,     52117
+.stabn 0x44,0,95,     52119
+.stabn 0x44,0,98,     52121
+.stabn 0x44,0,112,     52122
+.stabn 0x44,0,113,     52123
+.stabn 0x44,0,119,     52124
+.stabn 0x44,0,120,     52126
+.stabn 0x44,0,122,     52128
+.stabn 0x44,0,123,     52129
+.stabn 0x44,0,125,     52131
+.stabn 0x44,0,126,     52132
+.stabn 0x44,0,128,     52134
+.stabn 0x44,0,129,     52136
+.stabn 0x44,0,131,     52138
+.stabn 0x44,0,132,     52140
+.stabn 0x44,0,134,     52142
+.stabn 0x44,0,135,     52143
+.stabn 0x44,0,137,     52145
+.stabn 0x44,0,140,     52146
+.stabn 0x44,0,141,     52148
+.stabn 0x44,0,143,     52150
+.stabn 0x44,0,159,     52151
+.stabn 0x44,0,160,     52153
+.stabn 0x44,0,162,     52155
+.stabn 0x44,0,176,     52156
+.stabn 0x44,0,177,     52158
+.stabn 0x44,0,178,     52160
+.stabn 0x44,0,179,     52162
+.stabn 0x44,0,191,     52163
+.stabn 0x44,0,192,     52165
+.stabn 0x44,0,193,     52166
+.stabn 0x44,0,194,     52167
+.stabn 0x44,0,196,     52169
+.stabn 0x44,0,209,     52170
+.stabn 0x44,0,212,     52172
+.stabn 0x44,0,213,     52174
+.stabn 0x44,0,214,     52176
+.stabn 0x44,0,216,     52178
+.stabn 0x44,0,221,     52180
+.stabn 0x44,0,222,     52182
+.stabn 0x44,0,223,     52184
+.stabn 0x44,0,224,     52186
+.stabn 0x44,0,226,     52187
+.stabn 0x44,0,227,     52188
+.stabn 0x44,0,228,     52190
+.stabn 0x44,0,231,     52191
+.stabn 0x44,0,232,     52193
+.stabn 0x44,0,233,     52194
+.stabn 0x44,0,236,     52195
+.stabn 0x44,0,237,     52197
+.stabn 0x44,0,238,     52199
+.stabn 0x44,0,239,     52201
+.stabn 0x44,0,242,     52203
+.stabn 0x44,0,243,     52205
+.stabn 0x44,0,244,     52207
+.stabn 0x44,0,251,     52209
+.stabn 0x44,0,252,     52211
+.stabn 0x44,0,253,     52213
+.stabn 0x44,0,267,     52214
+.stabn 0x44,0,268,     52216
+.stabn 0x44,0,269,     52217
+.stabn 0x44,0,270,     52219
+.stabn 0x44,0,283,     52220
+.stabn 0x44,0,284,     52221
+.stabn 0x44,0,285,     52223
+.stabn 0x44,0,286,     52225
+.stabn 0x44,0,287,     52226
+.stabn 0x44,0,288,     52227
+.stabn 0x44,0,289,     52229
+.stabn 0x44,0,292,     52230
+.stabn 0x44,0,293,     52232
+.stabn 0x44,0,294,     52234
+.stabn 0x44,0,295,     52236
+.stabn 0x44,0,296,     52237
+.stabn 0x44,0,298,     52238
+.stabn 0x44,0,301,     52239
+.stabn 0x44,0,302,     52241
+.stabn 0x44,0,303,     52243
+.stabn 0x44,0,304,     52245
+.stabn 0x44,0,305,     52246
+.stabn 0x44,0,308,     52247
+.stabn 0x44,0,309,     52248
+.stabn 0x44,0,322,     52249
+.stabn 0x44,0,324,     52250
+.stabn 0x44,0,325,     52251
+.stabn 0x44,0,338,     52252
+.stabn 0x44,0,340,     52253
+.stabn 0x44,0,341,     52255
+.stabn 0x44,0,342,     52257
+.stabn 0x44,0,343,     52258
+.stabn 0x44,0,344,     52259
+.stabn 0x44,0,345,     52261
+.stabn 0x44,0,348,     52262
+.stabn 0x44,0,349,     52264
+.stabn 0x44,0,350,     52266
+.stabn 0x44,0,351,     52268
+.stabn 0x44,0,352,     52269
+.stabn 0x44,0,354,     52270
+.stabn 0x44,0,357,     52271
+.stabn 0x44,0,358,     52273
+.stabn 0x44,0,359,     52275
+.stabn 0x44,0,360,     52277
+.stabn 0x44,0,361,     52278
+.stabn 0x44,0,364,     52279
+.stabn 0x44,0,365,     52280
+.stabn 0x44,0,378,     52281
+.stabn 0x44,0,381,     52282
+.stabn 0x44,0,382,     52283
+.stabn 0x44,0,395,     52284
+.stabn 0x44,0,397,     52286
+.stabn 0x44,0,398,     52287
+.stabn 0x44,0,399,     52288
+.stabn 0xe0,0,0,     52289
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\SACM_DVR1800_User.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     51893
+.stabn 0xe0,0,0,     51893
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\GPCE063.inc", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     51893
+.stabn 0xe0,0,0,     51893
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\SACM_DVR1800_User.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     51893
+.stabn 0xe0,0,0,     51893
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\DVR1800.inc", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     51893
+.stabn 0xe0,0,0,     51893
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\SACM_DVR1800_User.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     51893
+.stabn 0xe0,0,0,     51893
+.stabn 0xc0,0,0,      1423
+.stabs "R_ExtMem_Low:S1",38,0,0,      1423
+.stabs "R_ExtMem_High:S1",38,0,0,      1424
+.stabs "R_ExtMem_Low_Con:S1",38,0,0,      1425
+.stabs "R_ExtMem_High_Con:S1",38,0,0,      1426
+.stabn 0xe0,0,0,      1427
+.stabn 0xc0,0,0,     32867
+.stabn 0xe0,0,0,     32883
+.stabn 0xc0,0,0,     51893
+.stabn 0x44,0,106,     51893
+.stabn 0x44,0,108,     51894
+.stabn 0x44,0,109,     51895
+.stabn 0x44,0,110,     51897
+.stabn 0x44,0,111,     51899
+.stabn 0x44,0,112,     51901
+.stabn 0x44,0,114,     51903
+.stabn 0x44,0,115,     51904
+.stabn 0x44,0,117,     51906
+.stabn 0x44,0,118,     51908
+.stabn 0x44,0,119,     51910
+.stabn 0x44,0,121,     51912
+.stabn 0x44,0,122,     51914
+.stabn 0x44,0,123,     51916
+.stabn 0x44,0,127,     51918
+.stabn 0x44,0,128,     51920
+.stabn 0x44,0,131,     51922
+.stabn 0x44,0,132,     51923
+.stabn 0x44,0,144,     51924
+.stabn 0x44,0,145,     51926
+.stabn 0x44,0,147,     51927
+.stabn 0x44,0,148,     51929
+.stabn 0x44,0,149,     51930
+.stabn 0x44,0,150,     51932
+.stabn 0x44,0,163,     51933
+.stabn 0x44,0,164,     51935
+.stabn 0x44,0,165,     51937
+.stabn 0x44,0,178,     51938
+.stabn 0x44,0,179,     51939
+.stabn 0x44,0,180,     51941
+.stabn 0x44,0,181,     51943
+.stabn 0x44,0,182,     51944
+.stabn 0x44,0,195,     51945
+.stabn 0x44,0,196,     51947
+.stabn 0x44,0,197,     51949
+.stabn 0x44,0,210,     51950
+.stabn 0x44,0,211,     51952
+.stabn 0x44,0,212,     51954
+.stabn 0x44,0,225,     51955
+.stabn 0x44,0,226,     51956
+.stabn 0x44,0,227,     51958
+.stabn 0x44,0,228,     51960
+.stabn 0x44,0,229,     51961
+.stabn 0x44,0,241,     51962
+.stabn 0x44,0,242,     51964
+.stabn 0x44,0,254,     51965
+.stabn 0x44,0,255,     51967
+.stabn 0x44,0,267,     51968
+.stabn 0x44,0,279,     51969
+.stabn 0x44,0,280,     51970
+.stabn 0x44,0,292,     51971
+.stabn 0x44,0,293,     51972
+.stabn 0x44,0,305,     51973
+.stabn 0x44,0,306,     51974
+.stabn 0x44,0,319,     51975
+.stabn 0x44,0,320,     51976
+.stabn 0x44,0,321,     51977
+.stabn 0x44,0,322,     51978
+.stabn 0x44,0,323,     51979
+.stabn 0x44,0,325,     51980
+.stabn 0x44,0,326,     51982
+.stabn 0x44,0,327,     51983
+.stabn 0x44,0,329,     51984
+.stabn 0x44,0,330,     51986
+.stabn 0x44,0,346,     51987
+.stabn 0x44,0,347,     51989
+.stabn 0x44,0,348,     51990
+.stabn 0x44,0,350,     51991
+.stabn 0x44,0,351,     51992
+.stabn 0x44,0,352,     51994
+.stabn 0x44,0,354,     51995
+.stabn 0x44,0,355,     51997
+.stabn 0x44,0,356,     51999
+.stabn 0x44,0,359,     52000
+.stabn 0x44,0,360,     52002
+.stabn 0x44,0,361,     52003
+.stabn 0x44,0,362,     52004
+.stabn 0x44,0,363,     52006
+.stabn 0x44,0,364,     52007
+.stabn 0x44,0,365,     52008
+.stabn 0x44,0,366,     52009
+.stabn 0x44,0,367,     52010
+.stabn 0x44,0,370,     52012
+.stabn 0x44,0,371,     52013
+.stabn 0x44,0,387,     52014
+.stabn 0x44,0,388,     52016
+.stabn 0x44,0,390,     52017
+.stabn 0x44,0,391,     52018
+.stabn 0x44,0,392,     52020
+.stabn 0x44,0,393,     52021
+.stabn 0x44,0,394,     52022
+.stabn 0x44,0,395,     52024
+.stabn 0x44,0,396,     52025
+.stabn 0x44,0,397,     52026
+.stabn 0x44,0,398,     52027
+.stabn 0x44,0,399,     52028
+.stabn 0x44,0,401,     52030
+.stabn 0x44,0,402,     52031
+.stabn 0x44,0,414,     52032
+.stabn 0x44,0,415,     52034
+.stabn 0x44,0,416,     52036
+.stabn 0x44,0,417,     52038
+.stabn 0x44,0,418,     52040
+.stabn 0x44,0,432,     52041
+.stabn 0x44,0,433,     52042
+.stabn 0x44,0,434,     52044
+.stabn 0x44,0,436,     52045
+.stabn 0x44,0,437,     52047
+.stabn 0x44,0,438,     52049
+.stabn 0x44,0,439,     52051
+.stabn 0x44,0,440,     52052
+.stabn 0x44,0,441,     52053
+.stabn 0x44,0,442,     52055
+.stabn 0x44,0,443,     52057
+.stabn 0x44,0,446,     52058
+.stabn 0x44,0,447,     52060
+.stabn 0x44,0,449,     52062
+.stabn 0x44,0,450,     52063
+.stabn 0x44,0,451,     52064
+.stabn 0x44,0,452,     52066
+.stabn 0x44,0,453,     52067
+.stabn 0x44,0,454,     52068
+.stabn 0x44,0,455,     52069
+.stabn 0x44,0,456,     52070
+.stabn 0x44,0,457,     52071
+.stabn 0x44,0,458,     52072
+.stabn 0x44,0,459,     52074
+.stabn 0x44,0,460,     52076
+.stabn 0x44,0,462,     52077
+.stabn 0x44,0,465,     52079
+.stabn 0x44,0,466,     52080
+.stabn 0x44,0,491,     52081
+.stabn 0x44,0,492,     52083
+.stabn 0x44,0,493,     52085
+.stabn 0x44,0,494,     52087
+.stabn 0x44,0,495,     52088
+.stabn 0x44,0,496,     52089
+.stabn 0x44,0,497,     52091
+.stabn 0x44,0,498,     52093
+.stabn 0xe0,0,0,     52094
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\SPI_Flash_CE063.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     50616
+.stabn 0xe0,0,0,     50616
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\GPCE063.inc", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     50616
+.stabn 0xe0,0,0,     50616
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include/", 0x64,0,0,0
+.stabs "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\include\SPI_Flash_CE063.asm", 0x64,0,0,0
+.stabs "unsigned int:t1=r1;0;65535;",128,0,0,0
+.stabs "long long int:t2=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "float:t3=r1;2;0;",128,0,0,0
+.stabs "double:t4=r1;4;0;",128,0,0,0
+.stabn 0xc0,0,0,     50616
+.stabn 0xe0,0,0,     50616
+.stabn 0xc0,0,0,         0
+.stabn 0xe0,0,0,         0
+.stabn 0xc0,0,0,         0
+.stabn 0xe0,0,0,         0
+.stabn 0xc0,0,0,     50616
+.stabn 0x44,0,122,     50616
+.stabn 0x44,0,124,     50617
+.stabn 0x44,0,125,     50619
+.stabn 0x44,0,126,     50621
+.stabn 0x44,0,127,     50623
+.stabn 0x44,0,129,     50625
+.stabn 0x44,0,130,     50627
+.stabn 0x44,0,131,     50629
+.stabn 0x44,0,133,     50631
+.stabn 0x44,0,134,     50633
+.stabn 0x44,0,135,     50635
+.stabn 0x44,0,136,     50637
+.stabn 0x44,0,139,     50639
+.stabn 0x44,0,140,     50641
+.stabn 0x44,0,141,     50642
+.stabn 0x44,0,142,     50644
+.stabn 0x44,0,143,     50646
+.stabn 0x44,0,144,     50648
+.stabn 0x44,0,145,     50650
+.stabn 0x44,0,146,     50652
+.stabn 0x44,0,147,     50653
+.stabn 0x44,0,149,     50655
+.stabn 0x44,0,150,     50657
+.stabn 0x44,0,151,     50659
+.stabn 0x44,0,153,     50661
+.stabn 0x44,0,154,     50663
+.stabn 0x44,0,156,     50665
+.stabn 0x44,0,157,     50667
+.stabn 0x44,0,159,     50669
+.stabn 0x44,0,160,     50671
+.stabn 0x44,0,162,     50673
+.stabn 0x44,0,163,     50675
+.stabn 0x44,0,165,     50677
+.stabn 0x44,0,166,     50679
+.stabn 0x44,0,167,     50681
+.stabn 0x44,0,168,     50682
+.stabn 0x44,0,170,     50684
+.stabn 0x44,0,171,     50685
+.stabn 0x44,0,183,     50686
+.stabn 0x44,0,184,     50688
+.stabn 0x44,0,185,     50689
+.stabn 0x44,0,188,     50690
+.stabn 0x44,0,189,     50691
+.stabn 0x44,0,191,     50693
+.stabn 0x44,0,192,     50694
+.stabn 0x44,0,193,     50696
+.stabn 0x44,0,194,     50698
+.stabn 0x44,0,195,     50700
+.stabn 0x44,0,196,     50701
+.stabn 0x44,0,197,     50702
+.stabn 0x44,0,198,     50704
+.stabn 0x44,0,199,     50706
+.stabn 0x44,0,201,     50708
+.stabn 0x44,0,202,     50710
+.stabn 0x44,0,203,     50712
+.stabn 0x44,0,207,     50714
+.stabn 0x44,0,208,     50716
+.stabn 0x44,0,209,     50717
+.stabn 0x44,0,210,     50718
+.stabn 0x44,0,213,     50720
+.stabn 0x44,0,214,     50722
+.stabn 0x44,0,215,     50724
+.stabn 0x44,0,216,     50726
+.stabn 0x44,0,217,     50728
+.stabn 0x44,0,218,     50730
+.stabn 0x44,0,219,     50732
+.stabn 0x44,0,220,     50733
+.stabn 0x44,0,221,     50734
+.stabn 0x44,0,223,     50735
+.stabn 0x44,0,224,     50737
+.stabn 0x44,0,225,     50738
+.stabn 0x44,0,241,     50739
+.stabn 0x44,0,242,     50741
+.stabn 0x44,0,243,     50742
+.stabn 0x44,0,244,     50743
+.stabn 0x44,0,245,     50744
+.stabn 0x44,0,248,     50745
+.stabn 0x44,0,249,     50746
+.stabn 0x44,0,251,     50748
+.stabn 0x44,0,252,     50749
+.stabn 0x44,0,253,     50751
+.stabn 0x44,0,254,     50753
+.stabn 0x44,0,255,     50755
+.stabn 0x44,0,256,     50756
+.stabn 0x44,0,257,     50757
+.stabn 0x44,0,258,     50759
+.stabn 0x44,0,259,     50761
+.stabn 0x44,0,263,     50763
+.stabn 0x44,0,264,     50765
+.stabn 0x44,0,265,     50766
+.stabn 0x44,0,268,     50767
+.stabn 0x44,0,269,     50769
+.stabn 0x44,0,270,     50771
+.stabn 0x44,0,271,     50773
+.stabn 0x44,0,274,     50775
+.stabn 0x44,0,275,     50777
+.stabn 0x44,0,278,     50779
+.stabn 0x44,0,279,     50781
+.stabn 0x44,0,280,     50782
+.stabn 0x44,0,283,     50783
+.stabn 0x44,0,284,     50785
+.stabn 0x44,0,285,     50787
+.stabn 0x44,0,286,     50788
+.stabn 0x44,0,287,     50789
+.stabn 0x44,0,288,     50790
+.stabn 0x44,0,289,     50791
+.stabn 0x44,0,290,     50792
+.stabn 0x44,0,292,     50793
+.stabn 0x44,0,295,     50795
+.stabn 0x44,0,297,     50796
+.stabn 0x44,0,309,     50797
+.stabn 0x44,0,310,     50799
+.stabn 0x44,0,311,     50800
+.stabn 0x44,0,312,     50801
+.stabn 0x44,0,315,     50802
+.stabn 0x44,0,317,     50803
+.stabn 0x44,0,319,     50805
+.stabn 0x44,0,321,     50807
+.stabn 0x44,0,322,     50808
+.stabn 0x44,0,323,     50810
+.stabn 0x44,0,324,     50812
+.stabn 0x44,0,325,     50814
+.stabn 0x44,0,326,     50815
+.stabn 0x44,0,327,     50816
+.stabn 0x44,0,328,     50818
+.stabn 0x44,0,329,     50820
+.stabn 0x44,0,331,     50822
+.stabn 0x44,0,332,     50824
+.stabn 0x44,0,333,     50825
+.stabn 0x44,0,334,     50826
+.stabn 0x44,0,338,     50828
+.stabn 0x44,0,339,     50830
+.stabn 0x44,0,340,     50831
+.stabn 0x44,0,343,     50832
+.stabn 0x44,0,345,     50834
+.stabn 0x44,0,346,     50836
+.stabn 0x44,0,347,     50838
+.stabn 0x44,0,348,     50840
+.stabn 0x44,0,349,     50842
+.stabn 0x44,0,350,     50844
+.stabn 0x44,0,353,     50846
+.stabn 0x44,0,354,     50848
+.stabn 0x44,0,355,     50849
+.stabn 0x44,0,357,     50850
+.stabn 0x44,0,358,     50851
+.stabn 0x44,0,374,     50852
+.stabn 0x44,0,375,     50854
+.stabn 0x44,0,376,     50855
+.stabn 0x44,0,377,     50856
+.stabn 0x44,0,378,     50857
+.stabn 0x44,0,380,     50858
+.stabn 0x44,0,384,     50859
+.stabn 0x44,0,386,     50861
+.stabn 0x44,0,388,     50863
+.stabn 0x44,0,389,     50864
+.stabn 0x44,0,390,     50866
+.stabn 0x44,0,391,     50868
+.stabn 0x44,0,392,     50869
+.stabn 0x44,0,393,     50870
+.stabn 0x44,0,394,     50872
+.stabn 0x44,0,395,     50874
+.stabn 0x44,0,399,     50876
+.stabn 0x44,0,400,     50878
+.stabn 0x44,0,401,     50879
+.stabn 0x44,0,404,     50880
+.stabn 0x44,0,405,     50882
+.stabn 0x44,0,406,     50884
+.stabn 0x44,0,407,     50886
+.stabn 0x44,0,410,     50888
+.stabn 0x44,0,411,     50889
+.stabn 0x44,0,412,     50891
+.stabn 0x44,0,413,     50892
+.stabn 0x44,0,414,     50893
+.stabn 0x44,0,417,     50895
+.stabn 0x44,0,418,     50897
+.stabn 0x44,0,419,     50898
+.stabn 0x44,0,421,     50899
+.stabn 0x44,0,422,     50901
+.stabn 0x44,0,423,     50903
+.stabn 0x44,0,424,     50904
+.stabn 0x44,0,425,     50905
+.stabn 0x44,0,426,     50906
+.stabn 0x44,0,427,     50908
+.stabn 0x44,0,429,     50909
+.stabn 0x44,0,430,     50910
+.stabn 0x44,0,431,     50911
+.stabn 0x44,0,433,     50912
+.stabn 0x44,0,434,     50914
+.stabn 0x44,0,436,     50915
+.stabn 0x44,0,437,     50917
+.stabn 0x44,0,438,     50918
+.stabn 0x44,0,439,     50919
+.stabn 0x44,0,440,     50920
+.stabn 0x44,0,443,     50922
+.stabn 0x44,0,447,     50924
+.stabn 0x44,0,448,     50926
+.stabn 0x44,0,449,     50927
+.stabn 0x44,0,452,     50928
+.stabn 0x44,0,453,     50929
+.stabn 0x44,0,466,     50930
+.stabn 0x44,0,468,     50931
+.stabn 0x44,0,469,     50933
+.stabn 0x44,0,470,     50934
+.stabn 0x44,0,474,     50936
+.stabn 0x44,0,475,     50938
+.stabn 0x44,0,476,     50939
+.stabn 0x44,0,479,     50940
+.stabn 0x44,0,480,     50941
+.stabn 0x44,0,481,     50942
+.stabn 0x44,0,482,     50943
+.stabn 0x44,0,484,     50945
+.stabn 0x44,0,485,     50947
+.stabn 0x44,0,486,     50948
+.stabn 0x44,0,499,     50949
+.stabn 0x44,0,501,     50950
+.stabn 0x44,0,502,     50952
+.stabn 0x44,0,503,     50953
+.stabn 0x44,0,507,     50955
+.stabn 0x44,0,508,     50957
+.stabn 0x44,0,509,     50958
+.stabn 0x44,0,512,     50959
+.stabn 0x44,0,514,     50961
+.stabn 0x44,0,515,     50963
+.stabn 0x44,0,516,     50964
+.stabn 0x44,0,530,     50965
+.stabn 0x44,0,531,     50967
+.stabn 0x44,0,532,     50968
+.stabn 0x44,0,534,     50970
+.stabn 0x44,0,535,     50971
+.stabn 0x44,0,539,     50973
+.stabn 0x44,0,540,     50975
+.stabn 0x44,0,541,     50976
+.stabn 0x44,0,545,     50977
+.stabn 0x44,0,546,     50979
+.stabn 0x44,0,548,     50981
+.stabn 0x44,0,549,     50983
+.stabn 0x44,0,563,     50984
+.stabn 0x44,0,564,     50985
+.stabn 0x44,0,565,     50987
+.stabn 0x44,0,566,     50988
+.stabn 0x44,0,569,     50990
+.stabn 0x44,0,570,     50992
+.stabn 0x44,0,571,     50993
+.stabn 0x44,0,574,     50994
+.stabn 0x44,0,576,     50996
+.stabn 0x44,0,577,     50998
+.stabn 0x44,0,578,     50999
+.stabn 0x44,0,590,     51000
+.stabn 0x44,0,591,     51002
+.stabn 0x44,0,594,     51003
+.stabn 0x44,0,595,     51004
+.stabn 0x44,0,596,     51006
+.stabn 0x44,0,597,     51007
+.stabn 0x44,0,598,     51009
+.stabn 0x44,0,602,     51011
+.stabn 0x44,0,603,     51013
+.stabn 0x44,0,604,     51014
+.stabn 0x44,0,607,     51015
+.stabn 0x44,0,608,     51017
+.stabn 0x44,0,610,     51019
+.stabn 0x44,0,611,     51021
+.stabn 0x44,0,612,     51022
+.stabn 0x44,0,625,     51023
+.stabn 0x44,0,626,     51025
+.stabn 0x44,0,629,     51026
+.stabn 0x44,0,630,     51027
+.stabn 0x44,0,640,     51029
+.stabn 0x44,0,641,     51030
+.stabn 0x44,0,644,     51031
+.stabn 0x44,0,645,     51033
+.stabn 0x44,0,646,     51035
+.stabn 0x44,0,647,     51037
+.stabn 0x44,0,648,     51039
+.stabn 0x44,0,649,     51040
+.stabn 0x44,0,650,     51041
+.stabn 0x44,0,651,     51043
+.stabn 0x44,0,652,     51045
+.stabn 0x44,0,656,     51047
+.stabn 0x44,0,657,     51049
+.stabn 0x44,0,658,     51050
+.stabn 0x44,0,661,     51051
+.stabn 0x44,0,663,     51053
+.stabn 0x44,0,664,     51055
+.stabn 0x44,0,665,     51057
+.stabn 0x44,0,666,     51059
+.stabn 0x44,0,669,     51061
+.stabn 0x44,0,670,     51063
+.stabn 0x44,0,671,     51065
+.stabn 0x44,0,672,     51067
+.stabn 0x44,0,673,     51068
+.stabn 0x44,0,675,     51069
+.stabn 0x44,0,676,     51070
+.stabn 0x44,0,689,     51071
+.stabn 0x44,0,690,     51072
+.stabn 0x44,0,692,     51074
+.stabn 0x44,0,693,     51076
+.stabn 0x44,0,694,     51078
+.stabn 0x44,0,698,     51080
+.stabn 0x44,0,699,     51082
+.stabn 0x44,0,700,     51083
+.stabn 0x44,0,703,     51084
+.stabn 0x44,0,706,     51086
+.stabn 0x44,0,707,     51088
+.stabn 0x44,0,708,     51090
+.stabn 0x44,0,709,     51092
+.stabn 0x44,0,710,     51093
+.stabn 0x44,0,712,     51094
+.stabn 0x44,0,713,     51096
+.stabn 0x44,0,714,     51097
+.stabn 0x44,0,727,     51098
+.stabn 0x44,0,728,     51099
+.stabn 0x44,0,729,     51101
+.stabn 0x44,0,730,     51103
+.stabn 0x44,0,732,     51105
+.stabn 0x44,0,733,     51106
+.stabn 0x44,0,734,     51108
+.stabn 0x44,0,735,     51110
+.stabn 0x44,0,739,     51112
+.stabn 0x44,0,740,     51114
+.stabn 0x44,0,741,     51115
+.stabn 0x44,0,744,     51116
+.stabn 0x44,0,745,     51118
+.stabn 0x44,0,746,     51120
+.stabn 0x44,0,747,     51122
+.stabn 0x44,0,748,     51124
+.stabn 0x44,0,749,     51125
+.stabn 0x44,0,750,     51126
+.stabn 0x44,0,751,     51127
+.stabn 0x44,0,753,     51128
+.stabn 0x44,0,754,     51130
+.stabn 0x44,0,755,     51131
+.stabn 0xe0,0,0,     51132

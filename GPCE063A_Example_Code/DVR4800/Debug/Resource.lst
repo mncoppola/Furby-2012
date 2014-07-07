@@ -1,0 +1,43 @@
+Generalplus u'nSP Assembler - Ver. 1.14.13.0
+              Listing File Has Been Relocated
+                            	
+                            	// Resource Table
+                            	// Created by IDE, Do not modify this table
+                            	
+00008026                    	.TEXT
+                            	.public _RES_Table;
+                            	.external __RES_CHIMEA_5_A48_sa
+                            	.public _RES_CHIMEA_5_A48_SA;
+                            	.external __RES_CHIMEA_5_A48_ea;
+                            	.public _RES_CHIMEA_5_A48_EA;
+                            	.external __RES_CHIMEA_4_A48_sa
+                            	.public _RES_CHIMEA_4_A48_SA;
+                            	.external __RES_CHIMEA_4_A48_ea;
+                            	.public _RES_CHIMEA_4_A48_EA;
+                            	
+                            	
+                            	_RES_Table:
+                            	
+                            	_RES_CHIMEA_5_A48_SA:
+00008026 16 A6 00 00        		.DW offset __RES_CHIMEA_5_A48_sa,seg __RES_CHIMEA_5_A48_sa;
+                            	_RES_CHIMEA_5_A48_EA:
+00008028 89 B4 00 00        		.DW offset __RES_CHIMEA_5_A48_ea,seg __RES_CHIMEA_5_A48_ea;
+                            	
+                            	_RES_CHIMEA_4_A48_SA:
+0000802A 89 B4 00 00        		.DW offset __RES_CHIMEA_4_A48_sa,seg __RES_CHIMEA_4_A48_sa;
+                            	_RES_CHIMEA_4_A48_EA:
+0000802C FC C2 00 00        		.DW offset __RES_CHIMEA_4_A48_ea,seg __RES_CHIMEA_4_A48_ea;
+                            	
+                            	
+                            	// End Table
+                            	//------------------------------------------------
+                            	// SACM DVR4800 Speech Table
+                            	// -- User nees to add in the song/speech 
+                            	//    for playback based on the _RES_Table above.
+                            	//------------------------------------------------
+                            	.public T_SACM_DVR4800_SpeechTable;
+                            	T_SACM_DVR4800_SpeechTable:	
+0000802E 2A 80              	.dw _RES_CHIMEA_4_A48_SA
+0000802F 26 80              	.dw _RES_CHIMEA_5_A48_SA
+0 error(s), 0 warning(s).
+

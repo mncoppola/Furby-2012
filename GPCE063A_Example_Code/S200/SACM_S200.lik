@@ -1,0 +1,48 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.3\startupcode\startupD.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\S200\Debug\Resource.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\S200\Debug\Isr.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\S200\Debug\main.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\S200\Debug\System.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\S200\Debug\SACM_S200_User.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\S200\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\S200\Debug\m6_3360_bin.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\S200\Debug\f2_3360_bin.res"
+Lib: "D:\GPCE_Serial\GPCE063\SACM_N\S200\..\library\SACM_S200_V41b_Beta02.lib"
+Output: "D:\GPCE_Serial\GPCE063\SACM_N\S200\Debug\SACM_S200.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at A36D  linkat 411 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 409 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_S200_User.obj" at 40D 
+;Align: RAM in "SACM_S200_User.obj" with 0 
+;Locate: OVERLAP_S200_API_BLOCK in "SACM_S200_API" of "SACM_S200_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_S200_API_BLOCK in "SACM_S200_API" of "SACM_S200_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_S200_RAM_BLOCK in "SACM_S200_Decode" of "SACM_S200_V41b_Beta02.lib"  at 18 
+;Align: OVERLAP_S200_RAM_BLOCK in "SACM_S200_Decode" of "SACM_S200_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_S200_DM_BLOCK in "SACM_S~4" of "SACM_S200_V41b_Beta02.lib"  at 215 
+;Align: OVERLAP_S200_DM_BLOCK in "SACM_S~4" of "SACM_S200_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at 9F4C 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at A177 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_S200_User.obj" at A2F0 
+;Align: CODE in "SACM_S200_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 9BC8 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_M6_3360_BIN in "m6_3360_bin.res" at AB25 
+;Align: __sn_section_RES_M6_3360_BIN in "m6_3360_bin.res" with 0 
+;Locate: __sn_section_RES_F2_3360_BIN in "f2_3360_bin.res" at A373 
+;Align: __sn_section_RES_F2_3360_BIN in "f2_3360_bin.res" with 0 
+;Locate: CODE in "SACM_S200_API" of "SACM_S200_V41b_Beta02.lib"  at A259 
+;Align: CODE in "SACM_S200_API" of "SACM_S200_V41b_Beta02.lib"  with 0 
+;Locate: SACM_S200_ROM_BLOCK in "SACM_S200_API" of "SACM_S200_V41b_Beta02.lib"  at 9DCC 
+;Align: SACM_S200_ROM_BLOCK in "SACM_S200_API" of "SACM_S200_V41b_Beta02.lib"  with 0 
+;Locate: SACM_S200_DECODE_ROM_BLOCK in "SACM_S200_Decode" of "SACM_S200_V41b_Beta02.lib"  at A06B 
+;Align: SACM_S200_DECODE_ROM_BLOCK in "SACM_S200_Decode" of "SACM_S200_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "SACM_S~4" of "SACM_S200_V41b_Beta02.lib"  at 9408 
+;Align: CODE in "SACM_S~4" of "SACM_S200_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

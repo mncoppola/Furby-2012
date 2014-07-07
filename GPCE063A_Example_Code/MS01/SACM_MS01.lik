@@ -1,0 +1,123 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.3\startupcode\startupD.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\main.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\isr.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\Resource.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\System.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\SACM_MS01_User.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\BD1_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\CBH_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\CBL_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\CC_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\CHT1_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\CYM1_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\HAP1_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\HB_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\HBQ_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\HFT_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\HT1_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\HTM_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\JB1_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\LB_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\LBQ_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\LFT_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\LT_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\OHT1_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\PHT1_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\SD1_ADP.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\1231_BIN.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\ALA1_BIN.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\ALAINS_BIN.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\DECK1_BIN.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\PP1_BIN.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\S31_BIN.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\TW1_BIN.res"
+Lib: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\..\library\SACM_MS01_V41b_Beta02.lib"
+Output: "D:\GPCE_Serial\GPCE063\SACM_N\MS01\Debug\SACM_MS01.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at 9300  linkat 1DE 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 1D8 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_MS01_User.obj" at 1DC 
+;Align: RAM in "SACM_MS01_User.obj" with 0 
+;Locate: OVERLAP_MS01_API_BLOCK in "SACM_MS01_API" of "SACM_MS01_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_MS01_API_BLOCK in "SACM_MS01_API" of "SACM_MS01_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_MS01_RAM_BLOCK in "SACM_MS01_Decode" of "SACM_MS01_V41b_Beta02.lib"  at 18 
+;Align: OVERLAP_MS01_RAM_BLOCK in "SACM_MS01_Decode" of "SACM_MS01_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_MS01_DM_BLOCK in "MS01_K~1" of "SACM_MS01_V41b_Beta02.lib"  at 156 
+;Align: OVERLAP_MS01_DM_BLOCK in "MS01_K~1" of "SACM_MS01_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at 90ED 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at 900B 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_MS01_User.obj" at 929E 
+;Align: CODE in "SACM_MS01_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 8CEC 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_BD1_ADP in "BD1_ADP.res" at D9B3 
+;Align: __sn_section_RES_BD1_ADP in "BD1_ADP.res" with 0 
+;Locate: __sn_section_RES_CBH_ADP in "CBH_ADP.res" at DC04 
+;Align: __sn_section_RES_CBH_ADP in "CBH_ADP.res" with 0 
+;Locate: __sn_section_RES_CBL_ADP in "CBL_ADP.res" at DB06 
+;Align: __sn_section_RES_CBL_ADP in "CBL_ADP.res" with 0 
+;Locate: __sn_section_RES_CC_ADP in "CC_ADP.res" at 9B77 
+;Align: __sn_section_RES_CC_ADP in "CC_ADP.res" with 0 
+;Locate: __sn_section_RES_CHT1_ADP in "CHT1_ADP.res" at DA75 
+;Align: __sn_section_RES_CHT1_ADP in "CHT1_ADP.res" with 0 
+;Locate: __sn_section_RES_CYM1_ADP in "CYM1_ADP.res" at BDA2 
+;Align: __sn_section_RES_CYM1_ADP in "CYM1_ADP.res" with 0 
+;Locate: __sn_section_RES_HAP1_ADP in "HAP1_ADP.res" at D816 
+;Align: __sn_section_RES_HAP1_ADP in "HAP1_ADP.res" with 0 
+;Locate: __sn_section_RES_HB_ADP in "HB_ADP.res" at D185 
+;Align: __sn_section_RES_HB_ADP in "HB_ADP.res" with 0 
+;Locate: __sn_section_RES_HBQ_ADP in "HBQ_ADP.res" at D373 
+;Align: __sn_section_RES_HBQ_ADP in "HBQ_ADP.res" with 0 
+;Locate: __sn_section_RES_HFT_ADP in "HFT_ADP.res" at C624 
+;Align: __sn_section_RES_HFT_ADP in "HFT_ADP.res" with 0 
+;Locate: __sn_section_RES_HT1_ADP in "HT1_ADP.res" at D8E7 
+;Align: __sn_section_RES_HT1_ADP in "HT1_ADP.res" with 0 
+;Locate: __sn_section_RES_HTM_ADP in "HTM_ADP.res" at C096 
+;Align: __sn_section_RES_HTM_ADP in "HTM_ADP.res" with 0 
+;Locate: __sn_section_RES_JB1_ADP in "JB1_ADP.res" at CF73 
+;Align: __sn_section_RES_JB1_ADP in "JB1_ADP.res" with 0 
+;Locate: __sn_section_RES_LB_ADP in "LB_ADP.res" at CD43 
+;Align: __sn_section_RES_LB_ADP in "LB_ADP.res" with 0 
+;Locate: __sn_section_RES_LBQ_ADP in "LBQ_ADP.res" at CB13 
+;Align: __sn_section_RES_LBQ_ADP in "LBQ_ADP.res" with 0 
+;Locate: __sn_section_RES_LFT_ADP in "LFT_ADP.res" at C368 
+;Align: __sn_section_RES_LFT_ADP in "LFT_ADP.res" with 0 
+;Locate: __sn_section_RES_LT_ADP in "LT_ADP.res" at B7A7 
+;Align: __sn_section_RES_LT_ADP in "LT_ADP.res" with 0 
+;Locate: __sn_section_RES_OHT1_ADP in "OHT1_ADP.res" at AB09 
+;Align: __sn_section_RES_OHT1_ADP in "OHT1_ADP.res" with 0 
+;Locate: __sn_section_RES_PHT1_ADP in "PHT1_ADP.res" at DB8D 
+;Align: __sn_section_RES_PHT1_ADP in "PHT1_ADP.res" with 0 
+;Locate: __sn_section_RES_SD1_ADP in "SD1_ADP.res" at D561 
+;Align: __sn_section_RES_SD1_ADP in "SD1_ADP.res" with 0 
+;Locate: __sn_section_RES_1231_BIN in "1231_BIN.res" at C8D4 
+;Align: __sn_section_RES_1231_BIN in "1231_BIN.res" with 0 
+;Locate: __sn_section_RES_ALA1_BIN in "ALA1_BIN.res" at A368 
+;Align: __sn_section_RES_ALA1_BIN in "ALA1_BIN.res" with 0 
+;Locate: __sn_section_RES_ALAINS_BIN in "ALAINS_BIN.res" at D73B 
+;Align: __sn_section_RES_ALAINS_BIN in "ALAINS_BIN.res" with 0 
+;Locate: __sn_section_RES_DECK1_BIN in "DECK1_BIN.res" at B492 
+;Align: __sn_section_RES_DECK1_BIN in "DECK1_BIN.res" with 0 
+;Locate: __sn_section_RES_PP1_BIN in "PP1_BIN.res" at B040 
+;Align: __sn_section_RES_PP1_BIN in "PP1_BIN.res" with 0 
+;Locate: __sn_section_RES_S31_BIN in "S31_BIN.res" at 9303 
+;Align: __sn_section_RES_S31_BIN in "S31_BIN.res" with 0 
+;Locate: __sn_section_RES_TW1_BIN in "TW1_BIN.res" at BAA5 
+;Align: __sn_section_RES_TW1_BIN in "TW1_BIN.res" with 0 
+;Locate: CODE in "SACM_MS01_API" of "SACM_MS01_V41b_Beta02.lib"  at 91BB 
+;Align: CODE in "SACM_MS01_API" of "SACM_MS01_V41b_Beta02.lib"  with 0 
+;Locate: SACM_MS01_ROM_BLOCK in "SACM_MS01_API" of "SACM_MS01_V41b_Beta02.lib"  at 8EF0 
+;Align: SACM_MS01_ROM_BLOCK in "SACM_MS01_API" of "SACM_MS01_V41b_Beta02.lib"  with 0 
+;Locate: SACM_MS01_DECODE_ROM_BLOCK in "SACM_MS01_Decode" of "SACM_MS01_V41b_Beta02.lib"  at 9233 
+;Align: SACM_MS01_DECODE_ROM_BLOCK in "SACM_MS01_Decode" of "SACM_MS01_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "MS01_K~1" of "SACM_MS01_V41b_Beta02.lib"  at 8654 
+;Align: CODE in "MS01_K~1" of "SACM_MS01_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

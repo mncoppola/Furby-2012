@@ -1,0 +1,57 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.4\startupcode\startupD.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\Resource.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\Isr.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\main.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\System.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\SACM_DVR520_User.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\male_bin.res"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\child_bin.res"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\0503b_bin.res"
+Lib: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\..\library\SACM_DVR520_V41b_Beta02.lib"
+Output: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR520\Debug\SACM_DVR520.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at C6D9  linkat 5C6 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 5BD 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_DVR520_User.obj" at 5C1 
+;Align: RAM in "SACM_DVR520_User.obj" with 0 
+;Locate: RAM in "DVR520~1" of "SACM_DVR520_V41b_Beta02.lib"  at 5C5 
+;Align: RAM in "DVR520~1" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_DVR520_API_BLOCK in "SACM_DVR520_API" of "SACM_DVR520_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_DVR520_API_BLOCK in "SACM_DVR520_API" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_DVR520_RAM_BLOCK in "SACM_DVR520_Decode" of "SACM_DVR520_V41b_Beta02.lib"  at 3A 
+;Align: OVERLAP_DVR520_RAM_BLOCK in "SACM_DVR520_Decode" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_DVR520_DM_BLOCK in "DVR520~1" of "SACM_DVR520_V41b_Beta02.lib"  at 1DF 
+;Align: OVERLAP_DVR520_DM_BLOCK in "DVR520~1" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_DVR520_DM_BLOCK in "DVR520~2" of "SACM_DVR520_V41b_Beta02.lib"  at 1DF 
+;Align: OVERLAP_DVR520_DM_BLOCK in "DVR520~2" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at C36E 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at C59F 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_DVR520_User.obj" at C4D6 
+;Align: CODE in "SACM_DVR520_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at BFDC 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_MALE_BIN in "male_bin.res" at D3AB 
+;Align: __sn_section_RES_MALE_BIN in "male_bin.res" with 0 
+;Locate: __sn_section_RES_CHILD_BIN in "child_bin.res" at DA1A 
+;Align: __sn_section_RES_CHILD_BIN in "child_bin.res" with 0 
+;Locate: __sn_section_RES_0503B_BIN in "0503b_bin.res" at C6E4 
+;Align: __sn_section_RES_0503B_BIN in "0503b_bin.res" with 0 
+;Locate: CODE in "SACM_DVR520_API" of "SACM_DVR520_V41b_Beta02.lib"  at C662 
+;Align: CODE in "SACM_DVR520_API" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: SACM_DVR520_ROM_BLOCK in "SACM_DVR520_API" of "SACM_DVR520_V41b_Beta02.lib"  at BD91 
+;Align: SACM_DVR520_ROM_BLOCK in "SACM_DVR520_API" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: SACM_DVR520_DECODE_ROM_BLOCK in "SACM_DVR520_Decode" of "SACM_DVR520_V41b_Beta02.lib"  at C1E0 
+;Align: SACM_DVR520_DECODE_ROM_BLOCK in "SACM_DVR520_Decode" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "DVR520~1" of "SACM_DVR520_V41b_Beta02.lib"  at 8EB6 
+;Align: CODE in "DVR520~1" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "DVR520~2" of "SACM_DVR520_V41b_Beta02.lib"  at B649 
+;Align: CODE in "DVR520~2" of "SACM_DVR520_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

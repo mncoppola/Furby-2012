@@ -1,0 +1,30 @@
+# Begin Project
+# Begin SubItem "SACM_XXXX  Resources"
+# Begin Group "MIDI"
+#PROP Default_Filter=
+USEPARAM=FALSE
+PARAM=
+EXPORT=3
+# Begin Source File
+SOURCE=voice\demo_new.bin
+USEPARAM=FALSE
+PARAM=
+ID=RES_DEMO_NEW_BIN
+EXPORT=3
+# End Source File
+# End Group
+# Begin Group "ToneColor"
+#PROP Default_Filter=
+USEPARAM=FALSE
+PARAM=
+EXPORT=3
+# Begin Source File
+SOURCE=voice\demo_new.lib
+USEPARAM=FALSE
+PARAM=
+ID=RES_DEMO_NEW_LIB
+EXPORT=3
+# End Source File
+# End Group
+# End SubItem
+# End Project

@@ -1,0 +1,63 @@
+Generalplus u'nSP Assembler - Ver. 1.14.13.0
+              Listing File Has Been Relocated
+                            	
+                            	// Resource Table
+                            	// Created by IDE, Do not modify this table
+                            	
+00008026                    	.TEXT
+                            	.public _RES_Table;
+                            	.external __RES_D2_S72_sa
+                            	.public _RES_D2_S72_SA;
+                            	.external __RES_D2_S72_ea;
+                            	.public _RES_D2_S72_EA;
+                            	.external __RES_D1_S72_sa
+                            	.public _RES_D1_S72_SA;
+                            	.external __RES_D1_S72_ea;
+                            	.public _RES_D1_S72_EA;
+                            	.external __RES_D2_S48_sa
+                            	.public _RES_D2_S48_SA;
+                            	.external __RES_D2_S48_ea;
+                            	.public _RES_D2_S48_EA;
+                            	.external __RES_D1_S48_sa
+                            	.public _RES_D1_S48_SA;
+                            	.external __RES_D1_S48_ea;
+                            	.public _RES_D1_S48_EA;
+                            	
+                            	
+                            	_RES_Table:
+                            	
+                            	_RES_D2_S72_SA:
+00008026 CC 90 00 00        		.DW offset __RES_D2_S72_sa,seg __RES_D2_S72_sa;
+                            	_RES_D2_S72_EA:
+00008028 12 9B 00 00        		.DW offset __RES_D2_S72_ea,seg __RES_D2_S72_ea;
+                            	
+                            	_RES_D1_S72_SA:
+0000802A EF A1 00 00        		.DW offset __RES_D1_S72_sa,seg __RES_D1_S72_sa;
+                            	_RES_D1_S72_EA:
+0000802C 57 A8 00 00        		.DW offset __RES_D1_S72_ea,seg __RES_D1_S72_ea;
+                            	
+                            	_RES_D2_S48_SA:
+0000802E 12 9B 00 00        		.DW offset __RES_D2_S48_sa,seg __RES_D2_S48_sa;
+                            	_RES_D2_S48_EA:
+00008030 EF A1 00 00        		.DW offset __RES_D2_S48_ea,seg __RES_D2_S48_ea;
+                            	
+                            	_RES_D1_S48_SA:
+00008032 57 A8 00 00        		.DW offset __RES_D1_S48_sa,seg __RES_D1_S48_sa;
+                            	_RES_D1_S48_EA:
+00008034 A3 AC 00 00        		.DW offset __RES_D1_S48_ea,seg __RES_D1_S48_ea;
+                            	
+                            	
+                            	// End Table
+                            	//------------------------------------------------
+                            	// SACM S480 Speech Table
+                            	// -- User nees to add in the song/speech 
+                            	//    for playback based on the _RES_Table above.
+                            	//------------------------------------------------
+                            	.public T_SACM_S480_SpeechTable;
+                            	T_SACM_S480_SpeechTable:	
+00008036 2A 80              	.dw _RES_D1_S72_SA;
+00008037 26 80              	.dw _RES_D2_S72_SA;
+00008038 32 80              	.dw _RES_D1_S48_SA;
+00008039 2E 80              	.dw _RES_D2_S48_SA;
+0 error(s), 0 warning(s).
+

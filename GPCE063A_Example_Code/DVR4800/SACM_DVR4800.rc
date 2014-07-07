@@ -1,0 +1,18 @@
+# Begin Project
+# Begin SubItem "SACM_XXXX  Resources"
+# Begin Source File
+SOURCE=voice\chimeA_5.A48
+USEPARAM=FALSE
+PARAM=
+ID=RES_CHIMEA_5_A48
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=voice\chimeA_4.A48
+USEPARAM=FALSE
+PARAM=
+ID=RES_CHIMEA_4_A48
+EXPORT=3
+# End Source File
+# End SubItem
+# End Project

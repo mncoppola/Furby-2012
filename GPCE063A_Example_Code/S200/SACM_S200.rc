@@ -1,0 +1,18 @@
+# Begin Project
+# Begin SubItem "SACM_XXXX  Resources"
+# Begin Source File
+SOURCE=voice\m6_3360.bin
+USEPARAM=FALSE
+PARAM=
+ID=RES_M6_3360_BIN
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=voice\f2_3360.bin
+USEPARAM=FALSE
+PARAM=
+ID=RES_F2_3360_BIN
+EXPORT=3
+# End Source File
+# End SubItem
+# End Project

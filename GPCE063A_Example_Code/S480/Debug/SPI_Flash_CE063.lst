@@ -1,0 +1,1387 @@
+Generalplus u'nSP Assembler - Ver. 1.14.13.0
+              Listing File Has Been Relocated
+                            	//==========================================================================
+                            	// File Name   : SPI_Flash.asm
+                            	// Description : SPI initilaization and send/read data to/from SPI interface
+                            	// Programmer : Ray Cheng
+                            	// Last modified date:
+                            	// Note: 
+                            	//      1. IOB15:DO, IOB14:DI, IOB13:SCK, IOB8:CS
+                            	//      2. Flash Body: GPR25LXXX
+                            	//		
+                            	//==========================================================================
+                            	//**************************************************************************
+                            	// Header File Included Area
+                            	//**************************************************************************
+                            	.include GPCE063.inc;
+                     <      	//==========================================================================
+                     <      	// File Name   : GPCE063.inc
+                     <      	// Description : GPCE063 registers and constants definition
+                     <      	// Written by  : Chimc
+                     <      	// Last modified date:
+                     <      	//              2008/03/19
+                     <      	//==========================================================================
+                     <      	.ifndef __GPCE063_INC__
+                     <      	.define __GPCE063_INC__
+                     <      	
+                     <      	//--------------------------------------------------------------------------------------------------------------------------------------------
+                     <      	//	GPIO Configration
+                     <      	//	Dir		Att		Dat		Function Description			Wakeup
+                     <      	//	0		0		0		Input Pull Low					Yes
+                     <      	//	0		0		1		Input Pull High					Yes
+                     <      	//	0		1		0		Input Floating					Yes
+                     <      	//	0		1		1		Input Floating					Yes
+                     <      	//	1		0		0		Output High (Inverted)			Yes		(With Io Toggle Capability)
+                     <      	//	1		0		1		Output Low (Inverted)			Yes		(With Io Toggle Capability)
+                     <      	//	1		1		0		Output Low						Yes
+                     <      	//	1		1		1		Output High						Yes
+                     <      	//--------------------------------------------------------------------------------------------------------------------------------------------
+                     <      	
+                     <      	//--------------------------------------------------------------------------------------------------------------------------------------------
+                     <      	//	Special IO Function
+                     <      	//	IOA_Func	Bit15	Bit14	Bit13	Bit12	Bit11	Bit10	Bit9	Bit8	Bit7	Bit6	Bit5	Bit4	Bit3	Bit2	Bit1	Bit0
+                     <      	//	IR			-		-		-		-		-		-		-		-		-		-		-		-		-		-		IROUT	-
+                     <      	//	Wakeup		Yes		Yes		Yes		Yes		Yes		Yes		Yes		Yes		Yes		Yes		Yes		Yes		Yes		Yes		Yes		Yes
+                     <      	//	FB/OSC		-		-		-		-		FO2		FI2		FO1		FI1		-		-		-		-		-		-		-		-
+                     <      	//	Ext_Int		-		-		-		-		-		EXT2	-		EXT1	-		-		-		-		-		-		-		-
+                     <      	//	IOPWM		-		-		-		-		-		-		-		-		-		-		-		-		-		-		-		IOPWM
+                     <      	//	SPI			SPIRX	SPITX	SPICK	SPICS	-		-		-		-		-		-		-		-		-		-		-		-
+                     <      	//	HighDriving	-		-		-		-		-		-		-		-		Yes		Yes		Yes		Yes		-		-		-		-
+                     <      	//--------------------------------------------------------------------------------------------------------------------------------------------
+                     <      	//	IOB_Func	Bit15	Bit14	Bit13	Bit12	Bit11	Bit10	Bit9	Bit8	Bit7	Bit6	Bit5	Bit4	Bit3	Bit2	Bit1	Bit0
+                     <      	//	ADC_CH		-		-		-		-		-		-		-		-		AN7		AN6		AN5		AN4		AN3		AN2		AN1		AN0
+                     <      	//--------------------------------------------------------------------------------------------------------------------------------------------
+                     <      	
+                     <      	//////////////////////////////////////////////////////////////////////////////////////
+                     <      	//====================================================================================
+                     <      	//	Port Definition
+                     <      	//====================================================================================
+                     <      	//////////////////////////////////////////////////////////////////////////////////////
+                     <      	.define	P_IOA_Data				0x2000
+                     <      	.define P_IOA_Buffer			0x2001
+                     <      	.define	P_IOA_Dir				0x2002
+                     <      	.define	P_IOA_Attrib			0x2003
+                     <      	.define	P_IOB_Data				0x2004
+                     <      	.define P_IOB_Buffer			0x2005
+                     <      	.define	P_IOB_Dir				0x2006
+                     <      	.define	P_IOB_Attrib			0x2007
+                     <      	.define P_IO_Ctrl				0x2008
+                     <      	
+                     <      	//---------------------------------------------------
+                     <      	.define P_TimerA_Data			0x2010
+                     <      	.define P_TimerA_CNTR			0x2011
+                     <      	.define P_TimerB_Data			0x2012
+                     <      	.define P_TimerB_CNTR			0x2013
+                     <      	.define P_TimerC_Data			0x2014
+                     <      	.define P_TimerC_CNTR			0x2015
+                     <      	.define P_Timer_Ctrl			0x2016
+                     <      	
+                     <      	//---------------------------------------------------
+                     <      	.define P_PWM_Ctrl				0x2020
+                     <      	
+                     <      	//---------------------------------------------------
+                     <      	.define P_System_Clock			0x2030
+                     <      	.define P_System_Reset			0x2031
+                     <      	.define P_Reset_LVD_Ctrl		0x2032
+                     <      	.define P_TimeBase_Clear		0x2033
+                     <      	.define P_Watchdog_Clear		0x2034
+                     <      	.define P_Wait_Ctrl				0x2035
+                     <      	.define P_System_Sleep			0x2036
+                     <      	
+                     <      	//---------------------------------------------------
+                     <      	.define P_DAC_Ctrl				0x2040
+                     <      	.define P_DAC_Data				0x2041
+                     <      	
+                     <      	//---------------------------------------------------
+                     <      	.define P_INT_Ctrl				0x2050
+                     <      	.define P_INT_Status			0x2051
+                     <      	.define P_FIQ_Sel				0x2052
+                     <      	
+                     <      	//---------------------------------------------------
+                     <      	.define P_SPI_Ctrl				0x2060
+                     <      	.define P_SPI_TX_Status			0x2061
+                     <      	.define P_SPI_TX_Data			0x2062
+                     <      	.define P_SPI_RX_Status			0x2063
+                     <      	.define P_SPI_RX_Data			0x2064
+                     <      	.define P_SPI_Misc				0x2065
+                     <      	
+                     <      	//---------------------------------------------------
+                     <      	.define P_ADC_Ctrl				0x2070
+                     <      	.define P_ADC_Data				0x2071
+                     <      	.define P_ADC_LineIn_BitCtrl	0x2072
+                     <      	
+                     <      	//---------------------------------------------------
+                     <      	.define	P_Flash_Ctrl			0x26FF
+                     <      	
+                     <      	//---------------------------------------------------
+                     <      	//---------------------------------------------------
+                     <      	//---------------------------------------------------
+                     <      	
+                     <      	
+                     <      	//////////////////////////////////////////////////////////////////////////////////////
+                     <      	//====================================================================================
+                     <      	// Constant Definition
+                     <      	//====================================================================================
+                     <      	//////////////////////////////////////////////////////////////////////////////////////
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_IO_Ctrl (0x2008)
+                     <      	//====================================================================================
+                     <      	// Bit[15:11] : Reserved
+                     <      	// Bit10 : FW_SPI_CS
+                     <      	.define C_FW_SPI_CS				0x0400
+                     <      	.define	C_SPI_CS_Firmware		0x0000		// CS Control by Firmware
+                     <      	.define	C_SPI_CS_Hardware		0x0400		// CS Control by Hardware
+                     <      	// Bit[9:8] : IR_Duty === IRout:IOA1
+                     <      	.define	C_IR_Duty				0x0300
+                     <      	.define	C_IR_Duty_DIV_2			0x0000		// 1/2 Duty
+                     <      	.define	C_IR_Duty_DIV_3			0x0100		// 1/3 Duty
+                     <      	.define	C_IR_Duty_DIV_4			0x0200		// 1/4 Duty
+                     <      	.define	C_IR_Duty_DIV_5			0x0300		// 1/5 Duty
+                     <      	// Bit[7:6] : IR_Ctrl
+                     <      	.define	C_IR_Ctrl				0x00C0
+                     <      	.define	C_IR_Disable			0x0000		// IR Disable ; IOA1 as Normal IO
+                     <      	.define	C_IR_With_TimerA		0x0040		// IR Function Enable with Timer A as Source
+                     <      	.define	C_IR_With_TimerB		0x0080		// IR Function Enable with Timer B as Source
+                     <      	.define	C_IR_With_TimerC		0x00C0		// IR Function Enable with Timer C as Source
+                     <      	// Bit[5:4] : EXT2_Ctrl === FI2:IOA10  FO2:IOA11
+                     <      	.define	C_EXT2_Ctrl				0x0030
+                     <      	.define	C_EXT2_Normal_Rising	0x0000		// Normal IO With Rising Edge Trigger
+                     <      	.define	C_EXT2_Normal_Falling	0x0010		// Normal IO With Falling Edge Trigger
+                     <      	.define	C_EXT2_Feedback_Rising	0x0020		// Feedback Oscillator With Rising Edge Trigger
+                     <      	.define	C_EXT2_Feedback_Falling	0x0030		// Feedback Oscillator With Falling Edge Trigger
+                     <      	// Bit[3:2] : EXT1_Ctrl === FI1:IOA8  FO1:IOA9
+                     <      	.define	C_EXT1_Ctrl				0x000C
+                     <      	.define	C_EXT1_Normal_Rising	0x0000		// Normal IO With Rising Edge Trigger
+                     <      	.define	C_EXT1_Normal_Falling	0x0004		// Normal IO With Falling Edge Trigger
+                     <      	.define	C_EXT1_Feedback_Rising	0x0008		// Feedback Oscillator With Rising Edge Trigger
+                     <      	.define	C_EXT1_Feedback_Falling	0x000C		// Feedback Oscillator With Falling Edge Trigger
+                     <      	// Bit[1:0] : Reserved 
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_Timer_Ctrl (0x2016)  Timer Setting
+                     <      	//====================================================================================
+                     <      	// Bit[3:0] : TMASEL
+                     <      	.define C_TimerA_Sel			0x000F
+                     <      	.define C_TimerA_Disable		0x0000
+                     <      	.define C_TimerA_Software_Count	0x0001
+                     <      	.define C_TimerA_FRTC_EXT2		0x0002
+                     <      	.define C_TimerA_EXT1_EXT2		0x0002
+                     <      	.define C_TimerA_FPLL_EXT2		0x0003
+                     <      	.define C_TimerA_EXT2_64Hz		0x0004
+                     <      	.define C_TimerA_EXT2_16Hz		0x0005
+                     <      	.define C_TimerA_EXT2_2Hz		0x0006
+                     <      	.define C_TimerA_EXT2			0x0007
+                     <      	.define C_TimerA_FRTC_64Hz		0x0008
+                     <      	//.define C_TimerA_EXT1_64Hz	0x0008
+                     <      	.define C_TimerA_FRTC_16Hz		0x0009
+                     <      	//.define C_TimerA_EXT1_16Hz	0x0009
+                     <      	.define C_TimerA_FRTC_2Hz		0x000A
+                     <      	//.define C_TimerA_EXT1_2Hz		0x000A
+                     <      	.define C_TimerA_FRTC			0x000B
+                     <      	//.define C_TimerA_EXT1			0x000B
+                     <      	.define C_TimerA_FPLL_64Hz		0x000C
+                     <      	.define C_TimerA_FPLL_16Hz		0x000D
+                     <      	.define C_TimerA_FPLL_2Hz		0x000E
+                     <      	.define C_TimerA_FPLL			0x000F
+                     <      	// Bit[7:4] : TMBSEL
+                     <      	.define C_TimerB_Sel			0x00F0
+                     <      	.define C_TimerB_Disable		0x0000
+                     <      	.define C_TimerB_Software_Count	0x0010
+                     <      	.define C_TimerB_FRTC_EXT2		0x0020
+                     <      	.define C_TimerB_EXT1_EXT2		0x0020
+                     <      	.define C_TimerB_FPLL_EXT2		0x0030
+                     <      	.define C_TimerB_EXT2_64Hz		0x0040
+                     <      	.define C_TimerB_EXT2_16Hz		0x0050
+                     <      	.define C_TimerB_EXT2_2Hz		0x0060
+                     <      	.define C_TimerB_EXT2			0x0070
+                     <      	.define C_TimerB_FRTC_64Hz		0x0080
+                     <      	//.define C_TimerB_EXT1_64Hz	0x0080
+                     <      	.define C_TimerB_FRTC_16Hz		0x0090
+                     <      	//.define C_TimerB_EXT1_16Hz	0x0090
+                     <      	.define C_TimerB_FRTC_2Hz		0x00A0
+                     <      	//.define C_TimerB_EXT1_2Hz		0x00A0
+                     <      	.define C_TimerB_FRTC			0x00B0
+                     <      	//.define C_TimerB_EXT1			0x00B0
+                     <      	.define C_TimerB_FPLL_64Hz		0x00C0
+                     <      	.define C_TimerB_FPLL_16Hz		0x00D0
+                     <      	.define C_TimerB_FPLL_2Hz		0x00E0
+                     <      	.define C_TimerB_FPLL			0x00F0
+                     <      	// Bit[11:8] : TMCSEL
+                     <      	.define C_TimerC_Sel			0x0F00
+                     <      	.define C_TimerC_Disable		0x0000
+                     <      	.define C_TimerC_Software_Count	0x0100
+                     <      	.define C_TimerC_FRTC_EXT2		0x0200
+                     <      	.define C_TimerC_EXT1_EXT2		0x0200
+                     <      	.define C_TimerC_FPLL_EXT2		0x0300
+                     <      	.define C_TimerC_EXT2_64Hz		0x0400
+                     <      	.define C_TimerC_EXT2_16Hz		0x0500
+                     <      	.define C_TimerC_EXT2_2Hz		0x0600
+                     <      	.define C_TimerC_EXT2			0x0700
+                     <      	.define C_TimerC_FRTC_64Hz		0x0800
+                     <      	//.define C_TimerC_EXT1_64Hz	0x0800
+                     <      	.define C_TimerC_FRTC_16Hz		0x0900
+                     <      	//.define C_TimerC_EXT1_16Hz	0x0900
+                     <      	.define C_TimerC_FRTC_2Hz		0x0A00
+                     <      	//.define C_TimerC_EXT1_2Hz		0x0A00
+                     <      	.define C_TimerC_FRTC			0x0B00
+                     <      	//.define C_TimerC_EXT1			0x0B00
+                     <      	.define C_TimerC_FPLL_64Hz		0x0C00
+                     <      	.define C_TimerC_FPLL_16Hz		0x0D00
+                     <      	.define C_TimerC_FPLL_2Hz		0x0E00
+                     <      	.define C_TimerC_FPLL			0x0F00
+                     <      	// Bit12 : Timer A input source select; 0 for FRTC, 1 for EXT1
+                     <      	//.define C_TimerA_Input1			0x1000
+                     <      	//.define C_TimerA_Input1_FRTC	0x0000
+                     <      	//.define C_TimerA_Input1_EXT1	0x1000
+                     <      	// Bit13 : Timer B input source select; 0 for FRTC, 1 for EXT1
+                     <      	//.define C_TimerB_Input1			0x2000
+                     <      	//.define C_TimerB_Input1_FRTC	0x0000
+                     <      	//.define C_TimerB_Input1_EXT1	0x2000
+                     <      	// Bit14 : Timer C input source select; 0 for FRTC, 1 for EXT1
+                     <      	//.define C_TimerC_Input1			0x4000
+                     <      	//.define C_TimerC_Input1_FRTC	0x0000
+                     <      	//.define C_TimerC_Input1_EXT1	0x4000
+                     <      	// Bit15 : Reserved
+                     <      	
+                     <      	//.define SystemClock				20480000
+                     <      	//.define SystemClock				24576000
+                     <      	//.define SystemClock				32768000
+                     <      	//.define SystemClock				40960000
+                     <      	.define SystemClock				49152000
+                     <      	//.define SystemClock				12000000		// For FPGA Test
+                     <      	//.define SystemClock				24000000		// For FPGA Test
+                     <      	//.define SystemClock				48000000		// For FPGA Test
+                     <      	
+                     <      	.define C_Timer_Setting_1K   	65536 - (SystemClock / 1000)
+                     <      	.define C_Timer_Setting_2K     	65536 - (SystemClock / 2000)
+                     <      	.define C_Timer_Setting_3K     	65536 - (SystemClock / 3000)
+                     <      	.define C_Timer_Setting_4K     	65536 - (SystemClock / 4000)
+                     <      	.define C_Timer_Setting_5K     	65536 - (SystemClock / 5000)
+                     <      	.define C_Timer_Setting_6K     	65536 - (SystemClock / 6000)
+                     <      	.define C_Timer_Setting_7K     	65536 - (SystemClock / 7000)
+                     <      	.define C_Timer_Setting_8K    	65536 - (SystemClock / 8000)
+                     <      	.define C_Timer_Setting_9K     	65536 - (SystemClock / 9000)
+                     <      	.define C_Timer_Setting_10K    	65536 - (SystemClock / 10000)
+                     <      	.define C_Timer_Setting_11K    	65536 - (SystemClock / 11000)
+                     <      	.define C_Timer_Setting_12K    	65536 - (SystemClock / 12000)
+                     <      	.define C_Timer_Setting_13K    	65536 - (SystemClock / 13000)
+                     <      	.define C_Timer_Setting_14K    	65536 - (SystemClock / 14000)
+                     <      	.define C_Timer_Setting_15K    	65536 - (SystemClock / 15000)
+                     <      	.define C_Timer_Setting_16K    	65536 - (SystemClock / 16000)
+                     <      	.define C_Timer_Setting_20K    	65536 - (SystemClock / 20000)
+                     <      	.define C_Timer_Setting_24K    	65536 - (SystemClock / 24000)
+                     <      	.define C_Timer_Setting_28K   	65536 - (SystemClock / 28000)
+                     <      	.define C_Timer_Setting_32K    	65536 - (SystemClock / 32000)
+                     <      	.define C_Timer_Setting_36K   	65536 - (SystemClock / 36000)
+                     <      	.define C_Timer_Setting_40K   	65536 - (SystemClock / 40000)
+                     <      	.define C_Timer_Setting_48K    	65536 - (SystemClock / 48000)
+                     <      	.define C_Timer_Setting_64K    	65536 - (SystemClock / 64000)
+                     <      	.define C_Timer_Setting_500K   	65536 - (SystemClock / 500000)
+                     <      	.define C_Timer_Setting_15555  	65536 - (SystemClock / 15555)	// For FPGA Test
+                     <      	.define C_Timer_Setting_17777  	65536 - (SystemClock / 17777)	// For FPGA Test
+                     <      	
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_PWM_Ctrl (0x2020)  IOPWM
+                     <      	//====================================================================================
+                     <      	// Bit[15] : IOPWM_CNT_Clear
+                     <      	.define	C_IOPWM_CNT_Clear		0x8000
+                     <      	// Bit[14:7] : Reserved
+                     <      	// Bit[6] : IOPWM_Mask
+                     <      	.define	C_IOPWM_Mask			0x0040
+                     <      	.define	C_IOPWM_Mask_Disable	0x0000		//default
+                     <      	.define	C_IOPWM_Mask_Enable		0x0040
+                     <      	// Bit[5:4] : Clock Source for IOPWM
+                     <      	.define	C_IOPWM_CLK_SRC			0x0030
+                     <      	.define	C_IOPWM_SRC_FRTC_Div2	0x0000
+                     <      	.define	C_IOPWM_SRC_TimerA		0x0010
+                     <      	.define	C_IOPWM_SRC_TimerB		0x0020
+                     <      	.define	C_IOPWM_SRC_TimerC		0x0030
+                     <      	// Bit[3:0] : PWM_Duty
+                     <      	.define	C_IOPWM_Duty			0x000F
+                     <      	.define C_IOPWM_OFF				0x0000
+                     <      	.define C_IOPWM_1_Div_16		0x0001
+                     <      	.define C_IOPWM_2_Div_16		0x0002
+                     <      	.define C_IOPWM_3_Div_16		0x0003
+                     <      	.define C_IOPWM_4_Div_16		0x0004
+                     <      	.define C_IOPWM_5_Div_16		0x0005
+                     <      	.define C_IOPWM_6_Div_16		0x0006
+                     <      	.define C_IOPWM_7_Div_16		0x0007
+                     <      	.define C_IOPWM_8_Div_16		0x0008
+                     <      	.define C_IOPWM_9_Div_16		0x0009
+                     <      	.define C_IOPWM_10_Div_16		0x000A
+                     <      	.define C_IOPWM_11_Div_16		0x000B
+                     <      	.define C_IOPWM_12_Div_16		0x000C
+                     <      	.define C_IOPWM_13_Div_16		0x000D
+                     <      	.define C_IOPWM_14_Div_16		0x000E
+                     <      	.define C_IOPWM_1_Div_2			0x000F
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_System_Clock (0x2030)  
+                     <      	// The System Clock can be configured form 24.576MHz to 49.152MHz
+                     <      	//====================================================================================
+                     <      	// Bit[7:5] : FOSC
+                     <      	.define C_FOSC					0x00E0
+                     <      	.define C_FOSC_24576KHz			0x0000
+                     <      	.define C_FOSC_20480KHz			0x0020
+                     <      	.define C_FOSC_32768KHz			0x0040
+                     <      	.define C_FOSC_40960KHz			0x0060
+                     <      	.define C_FOSC_49152KHz			0x0080
+                     <      	.define C_FOSC_49152KHz_M1		0x00A0
+                     <      	.define C_FOSC_49152KHz_M2		0x00C0
+                     <      	.define C_FOSC_49152KHz_M3		0x00E0
+                     <      	// Bit[4] : 32KHz Sleep Status
+                     <      	.define	C_Sleep_RTC_Status		0x0010
+                     <      	.define	C_Sleep_RTC_SLP_Off		0x0000
+                     <      	.define	C_Sleep_RTC_SLP_Work	0x0010
+                     <      	// Bit[3] : Strong Mode
+                     <      	.define C_RTC_Mode_Sel			0x0008
+                     <      	.define C_RTC_Mode_Weak			0x0000
+                     <      	.define C_RTC_Mode_Strong		0x0008
+                     <      	// Bit[2:0] : CPU Clock
+                     <      	.define	C_CPU_CLK				0x0007
+                     <      	.define	C_CPU_CLK_FOSC			0x0000
+                     <      	.define	C_CPU_CLK_FOSC_DIV_2	0x0001
+                     <      	.define	C_CPU_CLK_FOSC_DIV_4	0x0002
+                     <      	.define	C_CPU_CLK_FOSC_DIV_8	0x0003			// Default Value
+                     <      	.define	C_CPU_CLK_FOSC_DIV_16	0x0004
+                     <      	.define	C_CPU_CLK_FOSC_DIV_32	0x0005
+                     <      	.define	C_CPU_CLK_FOSC_DIV_64	0x0006
+                     <      	.define	C_CPU_CLK_FOSC_DIV_128	0x0007
+                     <      	
+                     <      	// P_System_Sleep (0x2036)
+                     <      	.define C_System_Sleep			0x5555
+                     <      	// P_System_Reset (0x2031)
+                     <      	.define C_Software_Reset		0x5555
+                     <      	// P_TimeBase_Clear (0x2033)
+                     <      	.define	C_TimeBase_Clear		0x5555			// Write any value to clear
+                     <      	// P_Watchdog_Clear (0x2034)
+                     <      	.define	C_Watchdog_Clear		0x5555
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_Reset_LVD_Ctrl (0x2032)
+                     <      	//====================================================================================
+                     <      	// Bit[15]
+                     <      	.define C_Watchdog_Reset_Flag	0x8000			// Flag
+                     <      	// Bit[14]
+                     <      	.define C_Software_Reset_Flag	0x4000			// Flag
+                     <      	// Bit[13]
+                     <      	.define C_Wathcdog_Reset_Err_Flag	0x2000			// Flag
+                     <      	// Bit[12]
+                     <      	.define C_ILL_Addr_Reset_Flag	0x1000			// Flag
+                     <      	// Bit[11]
+                     <      	.define C_LVD_Status_Flag		0x0800			// Flag
+                     <      	// Bit[9:2] Reserved
+                     <      	// Bit[1:0] : LVD_Ctrl
+                     <      	.define	C_LVD_Ctrl				0x0003
+                     <      	.define	C_LVD_Ctrl_3D2V			0x0000			// Default Value
+                     <      	.define	C_LVD_Ctrl_3D0V			0x0001
+                     <      	.define	C_LVD_Ctrl_2D8V			0x0002
+                     <      	.define	C_LVD_Ctrl_2D6V			0x0003
+                     <      	// LVR always setting 2.2v
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_Wait_Ctrl (0x2035)
+                     <      	//====================================================================================
+                     <      	.define	C_Wait_State_Reg		0x000F
+                     <      	.define C_Wait_State_2Cycles1	0x0000
+                     <      	.define C_Wait_State_2Cycles2	0x0001
+                     <      	.define C_Wait_State_2Cycles	0x0002
+                     <      	.define C_Wait_State_3Cycles	0x0003			// Default Value
+                     <      	.define C_Wait_State_4Cycles	0x0004
+                     <      	.define C_Wait_State_5Cycles	0x0005
+                     <      	.define C_Wait_State_6Cycles	0x0006
+                     <      	.define C_Wait_State_7Cycles	0x0007
+                     <      	.define C_Wait_State_8Cycles	0x0008
+                     <      	.define C_Wait_State_9Cycles	0x0009
+                     <      	.define C_Wait_State_10Cycles	0x000A
+                     <      	.define C_Wait_State_11Cycles	0x000B
+                     <      	.define C_Wait_State_12Cycles	0x000C
+                     <      	.define C_Wait_State_13Cycles	0x000D
+                     <      	.define C_Wait_State_14Cycles	0x000E
+                     <      	.define C_Wait_State_15Cycles	0x000F
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_DAC_Ctrl (0x2040)
+                     <      	//====================================================================================
+                     <      	// Bit[15:3] : Reserved
+                     <      	// Bit[2] : DAC Enable
+                     <      	.define	C_DAC_Disable			0x0000
+                     <      	.define	C_DAC_Enable			0x0004
+                     <      	// Bit[1:0] : DAC Timer Select
+                     <      	.define C_DAC_TMR_Sel			0x0003
+                     <      	.define C_DAC_TMR_Sel_Manual	0x0000
+                     <      	.define C_DAC_TMR_Sel_TimerA	0x0001
+                     <      	.define C_DAC_TMR_Sel_TimerB	0x0002
+                     <      	.define C_DAC_TMR_Sel_TimerC	0x0003
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_INT_Ctrl (0x2050)
+                     <      	// P_INT_Status (0x2051)
+                     <      	// P_FIQ_Sel (0x2052)
+                     <      	//====================================================================================
+                     <      	// Bit[15:13] : Reserve
+                     <      	.define C_IRQ0_TMA					0x1000
+                     <      	.define C_IRQ1_TMB					0x0800
+                     <      	.define C_IRQ2_TMC					0x0400
+                     <      	.define C_IRQ3_SPI					0x0200
+                     <      	.define C_IRQ4_KEY					0x0100
+                     <      	.define C_IRQ5_EXT1					0x0080
+                     <      	.define C_IRQ5_EXT2					0x0040
+                     <      	.define C_IRQ6_4096Hz				0x0020
+                     <      	.define C_IRQ6_2048Hz				0x0010
+                     <      	.define C_IRQ6_512Hz				0x0008
+                     <      	.define C_IRQ7_64Hz					0x0004
+                     <      	.define C_IRQ7_16Hz					0x0002
+                     <      	.define C_IRQ7_2Hz					0x0001
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_SPI_Ctrl (0x2060)
+                     <      	//====================================================================================
+                     <      	// Bit[2:0] : Master Mode clock selection : 111b is reserved
+                     <      	.define C_SPI_SCK_SEL				0x0007
+                     <      	.define C_SCKSEL_FPLL_Div_2			0x0000
+                     <      	.define C_SCKSEL_FPLL_Div_4			0x0001
+                     <      	.define C_SCKSEL_FPLL_Div_8			0x0002
+                     <      	.define C_SCKSEL_FPLL_Div_16		0x0003
+                     <      	.define C_SCKSEL_FPLL_Div_32		0x0004
+                     <      	.define C_SCKSEL_FPLL_Div_64		0x0005	
+                     <      	.define C_SCKSEL_FPLL_Div_128		0x0006
+                     <      	// Bit3 : Reserved
+                     <      	// Bit4 : SPI Clock Polarity
+                     <      	.define	C_SPI_Clock_Pol				0x0010
+                     <      	.define C_SPI_Clock_Pol_Normal		0x0000	// Clock Normal or Inverted 
+                     <      	.define C_SPI_Clock_Pol_Inverse		0x0010
+                     <      	// Bit5 : SPI Clock Phase
+                     <      	.define C_SPI_Clock_Phase			0x0020
+                     <      	.define C_SPI_Clock_Phase_Normal	0x0000	// Rising Edge Trigger or Falling Edge Trigger depend on Polarity
+                     <      	.define C_SPI_Clock_Phase_Shift		0x0020  // (POL=0, PHA=1)
+                     <      	// Bit[7:6] : Reserved
+                     <      	// Bit8 : SPI Mode
+                     <      	.define	C_SPI_Mode					0x0100
+                     <      	.define C_MasterMode				0x0000
+                     <      	.define C_SlaveMode  				0x0100
+                     <      	// Bit[10:9] : Reserved
+                     <      	// Bit11 : SPI Reset
+                     <      	.define C_SPI_Reset					0x0800
+                     <      	// Bit12 : Reserved
+                     <      	// Bit13 : Loop Back Mode Selection
+                     <      	.define	C_SPI_LBM_Normal			0x0000
+                     <      	.define	C_SPI_LBM_Enable			0x2000
+                     <      	// Bit14: Reserved
+                     <      	// Bit15 : SPI Enable
+                     <      	.define C_SPI_Disable				0x0000
+                     <      	.define C_SPI_Enable				0x8000
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_SPI_TX_Status (0x2061)
+                     <      	//====================================================================================
+                     <      	// Bit[3:0] : SPI TX Flag (read only) : Only 8 FIFOs  
+                     <      	.define	C_SPI_TX_Flag				0x0007		// 0 ~ 7
+                     <      	// Bit[7:4] : SPI TX level setting
+                     <      	.define C_SPI_TX_FIFO_Level			0x0070		// 0 ~ 7
+                     <      	.define C_SPI_TX_FIFO_Level_0		0x0000
+                     <      	.define C_SPI_TX_FIFO_Level_1		0x0010
+                     <      	.define C_SPI_TX_FIFO_Level_2		0x0020
+                     <      	.define C_SPI_TX_FIFO_Level_3		0x0030
+                     <      	.define C_SPI_TX_FIFO_Level_4		0x0040
+                     <      	.define C_SPI_TX_FIFO_Level_5		0x0050
+                     <      	.define C_SPI_TX_FIFO_Level_6		0x0060
+                     <      	.define C_SPI_TX_FIFO_Level_7		0x0070
+                     <      	// Bit[13:8] : Reserved
+                     <      	// Bit14 : SPI TX interrupt enable
+                     <      	.define C_SPI_TX_INT_DIS			0x0000
+                     <      	.define C_SPI_TX_INT_EN				0x4000
+                     <      	// Bit15 : SPI TX interrupt flag
+                     <      	.define C_SPI_TX_INT_Flag			0x8000
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_SPI_RX_Status (0x2063)
+                     <      	//====================================================================================
+                     <      	// Bit[3:0] : SPI RX Flag (read only)
+                     <      	.define	C_SPI_RX_Flag				0x0007		// 0 ~ 7
+                     <      	// Bit[7:4] : SPI RX full level setting
+                     <      	.define C_SPI_RX_FIFO_Level			0x0070
+                     <      	.define C_SPI_RX_FIFO_Level_1		0x0000
+                     <      	.define C_SPI_RX_FIFO_Level_2		0x0010
+                     <      	.define C_SPI_RX_FIFO_Level_3		0x0020
+                     <      	.define C_SPI_RX_FIFO_Level_4		0x0030
+                     <      	.define C_SPI_RX_FIFO_Level_5		0x0040
+                     <      	.define C_SPI_RX_FIFO_Level_6		0x0050
+                     <      	.define C_SPI_RX_FIFO_Level_7		0x0060
+                     <      	.define C_SPI_RX_FIFO_Level_8		0x0070
+                     <      	// Bit8 : SPI RX buffer overwrite (read only)
+                     <      	.define C_SPI_RX_BUF_OVER_ERROR		0x0100
+                     <      	// Bit9 : SPI RX buffer full (read only)
+                     <      	.define C_SPI_RX_BUF_Full			0x0200
+                     <      	// Bit[13:10] : Reserved
+                     <      	// Bit14 : SPI Rx interrupt enable
+                     <      	.define C_SPI_RX_INT_DIS			0x0000
+                     <      	.define C_SPI_RX_INT_EN				0x4000
+                     <      	// Bit15 : SPI RX interrupt flag
+                     <      	.define C_SPI_RX_INT_Flag			0x8000
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_SPI_Misc (0x2065)
+                     <      	//====================================================================================
+                     <      	// Bit0 : Transmit FIFO Empty Flag
+                     <      	.define	C_SPI_TX_Empty_Flag				0x0001
+                     <      	// Bit1 : Transmit FIFO Not Full Flag
+                     <      	.define	C_SPI_TX_NonFull_Flag			0x0002
+                     <      	// Bit2 : Receive FIFO Empty Flag
+                     <      	.define	C_SPI_RX_Empty_Flag				0x0004
+                     <      	// Bit3 : Receive FIFO Full Flag
+                     <      	.define	C_SPI_RX_Full_Flag				0x0008
+                     <      	// Bit4 : SPI Controller Busy Flag
+                     <      	.define	C_SPI_Busy_Flag					0x0010
+                     <      	// Bit[7:5] : Reserved
+                     <      	// Bit8 : SPI FIFO Smart Mode Register
+                     <      	.define	C_SPI_FIFO_Normal_Mode			0x0000
+                     <      	.define	C_SPI_FIFO_Smart_Mode			0x0100
+                     <      	// Bit9 : SPI FIFO Over Write Mode
+                     <      	.define	C_SPI_FIFO_Full_Write_Skipped	0x0000
+                     <      	.define	C_SPI_FIFO_Full_Overwrite		0x0200
+                     <      	// Bit[15:10] : Reserved
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_ADC_Ctrl (0x2070)
+                     <      	//====================================================================================
+                     <      	// Bit[1:0] : Conversion Cycle Select
+                     <      	.define	C_ADC_Conv_Cycle				0x0003
+                     <      	.define	C_ADC_Conv_Cyc_8				0x0000	// Default
+                     <      	.define	C_ADC_Conv_Cyc_16				0x0001
+                     <      	.define	C_ADC_Conv_Cyc_32				0x0002
+                     <      	.define	C_ADC_Conv_Cyc_64				0x0003
+                     <      	// Bit2 : ADC Enable 
+                     <      	.define	C_ADC_Disable					0x0000
+                     <      	.define	C_ADC_Enable					0x0004
+                     <      	// Bit3 : AGC Enable 
+                     <      	.define	C_AGC_Disable					0x0000
+                     <      	.define	C_AGC_Enable					0x0008
+                     <      	// Bit4 : A/D Input Select in Manual Mode
+                     <      	.define C_ADC_Ch0_in_MIC 				0x0000
+                     <      	.define C_ADC_Ch0_in_LineinPB0			0x0010
+                     <      	// Bit5 : V_MIC Power Supply Enable
+                     <      	.define	C_ADC_MIC_Disable				0x0000
+                     <      	.define	C_ADC_MIC_Enable				0x0020
+                     <      	// Bit6 : ADC Chip Enable for Bias Circuit
+                     <      	.define	C_ADC_Bias_Disable				0x0000
+                     <      	.define	C_ADC_Bias_Enable				0x0040
+                     <      	// Bit[8:7] : ADC clock setting
+                     <      	.define C_ADC_CLK_Sel					0x0180
+                     <      	.define C_ADC_CLK_FPLL_Div_16			0x0000
+                     <      	.define C_ADC_CLK_FPLL_Div_32			0x0080
+                     <      	.define C_ADC_CLK_FPLL_Div_64			0x0100
+                     <      	.define C_ADC_CLK_FPLL_Div_128			0x0180
+                     <      	// Bit[11:9] : ADC manual mode channel setting
+                     <      	.define C_ADC_Manual_AN0				0x0000
+                     <      	.define C_ADC_Manual_AN1				0x0200
+                     <      	.define C_ADC_Manual_AN2				0x0400
+                     <      	.define C_ADC_Manual_AN3				0x0600
+                     <      	.define C_ADC_Manual_AN4				0x0800
+                     <      	.define C_ADC_Manual_AN5				0x0A00
+                     <      	.define C_ADC_Manual_AN6				0x0C00
+                     <      	.define C_ADC_Manual_AN7				0x0E00
+                     <      	// Bit[13:12] : Timer select for auto scan mode
+                     <      	.define C_ADC_Manual					0x0000
+                     <      	.define C_ADC_Timer_A					0x1000
+                     <      	.define C_ADC_Timer_B					0x2000
+                     <      	.define C_ADC_Timer_C					0x3000
+                     <      	// Bit14 : Auto scan busy (read only)
+                     <      	.define C_ADC_Auto_Scan_Busy			0x4000
+                     <      	// Bit15 : ADC busy (read only)
+                     <      	.define C_ADC_Busy						0x8000
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_ADC_LineIn_BitCtrl (0x2072)
+                     <      	//====================================================================================
+                     <      	.define	C_ADC_Linein_Enable				0x00FF
+                     <      	.define	C_ADC_AN0_Enable				0x0001
+                     <      	.define	C_ADC_AN1_Enable				0x0002
+                     <      	.define	C_ADC_AN2_Enable				0x0004
+                     <      	.define	C_ADC_AN3_Enable				0x0008
+                     <      	.define	C_ADC_AN4_Enable				0x0010
+                     <      	.define	C_ADC_AN5_Enable				0x0020
+                     <      	.define	C_ADC_AN6_Enable				0x0040
+                     <      	.define	C_ADC_AN7_Enable				0x0080
+                     <      	
+                     <      	//====================================================================================
+                     <      	// P_Flash_Ctrl (0x26FF)
+                     <      	//====================================================================================
+                     <      	.define C_Flash_Enable_Access_CMD		0xAAAA
+                     <      	.define C_Flash_PageErase_CMD			0x5511
+                     <      	.define C_Flash_Program_CMD				0x5533
+                     <      	
+                     <      	//====================================================================================
+                     <      	// Bits Definition
+                     <      	//====================================================================================
+                     <      	.define	C_Bit0							0x0001
+                     <      	.define	C_Bit1							0x0002
+                     <      	.define	C_Bit2							0x0004
+                     <      	.define	C_Bit3							0x0008
+                     <      	.define	C_Bit4							0x0010
+                     <      	.define	C_Bit5							0x0020
+                     <      	.define	C_Bit6							0x0040
+                     <      	.define	C_Bit7							0x0080
+                     <      	.define	C_Bit8							0x0100
+                     <      	.define	C_Bit9							0x0200
+                     <      	.define	C_Bit10							0x0400
+                     <      	.define	C_Bit11							0x0800
+                     <      	.define	C_Bit12							0x1000
+                     <      	.define	C_Bit13							0x2000
+                     <      	.define	C_Bit14							0x4000
+                     <      	.define	C_Bit15							0x8000
+                     <      	
+                     <      	
+                     <      	
+                     <      	
+                     <      	
+                     <      	
+                     <      	
+                     <      	
+                            	
+                            	//**************************************************************************
+                            	// Contant Defintion Area
+                            	//**************************************************************************
+                            	.define C_SPI_SI_Bit	0x8000
+                            	.define C_SPI_DO_Bit	0x4000
+                            	.define C_SPI_SCK_Bit	0x2000
+                            	.define C_SPI_CS_Bit	0x1000
+                            	
+                            	.define C_SPI_CS_IO		12		//IOA[12] as SPI CS pin Software Control
+                            	
+                            	//----------- Flash Operation Command Definition -------
+                            	.define C_SPI_Flash_Read_CMD		0x03
+                            	.define C_SPI_Flash_Sector_Erase	0xD8
+                            	.define C_SPI_Flash_Chip_Erase		0x60
+                            	.define C_SPI_Flash_Page_Program	0x02
+                            	.define C_SPI_Flash_Read_Status		0x05
+                            	.define C_SPI_Flash_Write_Status	0x01
+                            	.define C_SPI_Flash_Write_Enable	0x06
+                            	.define C_SPI_Flash_Write_Disable	0x04
+                            	.define C_SPI_Flash_Read_ID			0x9F
+                            	.define C_SPI_Flash_Fast_Read		0x0B
+                            	.define C_SPI_Flash_Power_Down		0xB9
+                            	.define C_SPI_Flash_Release_DP		0xAB
+                            	.define C_SPI_Flash_Enter_4K		0xA5
+                            	.define C_SPI_Flash_Exit_4K			0xB5
+                            	.define C_SPI_Flash_Read_ES			0xAB
+                            	.define C_SPI_Flash_Read_EMS		0x90
+                            	.define C_SPI_Flash_Parallel_Mode	0x55
+                            	
+                            	//----------- Flash Status Port Definition ----------
+                            	.define C_Flash_Busy				0x01
+                            	.define C_Flash_WEL					0x02		// Write Enable Latch
+                            	.define C_Flash_BP0					0x04
+                            	.define C_Flash_BP1					0x08
+                            	.define C_Flash_BP2					0x10
+                            	.define C_Flash_BP3					0x20		
+                            	.define C_Flash_PEE					0x40		// Program Erase Error
+                            	.define C_Flash_SRWP				0x80		// Status Register Write Protect
+                            	
+                            	//**************************************************************************
+                            	// Variable Publication Area
+                            	//**************************************************************************
+                            	
+                            	
+                            	//**************************************************************************
+                            	// Function Call Publication Area
+                            	//**************************************************************************
+                            	.public  _SPI_Initial
+                            	.public F_SPI_Initial
+                            	.public  _SPI_ReadAWord
+                            	.public F_SPI_ReadAWord
+                            	.public  _SPI_ReadNWords
+                            	.public F_SPI_ReadNWords
+                            	.public  _SPI_SendAWord
+                            	.public F_SPI_SendAWord
+                            	.public  _SPI_SendNWords
+                            	.public F_SPI_SendNWords
+                            	.public  _Flash_Write_Enable
+                            	.public F_Flash_Write_Enable
+                            	.public  _Flash_Write_Disable
+                            	.public F_Flash_Write_Disable
+                            	.public  _SPI_Read_Status_Register
+                            	.public F_SPI_Read_Status_Register
+                            	.public  _SPI_Enable_Write_Status_Register
+                            	.public F_SPI_Enable_Write_Status_Register
+                            	.public  _SPI_Write_Status_Register
+                            	.public F_SPI_Write_Status_Register
+                            	.public  _SPI_Flash_Sector_Erase
+                            	.public F_SPI_Flash_Sector_Erase
+                            	.public  _SPI_Flash_Chip_Erase
+                            	.public F_SPI_Flash_Chip_Erase
+                            	.public  _SPI_Read_Flash_ID
+                            	.public F_SPI_Read_Flash_ID
+                            	
+                            	//**************************************************************************
+                            	// External Function Declaration
+                            	//**************************************************************************
+                            	
+                            	//**************************************************************************
+                            	// External Table Declaration
+                            	//**************************************************************************
+                            	
+                            	//**************************************************************************
+                            	// RAM Definition Area
+                            	//**************************************************************************
+00000000                    	.RAM
+                            	
+                            	//*****************************************************************************
+                            	// Table Definition Area
+                            	//*****************************************************************************
+00000000                    	.TEXT
+                            	
+                            	//**************************************************************************
+                            	// CODE Definition Area
+                            	//**************************************************************************
+00008970                    	.CODE
+                            	//****************************************************************
+                            	// Function    : F_SPI_Initial
+                            	// Description : Initial SPI interface
+                            	// Destory     : R1
+                            	// Parameter   : None
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	_SPI_Initial: .proc
+                            	F_SPI_Initial:
+00008970 90 D4              		push R1, R2 to [SP];
+                            	
+00008971 11 93 02 20        		R1 = [P_IOA_Dir];
+00008973 09 B3 FF 7F        		R1 &= ~C_SPI_SI_Bit;
+00008975 09 A3 00 70        		R1 |= C_SPI_DO_Bit | C_SPI_SCK_Bit | C_SPI_CS_Bit;
+00008977 19 D3 02 20        		[P_IOA_Dir] = R1;
+                            		
+00008979 11 93 03 20        		R1 = [P_IOA_Attrib];
+0000897B 09 A3 00 F0        		R1 |= C_SPI_DO_Bit | C_SPI_SI_Bit | C_SPI_SCK_Bit | C_SPI_CS_Bit;
+0000897D 19 D3 03 20        		[P_IOA_Attrib] = R1;
+                            		
+0000897F 11 93 01 20        		R1 = [P_IOA_Buffer];
+00008981 09 B3 FF 1F        		R1 &= ~(C_SPI_DO_Bit | C_SPI_SI_Bit | C_SPI_SCK_Bit );
+00008983 09 A3 00 10        		R1 |= C_SPI_CS_Bit;
+00008985 19 D3 01 20        		[P_IOA_Buffer] = R1;
+                            	
+                            	
+00008987 11 93 06 20        		R1 = [P_IOB_Dir];			// IOB as Input Floating 
+00008989 40 B2              		R1 &= 0x0000;
+0000898A 19 D3 06 20        		[P_IOB_Dir] = R1;
+0000898C 11 93 07 20        		R1 = [P_IOB_Attrib];
+0000898E 09 A3 FF FF        		R1 |= 0xFFFF;
+00008990 19 D3 07 20        		[P_IOB_Attrib] = R1;
+00008992 11 93 05 20        		R1 = [P_IOB_Buffer];
+00008994 40 B2              		R1 &= 0x0000;
+00008995 19 D3 05 20        		[P_IOB_Buffer] = R1;
+                            		
+00008997 11 93 08 20        		R1 = [P_IO_Ctrl];
+00008999 09 A3 00 04        		R1 |= C_SPI_CS_Hardware;
+0000899B 19 D3 08 20        		[P_IO_Ctrl] = R1;
+                            		
+0000899D 09 93 00 08        		R1 = C_SPI_Reset;		// software reset SPI
+0000899F 19 D3 60 20        		[P_SPI_Ctrl] = R1;
+                            	
+000089A1 09 93 02 80        		R1 = C_SPI_Enable | C_MasterMode | C_SCKSEL_FPLL_Div_8;
+000089A3 19 D3 60 20        		[P_SPI_Ctrl] = R1;
+                            		
+000089A5 09 93 00 80        		R1 = C_SPI_TX_INT_Flag | C_SPI_TX_INT_DIS | C_SPI_TX_FIFO_Level_0;
+000089A7 19 D3 61 20        		[P_SPI_TX_Status] = R1;
+                            		
+000089A9 09 93 00 80        		R1 = C_SPI_RX_INT_Flag | C_SPI_RX_INT_DIS | C_SPI_RX_FIFO_Level_1;
+000089AB 19 D3 63 20        		[P_SPI_RX_Status] = R1;
+                            		
+000089AD 11 93 50 20        		R1 = [P_INT_Ctrl];
+000089AF 19 D3 50 20        		[P_INT_Ctrl] = R1;
+000089B1 40 92              		R1 = 0x0000;
+000089B2 19 D3 52 20        		[P_FIQ_Sel] = R1;
+                            		
+000089B4 90 90              		pop R1, R2 from [SP];
+000089B5 90 9A              		retf;
+                            		.endp
+                            	
+                            	//****************************************************************
+                            	// Function    : F_SPI_ReadAWord
+                            	// Description : Read a word data from flash
+                            	// Destory     : R1
+                            	// Parameter   : R1 = Address Low, R2 = Address High	
+                            	// Return      : R1 = one word of data read
+                            	// Note        : None
+                            	//****************************************************************
+                            	_SPI_ReadAWord:	.proc
+000089B6 08 05 03 00        		R2 = SP + 3;
+000089B8 D2 92              		R1 = [R2++];
+000089B9 C2 94              		R2 = [R2]; 
+                            		
+                            	F_SPI_ReadAWord:
+000089BA 98 D8              		push r2, r4 to [sp];
+000089BB 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+                            		
+000089BD 43 98              		R4 = C_SPI_Flash_Read_CMD;
+000089BE 1C D9 62 20        		[P_SPI_TX_Data] = R4;
+000089C0 0A B5 FF 00        		R2 &= 0xFF;					// Address High
+000089C2 1A D5 62 20        		[P_SPI_TX_Data] = R2;
+000089C4 79 99              		R4 = R1 lsr 4;
+000089C5 7C 99              		R4 = R4 lsr 4;				// Address Middle
+000089C6 1C D9 62 20        		[P_SPI_TX_Data] = R4;
+000089C8 09 B3 FF 00        		R1 &= 0xFF;					// Address Low
+000089CA 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            		
+000089CC 09 93 55 00        		R1 = 0x55;					// Read One Word Data dummy clock
+000089CE 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+000089D0 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            		
+                            	
+                            	?L_Check_TXIF:					// Wait untill command and address have been sent out
+000089D2 11 93 65 20        		R1 = [P_SPI_Misc];	
+000089D4 50 C2              		test R1, C_SPI_Busy_Flag;
+000089D5 44 4E              		jnz ?L_Check_TXIF;
+000089D6 19 D3 65 20        		[P_SPI_Misc] = R1;
+                            		
+                            	
+000089D8 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Read Command transmitted   
+000089DA 12 95 64 20        		R2 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address High transmitted
+000089DC 13 97 64 20        		R3 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address Middle transmitted
+000089DE 14 99 64 20        		R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address Low transmitted
+000089E0 12 95 64 20        		R2 = [P_SPI_RX_Data];		// Received Valid Data High from slave SPI device
+000089E2 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Received Valid Data Low from slave SPI device
+000089E4 59 93              		R1 = R1 LSL 4;
+000089E5 59 93              		R1 = R1 LSL 4;
+000089E6 02 A3              		R1 |= R2;					// Return one word data read from FLASH
+                            	
+000089E7 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+000089E9 98 92              		pop R2, R4 from [SP];
+000089EA 90 9A              		retf;
+                            		.endp
+                            	
+                            	//****************************************************************
+                            	// Function    : F_SPI_ReadNWords
+                            	// Description : Get N words from external memory to buffer
+                            	// Destory     : R1
+                            	// Parameter   : R1 : buffer address
+                            	//               R2 : data length
+                            	//               R3 : external memory address low word
+                            	//               R4 : external memory address high word
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	
+                            	_SPI_ReadNWords:      .proc
+000089EB 08 09 03 00        	    R4 = SP + 3;
+000089ED D4 92              	    R1 = [R4++];							// buffer address
+000089EE D4 94              	    R2 = [R4++];							// data length
+000089EF D4 96              	    R3 = [R4++];							// external memory address low byte
+000089F0 C4 98              	    R4 = [R4];							// external memory address high byte
+                            	
+                            	F_SPI_ReadNWords:
+000089F1 A8 DA              		push R1, R5 to [SP];
+000089F2 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+                            		
+000089F4 43 9A              		R5 = C_SPI_Flash_Read_CMD;
+000089F5 1D DB 62 20        		[P_SPI_TX_Data] = R5;
+000089F7 0C B9 FF 00        		R4 &= 0xFF;					// Address High
+000089F9 1C D9 62 20        		[P_SPI_TX_Data] = R4;
+000089FB 7B 99              		R4 = R3 lsr 4;
+000089FC 7C 99              		R4 = R4 lsr 4;				// Address Middle
+000089FD 1C D9 62 20        		[P_SPI_TX_Data] = R4;
+000089FF 0B B7 FF 00        		R3 &= 0xFF;					// Address Low
+00008A01 1B D7 62 20        		[P_SPI_TX_Data] = R3;
+                            		
+                            	
+                            	?L_Check_TXIF:					// Wait untill command and address have been sent out
+00008A03 15 9B 65 20        		R5 = [P_SPI_Misc];	
+00008A05 50 CA              		test R5, C_SPI_Busy_Flag;
+00008A06 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            		
+00008A07 14 99 64 20        		R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Read Command transmitted   
+00008A09 14 99 64 20        		R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address High transmitted
+00008A0B 14 99 64 20        		R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address Middle transmitted
+00008A0D 14 99 64 20        		R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address Low transmitted
+                            	
+                            	?L_GetNWordLoop:
+00008A0F 1B D7 62 20        		[P_SPI_TX_Data] = R3;		// Read One Word Data dummy clock
+00008A11 1B D7 62 20        		[P_SPI_TX_Data] = R3;
+                            	
+                            	?L_GetNWordLoop_Check_TXIF:		// Wait untill command and address have been sent out
+00008A13 15 9B 65 20        		R5 = [P_SPI_Misc];	
+00008A15 50 CA              		test R5, C_SPI_Busy_Flag;
+00008A16 44 4E              		jnz ?L_GetNWordLoop_Check_TXIF;
+                            	
+                            		
+00008A17 13 97 64 20        		R3 = [P_SPI_RX_Data];		// low byte data
+00008A19 14 99 64 20        		R4 = [P_SPI_RX_Data];		// high byte data
+00008A1B 5C 99              		R4 = R4 lsl 4;
+00008A1C 5C 99              		R4 = R4 lsl 4;
+00008A1D 03 A9              		R4 |= R3;					// Return one word data read from FLASH
+00008A1E D1 D8              		[R1++] = R4;
+00008A1F 41 24              		R2 -= 1;
+00008A20 52 4E              		jnz ?L_GetNWordLoop;
+                            	
+00008A21 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+                            		
+                            	?_Finish_Last:
+00008A23 A8 90              		pop R1, R5 from [SP];
+                            	
+00008A24 90 9A              		retf;
+                            	.endp
+                            	
+                            	//****************************************************************
+                            	// Function    : F_SPI_SendAWord
+                            	// Description : Write a word data to flash
+                            	// Destory     : R1
+                            	// Parameter   : R1 = Address Low, R2 = Address High, R3 = one word of data
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	_SPI_SendAWord:	.proc
+00008A25 08 07 03 00        		R3 = SP + 3;
+00008A27 D3 92              		R1 = [R3++];
+00008A28 D3 94              		R2 = [R3++];
+00008A29 C3 96              		R3 = [R3];
+                            		
+                            	F_SPI_SendAWord:
+00008A2A A8 DA              		push R1, R5 to [SP];
+                            		
+00008A2B 40 F0 AA 8A        		call F_Flash_Write_Enable		// Flash must be written enable firstly before it is programmed or erased.
+                            	
+00008A2D 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+                            	
+00008A2F 42 98              		R4 = C_SPI_Flash_Page_Program;
+00008A30 1C D9 62 20        		[P_SPI_TX_Data] = R4;
+00008A32 0A B5 FF 00        		R2 &= 0xFF;						// Address High
+00008A34 1A D5 62 20        		[P_SPI_TX_Data] = R2;
+00008A36 79 99              		R4 = R1 lsr 4;
+00008A37 7C 99              		R4 = R4 lsr 4;					// Address Middle
+00008A38 1C D9 62 20        		[P_SPI_TX_Data] = R4;
+00008A3A 09 B3 FF 00        		R1 &= 0xFF;						// Address Low
+00008A3C 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            		
+00008A3E 1B D7 62 20        		[P_SPI_TX_Data] = R3;			// Data Low Byte
+00008A40 7B 97              		R3 = R3 lsr 4;
+00008A41 7B 97              		R3 = R3 lsr 4;
+00008A42 1B D7 62 20        		[P_SPI_TX_Data] = R3;			// Data High Byte
+                            		
+                            	
+                            	?L_Check_TXIF:
+00008A44 11 93 65 20        		R1 = [P_SPI_Misc];	
+00008A46 50 C2              		test R1, C_SPI_Busy_Flag;
+00008A47 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            		
+00008A48 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+                            	
+00008A4A 11 93 64 20        		R1 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+00008A4C 12 95 64 20        		R2 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+00008A4E 13 97 64 20        		R3 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+00008A50 14 99 64 20        		R4 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+00008A52 11 93 64 20        		R1 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+00008A54 11 93 64 20        		R1 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+                            		
+                            	?L_Check_Busy:						// Wait untill one word data has been written into flash successfully (about 3 to 12ms).
+00008A56 40 F0 CD 8A        		call F_SPI_Read_Status_Register; // WatchDog overflow can escape from dead loop
+00008A58 41 C2              		test R1, C_Flash_Busy;
+00008A59 44 4E              		jnz ?L_Check_Busy;
+                            		
+00008A5A A8 90              		pop R1, R5 from [SP];
+00008A5B 90 9A              		retf;	
+                            		.endp
+                            	
+                            	
+                            	//****************************************************************
+                            	// Function    : F_SPI_SendNWords
+                            	// Description : Send N words to external memory from internal buffer
+                            	// Destory     : None
+                            	// Parameter   : R1 : buffer address
+                            	//               R2 : data length
+                            	//               R3 : external memory address low word
+                            	//               R4 : external memory address high word
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	 _SPI_SendNWords:	.proc
+00008A5C 08 09 04 00        		R4 = SP + 4;
+00008A5E D4 92              		R1 = [R4++];
+00008A5F D4 94              		R2 = [R4++];
+00008A60 D4 96              		R3 = [R4++];
+00008A61 C4 98              		R4 = [R4];
+                            	F_SPI_SendNWords:
+00008A62 A8 DA              		push R1, R5 to [SP];
+                            	
+                            	?L_WriteData:
+                            		
+00008A63 40 F0 AA 8A        		call F_Flash_Write_Enable		// Flash must be written enable firstly before it is programmed or erased.
+                            	
+00008A65 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+                            	
+00008A67 42 9A              		R5 = C_SPI_Flash_Page_Program;
+00008A68 1D DB 62 20        		[P_SPI_TX_Data] = R5;
+00008A6A 1C D9 62 20        		[P_SPI_TX_Data] = R4;
+00008A6C 7B 9B              		R5 = R3 lsr 4;
+00008A6D 7D 9B              		R5 = R5 lsr 4;					// Address Middle
+00008A6E 1D DB 62 20        		[P_SPI_TX_Data] = R5;
+00008A70 0B BB FF 00        		R5 = R3 & 0xFF;					// Address Low
+00008A72 1D DB 62 20        		[P_SPI_TX_Data] = R5;
+                            		
+                            	
+                            	?L_Check_TXIF:
+00008A74 15 9B 65 20        		R5 = [P_SPI_Misc];	
+00008A76 50 CA              		test R5, C_SPI_Busy_Flag;
+00008A77 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            		
+00008A78 15 9B 64 20        		R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+00008A7A 15 9B 64 20        		R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+00008A7C 15 9B 64 20        		R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+00008A7E 15 9B 64 20        		R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+                            	
+                            	?L_SendDataLoop:
+00008A80 D1 9A              		R5 = [R1++];
+00008A81 1D DB 62 20        		[P_SPI_TX_Data] = R5;			// Data Low Byte
+00008A83 7D 9B              		R5 = R5 lsr 4;
+00008A84 7D 9B              		R5 = R5 lsr 4;
+00008A85 1D DB 62 20        		[P_SPI_TX_Data] = R5;			// Data High Byte
+                            	
+                            	?L_Check_TXIF_2:
+00008A87 15 9B 65 20        		R5 = [P_SPI_Misc];	
+00008A89 50 CA              		test R5, C_SPI_Busy_Flag;
+00008A8A 44 4E              		jnz ?L_Check_TXIF_2;
+                            	
+00008A8B 15 9B 64 20        		R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+00008A8D 15 9B 64 20        		R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO
+00008A8F 41 24              		R2 -= 1;
+00008A90 11 5E              		jz ?L_SendDataEnd;
+00008A91 42 06              		R3 += 2;
+00008A92 0B C7 FF 00        		test R3, 0x00FF;
+00008A94 55 4E              		jnz ?L_SendDataLoop;
+                            	?L_JumpToNextPage:
+00008A95 40 46              		cmp R3, 0x0000;
+00008A96 01 4E              		jne ?L_WriteCurrentPage;
+00008A97 41 08              		R4 += 1;
+                            	?L_WriteCurrentPage:
+00008A98 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+00008A9A 88 D2              		push R1 to [SP];
+                            	?L_Check_Busy_1:					// Wait untill one word data has been written into flash successfully (about 3 to 12ms).
+00008A9B 40 F0 CD 8A        		call F_SPI_Read_Status_Register; // WatchDog overflow can escape from dead loop
+00008A9D 41 C2              		test R1, C_Flash_Busy;
+00008A9E 44 4E              		jnz ?L_Check_Busy_1;
+00008A9F 88 90              		pop R1 from [SP];
+00008AA0 0F 9F 63 8A        		pc = ?L_WriteData;
+                            	
+                            	?L_SendDataEnd:
+00008AA2 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+                            	
+                            	
+                            	?L_Check_Busy:						// Wait untill one word data has been written into flash successfully (about 3 to 12ms).
+00008AA4 40 F0 CD 8A        		call F_SPI_Read_Status_Register; // WatchDog overflow can escape from dead loop
+00008AA6 41 C2              		test R1, C_Flash_Busy;
+00008AA7 44 4E              		jnz ?L_Check_Busy;
+                            		
+                            	
+00008AA8 A8 90              		pop R1, R5 from [SP];
+00008AA9 90 9A              		retf;
+                            		.endp
+                            	
+                            	//****************************************************************
+                            	// Function    : F_Flash_Write_Enable
+                            	// Description : Enable flash to be written or erased
+                            	// Destory     : None
+                            	// Parameter   : None
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	_Flash_Write_Enable:	.proc
+                            	F_Flash_Write_Enable:
+00008AAA 88 D2              		push r1 to [sp];
+                            	
+00008AAB 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+00008AAD 46 92              		R1 = C_SPI_Flash_Write_Enable;
+00008AAE 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            	
+                            	
+                            	?L_Check_TXIF:
+00008AB0 11 93 65 20        		R1 = [P_SPI_Misc];		// Wait untill command has been transmitted.
+00008AB2 50 C2              		test R1, C_SPI_Busy_Flag;
+00008AB3 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            	
+00008AB4 65 F1              		nop;
+00008AB5 65 F1              		nop;
+00008AB6 65 F1              		nop;
+00008AB7 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+                            		
+00008AB9 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+00008ABB 88 90              		pop r1 from [sp];
+00008ABC 90 9A              		retf;
+                            		.endp
+                            	
+                            	//****************************************************************
+                            	// Function    : F_Flash_Write_Disable
+                            	// Description : Disable flash to be written or erased
+                            	// Destory     : None
+                            	// Parameter   : None
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	_Flash_Write_Disable:	.proc
+                            	F_Flash_Write_Disable:
+00008ABD 88 D2              		push r1 to [sp];
+                            		
+00008ABE 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+00008AC0 44 92              		R1 = C_SPI_Flash_Write_Disable;
+00008AC1 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            	
+                            	
+                            	?L_Check_TXIF:
+00008AC3 11 93 65 20        		R1 = [P_SPI_Misc];		// Wait untill command has been transmitted.
+00008AC5 50 C2              		test R1, C_SPI_Busy_Flag;
+00008AC6 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            		
+00008AC7 11 93 64 20        		R1 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO
+                            		
+00008AC9 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+00008ACB 88 90              		pop r1 from [sp];
+00008ACC 90 9A              		retf;
+                            		.endp
+                            	
+                            	//****************************************************************
+                            	// Function    : F_SPI_Read_Status_Register
+                            	// Description : Read status register in flash
+                            	// Destory     : None
+                            	// Parameter   : None
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	_SPI_Read_Status_Register:	.proc
+                            	F_SPI_Read_Status_Register:
+                            	
+00008ACD 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+00008ACF 45 92              		R1 = C_SPI_Flash_Read_Status;
+00008AD0 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            		
+00008AD2 40 92              		R1 = 0x00;						// Read Status Reigster dummy clock
+00008AD3 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            			
+                            	
+                            	?L_Check_TXIF:
+00008AD5 11 93 65 20        		R1 = [P_SPI_Misc];		// Wait untill command has been transmitted.
+00008AD7 50 C2              		test R1, C_SPI_Busy_Flag;
+00008AD8 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            	
+                            	
+00008AD9 11 93 64 20        		R1 = [P_SPI_RX_Data];			// Received Dummy Data at Cmd transmitted
+00008ADB 11 93 64 20        		R1 = [P_SPI_RX_Data];			// Received Status Register Data
+                            		
+00008ADD 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+00008ADF 90 9A              		retf;
+                            		.endp
+                            	
+                            	
+                            	//****************************************************************
+                            	// Function    : F_SPI_Enable_Write_Status_Register
+                            	// Description : Enable status register in flash to be written
+                            	// Destory     : None
+                            	// Parameter   : None
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	_SPI_Enable_Write_Status_Register:	.proc
+                            	F_SPI_Enable_Write_Status_Register:
+00008AE0 88 D2              		push R1 to [SP];
+00008AE1 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+00008AE3 41 92              		R1 = C_SPI_Flash_Write_Status;
+00008AE4 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            		
+                            	?L_Check_TXIF:
+00008AE6 11 93 65 20        		R1 = [P_SPI_Misc];		// Wait untill command has been transmitted.
+00008AE8 50 C2              		test R1, C_SPI_Busy_Flag;
+00008AE9 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            	
+00008AEA 11 93 64 20        		R1 = [P_SPI_RX_Data];			// Clear Dummy Data in RX FIFO at Cmd transmitted 
+                            	
+00008AEC 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+00008AEE 88 90              		pop R1 from [SP];
+00008AEF 90 9A              		retf;
+                            		.endp
+                            		
+                            	//****************************************************************
+                            	// Function    : F_SPI_Write_Status_Register
+                            	// Description : Write data to status register in flash
+                            	// Destory     : None
+                            	// Parameter   : None
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	_SPI_Write_Status_Register:	.proc
+00008AF0 08 03 03 00        		R1 = SP + 3;
+00008AF2 C1 92              		R1 = [R1];
+                            		
+                            	F_SPI_Write_Status_Register:
+00008AF3 90 D4              		push R1, R2 to [SP];
+00008AF4 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+00008AF6 41 94              		R2 = C_SPI_Flash_Write_Status;
+00008AF7 1A D5 62 20        		[P_SPI_TX_Data] = R2;
+00008AF9 19 D3 62 20        		[P_SPI_TX_Data] = R1;		// Write data to status register in flash
+                            		
+                            	
+                            	?L_Check_TXIF:
+00008AFB 11 93 65 20        		R1 = [P_SPI_Misc];		// Wait untill command has been transmitted.
+00008AFD 50 C2              		test R1, C_SPI_Busy_Flag;
+00008AFE 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            		
+00008AFF 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+00008B01 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+                            		
+00008B03 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+00008B05 90 90              		pop R1, R2 from [SP];
+00008B06 90 9A              		retf;
+                            		.endp
+                            	
+                            	//****************************************************************
+                            	// Function    : F_SPI_Flash_Sector_Erase
+                            	// Description : Erase one sector of flash 
+                            	// Destory     : None
+                            	// Parameter   : R1 = Sector Address Low, R2 = Sector Address High
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	_SPI_Flash_Sector_Erase:	.proc
+                            	
+00008B07 08 03 03 00        		R1 = SP + 3;
+00008B09 C1 92              		R1 = [R1];
+                            		
+                            	F_SPI_Flash_Sector_Erase:
+00008B0A 98 D6              		push R1, R3 to [SP];
+00008B0B 40 F0 AA 8A        		call F_Flash_Write_Enable;	// Enable sector erase command 
+                            			
+                            	.if 0		// for GPR25L005, GPR25L010, GPR25L020, GPR25L040, GPR25L080
+                            		R2 = SECTOR_SIZE;
+                            		MR = R1 * R2;
+                            		R1 = R3;
+                            		R2 = R4;
+                            	.endif
+                            	
+                            	.if 1		// for GPR25L160, GPR25L320, GPR25L640
+00008B0D 01 95              		R2 = R1;
+00008B0E 40 92              		R1 = 0x0000;
+                            	.endif
+                            	
+00008B0F 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+00008B11 0B 97 D8 00        		R3 = C_SPI_Flash_Sector_Erase;
+00008B13 1B D7 62 20        		[P_SPI_TX_Data] = R3;
+00008B15 1A D5 62 20        		[P_SPI_TX_Data] = R2;		// Sector index : Sector size = 64K bytes
+00008B17 79 97              		R3 = R1 lsr 4;			
+00008B18 7B 97              		R3 = R3 lsr 4;
+00008B19 1B D7 62 20        		[P_SPI_TX_Data] = R3;
+00008B1B 09 B3 FF 00        		R1 &= 0x00FF;
+00008B1D 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            	
+                            	
+                            	?L_Check_TXIF:
+00008B1F 11 93 65 20        		R1 = [P_SPI_Misc];		// Wait untill command has been transmitted.
+00008B21 50 C2              		test R1, C_SPI_Busy_Flag;
+00008B22 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            		
+00008B23 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+                            	
+00008B25 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+00008B27 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+00008B29 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+00008B2B 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+                            		
+                            	?L_Check_Busy:					// Wait untill sector has been erased successfully (about 1 to 3 seconds)
+00008B2D 09 93 55 55        		R1 = C_Watchdog_Clear;
+00008B2F 19 D3 34 20        	    [P_Watchdog_Clear] = R1;
+00008B31 40 F0 CD 8A        		call F_SPI_Read_Status_Register;
+00008B33 41 C2              		test R1, C_Flash_Busy;
+00008B34 48 4E              		jnz ?L_Check_Busy;
+                            		
+00008B35 98 90              		pop R1, R3 from [SP];
+00008B36 90 9A              		retf;
+                            		.endp
+                            	
+                            	//****************************************************************
+                            	// Function    : F_SPI_Flash_Chip_Erase
+                            	// Description : Erase hole chip of flash
+                            	// Destory     : None
+                            	// Parameter   : None
+                            	// Return      : None
+                            	// Note        : None
+                            	//****************************************************************
+                            	_SPI_Flash_Chip_Erase:	.proc
+                            	F_SPI_Flash_Chip_Erase:
+00008B37 88 D2              		push R1 to [SP];
+00008B38 40 F0 AA 8A        		call F_Flash_Write_Enable;		// Enable chip erase command 
+                            		
+00008B3A 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+00008B3C 09 93 60 00        		R1 = C_SPI_Flash_Chip_Erase;
+00008B3E 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            	
+                            	
+                            	?L_Check_TXIF:
+00008B40 11 93 65 20        		R1 = [P_SPI_Misc];		// Wait untill command has been transmitted.
+00008B42 50 C2              		test R1, C_SPI_Busy_Flag;
+00008B43 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            		
+00008B44 11 93 64 20        		R1 = [P_SPI_RX_Data];
+                            	
+                            	?L_Check_Busy:						// Wait untill chip has been erased successfully (about 128 to 256 seconds)
+00008B46 09 93 55 55        		R1 = C_Watchdog_Clear;
+00008B48 19 D3 34 20        	    [P_Watchdog_Clear] = R1;
+00008B4A 40 F0 CD 8A        		call F_SPI_Read_Status_Register;
+00008B4C 41 C2              		test R1, C_Flash_Busy;
+00008B4D 48 4E              		jnz ?L_Check_Busy;
+                            	
+00008B4E 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+00008B50 88 90              		pop R1 from [SP];
+00008B51 90 9A              		retf;
+                            		.endp
+                            	
+                            	//****************************************************************
+                            	// Function    : F_SPI_Read_Flash_ID
+                            	// Description : Read flash manufacturer,memory and individual device ID
+                            	// Destory     : None
+                            	// Parameter   : None
+                            	// Return      : R1 = Manufacturer and memory ID, R2 = Individual Device ID
+                            	// Note        : None
+                            	//****************************************************************
+                            	_SPI_Read_Flash_ID:	.proc
+                            	F_SPI_Read_Flash_ID:
+00008B52 90 D8              		push R3, R4 to [SP];
+00008B53 6C F2 01 20        		clrb [P_IOA_Buffer], C_SPI_CS_IO;		// enable SPI Flash
+00008B55 0C 99 9F 00        		R4 = C_SPI_Flash_Read_ID;
+00008B57 1C D9 62 20        		[P_SPI_TX_Data] = R4;
+                            			
+00008B59 40 92              		R1 = 0x00;					// Read One Byte Data dummy clock
+00008B5A 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+00008B5C 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+00008B5E 19 D3 62 20        		[P_SPI_TX_Data] = R1;
+                            		
+                            	
+                            	?L_Check_TXIF:
+00008B60 11 93 65 20        		R1 = [P_SPI_Misc];		// Wait untill command has been transmitted.
+00008B62 50 C2              		test R1, C_SPI_Busy_Flag;
+00008B63 44 4E              		jnz ?L_Check_TXIF;
+                            	
+                            	
+00008B64 11 93 64 20        		R1 = [P_SPI_RX_Data];		// Clear Dummy Data in RX FIFO at Read Cmd transmitted   
+00008B66 12 95 64 20        		R2 = [P_SPI_RX_Data];		// Read Manufacturer ID
+00008B68 13 97 64 20        		R3 = [P_SPI_RX_Data];		// Read Memory ID
+00008B6A 14 99 64 20        		R4 = [P_SPI_RX_Data];		// Read Individual Device ID
+00008B6C 5B 93              		R1 = R3 LSL 4;
+00008B6D 59 93              		R1 = R1 LSL 4;
+00008B6E 02 A3              		R1 |= R2;
+00008B6F 04 95              		R2 = R4;
+                            	
+00008B70 5C F2 01 20        		setb [P_IOA_Buffer], C_SPI_CS_IO;	// disable SPI Flash
+00008B72 90 94              		pop R3, R4 from [SP];
+00008B73 90 9A              		retf;
+                            		.endp
+                            	
+0 error(s), 0 warning(s).
+

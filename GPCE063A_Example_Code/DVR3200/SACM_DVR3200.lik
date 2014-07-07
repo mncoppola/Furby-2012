@@ -1,0 +1,48 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.3\startupcode\startupD.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\Debug\Resource.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\Debug\Isr.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\Debug\main.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\Debug\System.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\Debug\SACM_DVR3200_User.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\Debug\m6_A32.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\Debug\f2_A32.res"
+Lib: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\..\library\SACM_DVR3200_V41b_Beta02.lib"
+Output: "D:\GPCE_Serial\GPCE063\SACM\DVR3200\Debug\SACM_DVR3200.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at 8F93  linkat 1A0 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 198 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_DVR3200_User.obj" at 19C 
+;Align: RAM in "SACM_DVR3200_User.obj" with 0 
+;Locate: OVERLAP_DVR3200_API_BLOCK in "SACM_DVR3200_API" of "SACM_DVR3200_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_DVR3200_API_BLOCK in "SACM_DVR3200_API" of "SACM_DVR3200_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_DVR3200_RAM_BLOCK in "SACM_DVR3200_Decode" of "SACM_DVR3200_V41b_Beta02.lib"  at 3A 
+;Align: OVERLAP_DVR3200_RAM_BLOCK in "SACM_DVR3200_Decode" of "SACM_DVR3200_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_DVR3200_DM_BLOCK in "ADPCM" of "SACM_DVR3200_V41b_Beta02.lib"  at 187 
+;Align: OVERLAP_DVR3200_DM_BLOCK in "ADPCM" of "SACM_DVR3200_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at 8C2E 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at 8E57 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_DVR3200_User.obj" at 8D8E 
+;Align: CODE in "SACM_DVR3200_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 885F 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_M6_A32 in "m6_A32.res" at D8A9 
+;Align: __sn_section_RES_M6_A32 in "m6_A32.res" with 0 
+;Locate: __sn_section_RES_F2_A32 in "f2_A32.res" at 8F9D 
+;Align: __sn_section_RES_F2_A32 in "f2_A32.res" with 0 
+;Locate: CODE in "SACM_DVR3200_API" of "SACM_DVR3200_V41b_Beta02.lib"  at 8F17 
+;Align: CODE in "SACM_DVR3200_API" of "SACM_DVR3200_V41b_Beta02.lib"  with 0 
+;Locate: SACM_DVR3200_ROM_BLOCK in "SACM_DVR3200_API" of "SACM_DVR3200_V41b_Beta02.lib"  at 861D 
+;Align: SACM_DVR3200_ROM_BLOCK in "SACM_DVR3200_API" of "SACM_DVR3200_V41b_Beta02.lib"  with 0 
+;Locate: SACM_DVR3200_DECODE_ROM_BLOCK in "SACM_DVR3200_Decode" of "SACM_DVR3200_V41b_Beta02.lib"  at 8A63 
+;Align: SACM_DVR3200_DECODE_ROM_BLOCK in "SACM_DVR3200_Decode" of "SACM_DVR3200_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "ADPCM" of "SACM_DVR3200_V41b_Beta02.lib"  at 82D1 
+;Align: CODE in "ADPCM" of "SACM_DVR3200_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

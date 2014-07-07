@@ -1,0 +1,45 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.4\startupcode\startupD.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Debug\Resource.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Debug\Isr.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Debug\main.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Debug\System.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Debug\SACM_DVR1800_User.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Debug\e316k_a18.res"
+Lib: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\..\library\SACM_DVR1800_V41b_Beta02.lib"
+Output: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\DVR1800\Debug\SACM_DVR1800.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at CCC0  linkat 593 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 58B 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_DVR1800_User.obj" at 58F 
+;Align: RAM in "SACM_DVR1800_User.obj" with 0 
+;Locate: OVERLAP_DVR1800_API_BLOCK in "SACM_DVR1800_API" of "SACM_DVR1800_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_DVR1800_API_BLOCK in "SACM_DVR1800_API" of "SACM_DVR1800_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_DVR1800_RAM_BLOCK in "SACM_DVR1800_Decode" of "SACM_DVR1800_V41b_Beta02.lib"  at 3A 
+;Align: OVERLAP_DVR1800_RAM_BLOCK in "SACM_DVR1800_Decode" of "SACM_DVR1800_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_DVR1800_DM_BLOCK in "DVR180~1" of "SACM_DVR1800_V41b_Beta02.lib"  at 2FF 
+;Align: OVERLAP_DVR1800_DM_BLOCK in "DVR180~1" of "SACM_DVR1800_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at C956 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at CB7E 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_DVR1800_User.obj" at CAB5 
+;Align: CODE in "SACM_DVR1800_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at C5B8 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_E316K_A18 in "e316k_a18.res" at CCCA 
+;Align: __sn_section_RES_E316K_A18 in "e316k_a18.res" with 0 
+;Locate: CODE in "SACM_DVR1800_API" of "SACM_DVR1800_V41b_Beta02.lib"  at CC41 
+;Align: CODE in "SACM_DVR1800_API" of "SACM_DVR1800_V41b_Beta02.lib"  with 0 
+;Locate: SACM_DVR1800_ROM_BLOCK in "SACM_DVR1800_API" of "SACM_DVR1800_V41b_Beta02.lib"  at C36F 
+;Align: SACM_DVR1800_ROM_BLOCK in "SACM_DVR1800_API" of "SACM_DVR1800_V41b_Beta02.lib"  with 0 
+;Locate: SACM_DVR1800_DECODE_ROM_BLOCK in "SACM_DVR1800_Decode" of "SACM_DVR1800_V41b_Beta02.lib"  at C7BC 
+;Align: SACM_DVR1800_DECODE_ROM_BLOCK in "SACM_DVR1800_Decode" of "SACM_DVR1800_V41b_Beta02.lib"  with 0 
+;Locate: SACM_DVR1800_IM_BLOCK in "DVR180~1" of "SACM_DVR1800_V41b_Beta02.lib"  at ADE1 
+;Align: SACM_DVR1800_IM_BLOCK in "DVR180~1" of "SACM_DVR1800_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

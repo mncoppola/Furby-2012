@@ -1,0 +1,54 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.4\startupcode\startupD.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\Resource.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\Isr.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\main.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\System.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\SACM_S480_User.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\d2_s72.res"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\d1_s72.res"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\d2_s48.res"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\d1_s48.res"
+Lib: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\..\library\SACM_S480_V41b_Beta02.lib"
+Output: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S480\Debug\SACM_S480.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at 90C6  linkat 1EF 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 1E7 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_S480_User.obj" at 1EB 
+;Align: RAM in "SACM_S480_User.obj" with 0 
+;Locate: OVERLAP_S480_API_BLOCK in "SACM_S480_API" of "SACM_S480_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_S480_API_BLOCK in "SACM_S480_API" of "SACM_S480_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_S480_RAM_BLOCK in "SACM_S480_Decode" of "SACM_S480_V41b_Beta02.lib"  at 18 
+;Align: OVERLAP_S480_RAM_BLOCK in "SACM_S480_Decode" of "SACM_S480_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_S480_DM_BLOCK in "S480_K~1" of "SACM_S480_V41b_Beta02.lib"  at C3 
+;Align: OVERLAP_S480_DM_BLOCK in "S480_K~1" of "SACM_S480_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at 8CE9 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at 8F0A 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_S480_User.obj" at 8FCD 
+;Align: CODE in "SACM_S480_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 8970 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_D2_S72 in "d2_s72.res" at 90CC 
+;Align: __sn_section_RES_D2_S72 in "d2_s72.res" with 0 
+;Locate: __sn_section_RES_D1_S72 in "d1_s72.res" at A1EF 
+;Align: __sn_section_RES_D1_S72 in "d1_s72.res" with 0 
+;Locate: __sn_section_RES_D2_S48 in "d2_s48.res" at 9B12 
+;Align: __sn_section_RES_D2_S48 in "d2_s48.res" with 0 
+;Locate: __sn_section_RES_D1_S48 in "d1_s48.res" at A857 
+;Align: __sn_section_RES_D1_S48 in "d1_s48.res" with 0 
+;Locate: CODE in "SACM_S480_API" of "SACM_S480_V41b_Beta02.lib"  at 904A 
+;Align: CODE in "SACM_S480_API" of "SACM_S480_V41b_Beta02.lib"  with 0 
+;Locate: SACM_S480_ROM_BLOCK in "SACM_S480_API" of "SACM_S480_V41b_Beta02.lib"  at 8B74 
+;Align: SACM_S480_ROM_BLOCK in "SACM_S480_API" of "SACM_S480_V41b_Beta02.lib"  with 0 
+;Locate: SACM_S480_DECODE_ROM_BLOCK in "SACM_S480_Decode" of "SACM_S480_V41b_Beta02.lib"  at 8E0A 
+;Align: SACM_S480_DECODE_ROM_BLOCK in "SACM_S480_Decode" of "SACM_S480_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "S480_K~1" of "SACM_S480_V41b_Beta02.lib"  at 848B 
+;Align: CODE in "S480_K~1" of "SACM_S480_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

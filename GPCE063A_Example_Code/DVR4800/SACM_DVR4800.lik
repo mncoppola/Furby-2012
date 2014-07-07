@@ -1,0 +1,48 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.3.1\startupcode\startupD.obj"
+Obj: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\Debug\Resource.obj"
+Obj: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\Debug\Isr.obj"
+Obj: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\Debug\main.obj"
+Obj: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\Debug\System.obj"
+Obj: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\Debug\SACM_DVR4800_User.obj"
+Obj: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\Debug\SPI_Flash_CE063.obj"
+Obj: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\Debug\chimeA_5_A48.res"
+Obj: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\Debug\chimeA_4_A48.res"
+Lib: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\..\library\SACM_DVR4800_V4.1.04.lib"
+Output: "V:\svn\Library\16-bit\SACM_Library\Example Code\SACM Example Code\GPCE063A Example Code\DVR4800\Debug\SACM_DVR4800.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at A60C  linkat 41B 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 413 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_DVR4800_User.obj" at 417 
+;Align: RAM in "SACM_DVR4800_User.obj" with 0 
+;Locate: OVERLAP_DVR4800_API_BLOCK in "SACM_DVR4800_API" of "SACM_DVR4800_V4.1.04.lib"  at 1 
+;Align: OVERLAP_DVR4800_API_BLOCK in "SACM_DVR4800_API" of "SACM_DVR4800_V4.1.04.lib"  with 0 
+;Locate: OVERLAP_DVR4800_RAM_BLOCK in "SACM_DVR4800_Decode" of "SACM_DVR4800_V4.1.04.lib"  at 3A 
+;Align: OVERLAP_DVR4800_RAM_BLOCK in "SACM_DVR4800_Decode" of "SACM_DVR4800_V4.1.04.lib"  with 0 
+;Locate: OVERLAP_AC8_RAM_BLOCK in "AC8_CO~1" of "SACM_DVR4800_V4.1.04.lib"  at 30B 
+;Align: OVERLAP_AC8_RAM_BLOCK in "AC8_CO~1" of "SACM_DVR4800_V4.1.04.lib"  with 0 
+;Locate: CODE in "main.obj" at A13D 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at A4CE 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_DVR4800_User.obj" at A405 
+;Align: CODE in "SACM_DVR4800_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 9F39 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_CHIMEA_5_A48 in "chimeA_5_A48.res" at A616 
+;Align: __sn_section_RES_CHIMEA_5_A48 in "chimeA_5_A48.res" with 0 
+;Locate: __sn_section_RES_CHIMEA_4_A48 in "chimeA_4_A48.res" at B489 
+;Align: __sn_section_RES_CHIMEA_4_A48 in "chimeA_4_A48.res" with 0 
+;Locate: CODE in "SACM_DVR4800_API" of "SACM_DVR4800_V4.1.04.lib"  at A591 
+;Align: CODE in "SACM_DVR4800_API" of "SACM_DVR4800_V4.1.04.lib"  with 0 
+;Locate: SACM_DVR4800_ROM_BLOCK in "SACM_DVR4800_API" of "SACM_DVR4800_V4.1.04.lib"  at 9CF0 
+;Align: SACM_DVR4800_ROM_BLOCK in "SACM_DVR4800_API" of "SACM_DVR4800_V4.1.04.lib"  with 0 
+;Locate: SACM_DVR4800_DECODE_ROM_BLOCK in "SACM_DVR4800_Decode" of "SACM_DVR4800_V4.1.04.lib"  at A2A3 
+;Align: SACM_DVR4800_DECODE_ROM_BLOCK in "SACM_DVR4800_Decode" of "SACM_DVR4800_V4.1.04.lib"  with 0 
+;Locate: DVR4800CODE_ROM_INRAM in "AC8_CO~1" of "SACM_DVR4800_V4.1.04.lib"  at 8F5D 
+;Align: DVR4800CODE_ROM_INRAM in "AC8_CO~1" of "SACM_DVR4800_V4.1.04.lib"  with 0 
+;Locate: __sn_init_table at 8000 

@@ -1,0 +1,3429 @@
+DebugLine(path):D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE001A_Example_V41b\GPCE001A Example Code\include/
+DebugLine(file):D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE001A_Example_V41b\GPCE001A Example Code\include\SPI_Flash_CE001.asm
+DebugLine(instruction):192,1,0,0,0
+CommentLine:(0,1,0,0)
+//==========================================================================
+CommentLine:(0,2,0,0)
+// File Name   : SPI_Flash.asm
+CommentLine:(0,3,0,0)
+// Description : SPI initilaization and send/read data to/from SPI interface
+CommentLine:(0,4,0,0)
+// Programmer : Ray Cheng
+CommentLine:(0,5,0,0)
+// Last modified date:
+CommentLine:(0,6,0,0)
+// Note: 
+CommentLine:(0,7,0,0)
+//      1. IOB15:DO, IOB14:DI, IOB13:SCK, IOB8:CS
+CommentLine:(0,8,0,0)
+//      2. Flash Body: GPR25LXXX
+CommentLine:(0,9,0,0)
+//		
+CommentLine:(0,10,0,0)
+//==========================================================================
+CommentLine:(0,11,0,0)
+//**************************************************************************
+CommentLine:(0,12,0,0)
+// Header File Included Area
+CommentLine:(0,13,0,0)
+//**************************************************************************
+DebugLine(instruction):224,1,0,0,0
+IncludeLine:(0,14,0,0)
+.include GPCE001.inc;
+DebugLine(path):D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE001A_Example_V41b\GPCE001A Example Code\include/
+DebugLine(file):D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE001A_Example_V41b\GPCE001A Example Code\include\GPCE001.inc
+DebugLine(instruction):192,1,0,0,0
+CommentLine:(1,1,0,1)
+//==========================================================================
+CommentLine:(1,2,0,1)
+// File Name   : GPCE001.inc
+CommentLine:(1,3,0,1)
+// Description : GPCE001 registers and constants definition
+CommentLine:(1,4,0,1)
+// Written by  : Ray Cheng
+CommentLine:(1,5,0,1)
+// Last modified date:
+CommentLine:(1,6,0,1)
+//              2005/12/26
+CommentLine:(1,7,0,1)
+//==========================================================================
+ConditionLine:(1,8,0,1)
+.ifndef __GPCE001_INC__
+EquLine:(1,9,0,1)
+.define __GPCE001_INC__
+CommentLine:(1,10,0,1)
+//====================================================================================
+CommentLine:(1,11,0,1)
+//	Port Definition
+CommentLine:(1,12,0,1)
+//====================================================================================
+EquLine:(1,13,0,1)
+.define	P_IOA_Data			0x2000
+EquLine:(1,14,0,1)
+.define P_IOA_Buffer		0x2001
+EquLine:(1,15,0,1)
+.define	P_IOA_Dir			0x2002
+EquLine:(1,16,0,1)
+.define	P_IOA_Attrib		0x2003
+EquLine:(1,17,0,1)
+.define	P_IOB_Data			0x2004
+EquLine:(1,18,0,1)
+.define P_IOB_Buffer		0x2005
+EquLine:(1,19,0,1)
+.define	P_IOB_Dir			0x2006
+EquLine:(1,20,0,1)
+.define	P_IOB_Attrib		0x2007
+EquLine:(1,21,0,1)
+.define	P_IOC_Data			0x2008
+EquLine:(1,22,0,1)
+.define P_IOC_Buffer		0x2009
+EquLine:(1,23,0,1)
+.define	P_IOC_Dir			0x200A
+EquLine:(1,24,0,1)
+.define	P_IOC_Attrib		0x200B
+EquLine:(1,25,0,1)
+.define P_IOMEM_Ctrl		0x2018
+EquLine:(1,26,0,1)
+.define P_IO_Ctrl			0x201C
+CommentLine:(1,27,0,1)
+
+EquLine:(1,28,0,1)
+.define P_SystemClock		0x2020
+EquLine:(1,29,0,1)
+.define P_SystemSleep		0x2021
+EquLine:(1,30,0,1)
+.define P_System_Reset		0x2022
+EquLine:(1,31,0,1)
+.define P_System_LVD_Ctrl	0x2023
+EquLine:(1,32,0,1)
+.define P_TimeBase_Clear	0x2024
+EquLine:(1,33,0,1)
+.define P_Watchdog_Clear	0x2025
+EquLine:(1,34,0,1)
+.define P_Stack_Top			0x2026
+EquLine:(1,35,0,1)
+.define P_Stack_Bottom		0x2027
+CommentLine:(1,36,0,1)
+
+EquLine:(1,37,0,1)
+.define P_TimerA_Data		0x2028
+EquLine:(1,38,0,1)
+.define P_TimerA_CNTR		0x2029
+EquLine:(1,39,0,1)
+.define P_TimerB_Data		0x202A
+EquLine:(1,40,0,1)
+.define P_TimerB_CNTR		0x202B
+EquLine:(1,41,0,1)
+.define P_TimerC_Data		0x202C
+EquLine:(1,42,0,1)
+.define P_TimerC_CNTR		0x202D
+EquLine:(1,43,0,1)
+.define P_Timer_Ctrl		0x202E
+EquLine:(1,44,0,1)
+.define P_Timer_Interval	0x202F
+EquLine:(1,45,0,1)
+.define P_Timer_FIFO_Clear	0x2030
+EquLine:(1,46,0,1)
+.define P_TMRPWM_Ctrl		0x2031
+EquLine:(1,47,0,1)
+.define P_APWM_Ctrl			0x2032
+EquLine:(1,48,0,1)
+.define P_BPWM_Ctrl			0x2033
+CommentLine:(1,49,0,1)
+
+EquLine:(1,50,0,1)
+.define P_DAC_R_Data		0x2038
+EquLine:(1,51,0,1)
+.define P_AUD_R_Data		0x203A
+EquLine:(1,52,0,1)
+.define P_DAC_Ctrl			0x203C
+CommentLine:(1,53,0,1)
+
+EquLine:(1,54,0,1)
+.define P_INT_Ctrl			0x2040
+EquLine:(1,55,0,1)
+.define P_INT_Status		0x2041
+EquLine:(1,56,0,1)
+.define P_INT_Clear			0x2041
+EquLine:(1,57,0,1)
+.define P_FIQ_Sel			0x2042
+CommentLine:(1,58,0,1)
+
+EquLine:(1,59,0,1)
+.define P_SIO_Ctrl			0x2060
+EquLine:(1,60,0,1)
+.define P_SIO_Status		0x2061
+EquLine:(1,61,0,1)
+.define P_SIO_Addr_Low		0x2062
+EquLine:(1,62,0,1)
+.define P_SIO_Addr_High		0x2063
+EquLine:(1,63,0,1)
+.define P_SIO_Data			0x2064
+CommentLine:(1,64,0,1)
+
+EquLine:(1,65,0,1)
+.define P_SPI_Ctrl			0x2070
+EquLine:(1,66,0,1)
+.define P_SPI_TX_Status		0x2071
+EquLine:(1,67,0,1)
+.define P_SPI_TX_Data		0x2072
+EquLine:(1,68,0,1)
+.define P_SPI_RX_Status		0x2073
+EquLine:(1,69,0,1)
+.define P_SPI_RX_Data		0x2074
+CommentLine:(1,70,0,1)
+
+EquLine:(1,71,0,1)
+.define P_ADDA_Ctrl			0x2080
+EquLine:(1,72,0,1)
+.define P_ADC_Ctrl			0x2081
+EquLine:(1,73,0,1)
+.define P_ADC_Auto			0x2082
+EquLine:(1,74,0,1)
+.define P_ADC_Data			0x2083
+CommentLine:(1,75,0,1)
+
+EquLine:(1,76,0,1)
+.define P_Flash_Ctrl		0x26ff
+CommentLine:(1,77,0,1)
+
+CommentLine:(1,78,0,1)
+//====================================================================================
+CommentLine:(1,79,0,1)
+// Constant Definition
+CommentLine:(1,80,0,1)
+//====================================================================================
+CommentLine:(1,81,0,1)
+// P_IOMEM_Ctrl (0x02018)  only for EV chip
+CommentLine:(1,82,0,1)
+// bit0 ~ bit3 : reserve
+CommentLine:(1,83,0,1)
+// bit4 ~ bit7 : MEM_WAIT
+EquLine:(1,84,0,1)
+.define C_MEM_WAIT			0x00F0
+CommentLine:(1,85,0,1)
+// bit8 ~ bit15 : reserve
+CommentLine:(1,86,0,1)
+
+CommentLine:(1,87,0,1)
+//====================================================================================
+CommentLine:(1,88,0,1)
+// P_IO_Ctrl (0x201C)
+CommentLine:(1,89,0,1)
+// bit0~bit1 : IO_TOGGLE_CTRL
+EquLine:(1,90,0,1)
+.define C_IO_Toggle_Ctrl		0x0003	// 0000 0000 0000 0011B
+EquLine:(1,91,0,1)
+.define C_Normal_IO				0x0000
+EquLine:(1,92,0,1)
+.define C_IO_Toggle_With_TimerA	0x0001
+EquLine:(1,93,0,1)
+.define C_IO_Toggle_With_TimerB	0x0002
+EquLine:(1,94,0,1)
+.define C_IO_Toggle_With_TimerC	0x0003
+CommentLine:(1,95,0,1)
+// bit2~bit3 : EXT1_CTRL
+EquLine:(1,96,0,1)
+.define C_EXT1_Ctrl				0x000C	// 0000 0000 0000 1100B
+EquLine:(1,97,0,1)
+.define C_EXT1_Rising_Edge		0x0000
+EquLine:(1,98,0,1)
+.define C_EXT1_Falling_Edge		0x0004
+EquLine:(1,99,0,1)
+.define C_Feedback1_With_Rising	0x0008
+EquLine:(1,100,0,1)
+.define C_Feedback1_With_Falling	0x000C
+CommentLine:(1,101,0,1)
+// bit4~bit5 : EXT2_CTRL
+EquLine:(1,102,0,1)
+.define C_EXT2_Ctrl				0x0030	// 0000 0000 0011 0000B
+EquLine:(1,103,0,1)
+.define C_EXT2_Rising_Edge		0x0000
+EquLine:(1,104,0,1)
+.define C_EXT2_Falling_Edge		0x0010
+EquLine:(1,105,0,1)
+.define C_Feedback2_With_Rising	0x0020
+EquLine:(1,106,0,1)
+.define C_Feedback2_With_Falling	0x0030
+CommentLine:(1,107,0,1)
+// bit6~bit7 : IR_CTRL
+CommentLine:(1,108,0,1)
+//.define C_Normal_IO				0x0000
+EquLine:(1,109,0,1)
+.define C_IR_Ctrl				0x00C0	// 0000 0000 1100 0000B
+CommentLine:(1,110,0,1)
+//.define C_Normal_IO				0x0000
+EquLine:(1,111,0,1)
+.define C_IR_With_TimerA		0x0040
+EquLine:(1,112,0,1)
+.define C_IR_With_TimerB		0x0080
+EquLine:(1,113,0,1)
+.define C_IR_With_TimerC		0x00C0
+CommentLine:(1,114,0,1)
+// bit8~bit9 : IR_DUTY_CTRL
+EquLine:(1,115,0,1)
+.define C_IR_Duty_Ctrl			0x0300	// 0000 0011 0000 0000B
+EquLine:(1,116,0,1)
+.define C_IR_Duty_Div_2			0x0000
+EquLine:(1,117,0,1)
+.define C_IR_Duty_Div_3			0x0100
+EquLine:(1,118,0,1)
+.define C_IR_Duty_Div_4			0x0200
+EquLine:(1,119,0,1)
+.define C_IR_Duty_Div_5			0x0300
+CommentLine:(1,120,0,1)
+// bit10~bit11 : FRTC_Ctrl
+EquLine:(1,121,0,1)
+.define C_FRTC_Ctrl				0x0C00	// 0000 1100 0000 0000B
+EquLine:(1,122,0,1)
+.define C_No_RTC				0x0000
+EquLine:(1,123,0,1)
+.define C_RTC_Weak_Mode			0x0800
+EquLine:(1,124,0,1)
+.define C_RTC_Strong_Mode		0x0C00
+CommentLine:(1,125,0,1)
+// bit12: APWM mask
+EquLine:(1,126,0,1)
+.define C_APWM_Mask				0x1000
+CommentLine:(1,127,0,1)
+// bit13: BPWM mask
+EquLine:(1,128,0,1)
+.define C_BPWM_Mask				0x2000
+CommentLine:(1,129,0,1)
+// bit14~15 : reserve
+CommentLine:(1,130,0,1)
+//====================================================================================
+CommentLine:(1,131,0,1)
+// P_SystemClock (0x2020)
+CommentLine:(1,132,0,1)
+// bit0~bit2 : CPUCLK_DIV
+EquLine:(1,133,0,1)
+.define C_FPLL_Div1				0x0000
+EquLine:(1,134,0,1)
+.define C_FPLL_Div2				0x0001
+EquLine:(1,135,0,1)
+.define C_FPLL_Div4				0x0002
+EquLine:(1,136,0,1)
+.define C_FPLL_Div8				0x0003
+EquLine:(1,137,0,1)
+.define C_FPLL_Div16			0x0004
+EquLine:(1,138,0,1)
+.define C_FPLL_Div32			0x0005
+EquLine:(1,139,0,1)
+.define C_FPLL_Div64			0x0006
+EquLine:(1,140,0,1)
+.define C_FPLL_Div128			0x0007
+CommentLine:(1,141,0,1)
+// bit3~bit6 : PLLCLK
+EquLine:(1,142,0,1)
+.define C_FRTC					0x0000
+EquLine:(1,143,0,1)
+.define C_Fosc					0x0008
+EquLine:(1,144,0,1)
+.define C_Fosc_Mul2				0x0010
+EquLine:(1,145,0,1)
+.define C_Fosc_Mul3				0x0018
+EquLine:(1,146,0,1)
+.define C_Fosc_Mul4				0x0020
+EquLine:(1,147,0,1)
+.define C_Fosc_Mul5				0x0028
+EquLine:(1,148,0,1)
+.define C_Fosc_Mul6				0x0030
+EquLine:(1,149,0,1)
+.define C_Fosc_Mul7				0x0038
+EquLine:(1,150,0,1)
+.define C_Fosc_Mul8				0x0040
+EquLine:(1,151,0,1)
+.define C_Fosc_Mul9				0x0048
+EquLine:(1,152,0,1)
+.define C_Fosc_Mul10			0x0050
+EquLine:(1,153,0,1)
+.define C_Fosc_Mul11			0x0058
+EquLine:(1,154,0,1)
+.define C_Fosc_Mul12			0x0060
+EquLine:(1,155,0,1)
+.define C_Fosc_Mul13			0x0068
+EquLine:(1,156,0,1)
+.define C_Fosc_Mul14			0x0070
+EquLine:(1,157,0,1)
+.define C_Fosc_Mul15			0x0078
+CommentLine:(1,158,0,1)
+// bit7~bit8 : reserve
+CommentLine:(1,159,0,1)
+// bit9 : FRTCDIV
+EquLine:(1,160,0,1)
+.define C_FXTAL_Div128			0x0000	// FRTC = FXTAL/128 or from RTC direct
+EquLine:(1,161,0,1)
+.define C_FXTAL_Div256			0x0200	// FRTC = FXTAL/256 or from RTC direct
+CommentLine:(1,162,0,1)
+// bit10~bit11 : WDTMR, Watchdog Timer Frequency
+EquLine:(1,163,0,1)
+.define C_WDG_FRTC_Div_4096		0x0000
+EquLine:(1,164,0,1)
+.define C_WDG_FRTC_Div_1024		0x0400
+EquLine:(1,165,0,1)
+.define C_WDG_FRTC_Div_256		0x0800
+EquLine:(1,166,0,1)
+.define C_WDG_FRTC_Div_64		0x0C00
+CommentLine:(1,167,0,1)
+// bit12~bit15 : Reserve
+CommentLine:(1,168,0,1)
+//====================================================================================
+CommentLine:(1,169,0,1)
+// P_SystemSleep (0x2021)
+EquLine:(1,170,0,1)
+.define C_Sleep_Mode			0x5555
+EquLine:(1,171,0,1)
+.define C_Halt_Mode				0xAAAA
+CommentLine:(1,172,0,1)
+//====================================================================================
+CommentLine:(1,173,0,1)
+// P_System_Reset (0x2022)
+EquLine:(1,174,0,1)
+.define C_Software_Reset		0x5555
+CommentLine:(1,175,0,1)
+//====================================================================================
+CommentLine:(1,176,0,1)
+// P_System_LVD_Ctrl (0x2023)
+CommentLine:(1,177,0,1)
+// bit0~bit1 : LVD_Ctrl
+EquLine:(1,178,0,1)
+.define C_LVD_32V				0x0000
+EquLine:(1,179,0,1)
+.define C_LVD_30V				0x0001
+EquLine:(1,180,0,1)
+.define C_LVD_28V				0x0002
+EquLine:(1,181,0,1)
+.define C_LVD_26V				0x0003
+CommentLine:(1,182,0,1)
+// bit2~bit10 : Reserve
+CommentLine:(1,183,0,1)
+// bit11 : RI_XO. Mask option. Read only
+EquLine:(1,184,0,1)
+.define C_Rosc					0x0000
+EquLine:(1,185,0,1)
+.define C_XTAL					0x0800
+CommentLine:(1,186,0,1)
+// bit12 : LVD_Status
+EquLine:(1,187,0,1)
+.define C_Low_Voltage			0x1000
+CommentLine:(1,188,0,1)
+// bit13 : STACK_RESET
+EquLine:(1,189,0,1)
+.define C_Stack_Reset_Flag		0x2000
+CommentLine:(1,190,0,1)
+// bit14 : SOFTWARE_RESET
+EquLine:(1,191,0,1)
+.define C_Software_Reset_Flag	0x4000
+CommentLine:(1,192,0,1)
+// bit15 : WATCHDOG_RESET
+EquLine:(1,193,0,1)
+.define C_Watchdog_Reset_Flag	0x8000
+CommentLine:(1,194,0,1)
+//====================================================================================
+CommentLine:(1,195,0,1)
+// P_Watchdog_Clear (0x2025)
+EquLine:(1,196,0,1)
+.define C_Watchdog_Clear		0x5555
+CommentLine:(1,197,0,1)
+//====================================================================================
+CommentLine:(1,198,0,1)
+// P_Timer_Ctrl (0x202E) 
+CommentLine:(1,199,0,1)
+// bit0~bit3 : TMASEL
+EquLine:(1,200,0,1)
+.define C_TimerA_Sel			0x000F
+EquLine:(1,201,0,1)
+.define C_TimerA_Disable		0x0000
+EquLine:(1,202,0,1)
+.define C_TimerA_Software_Count	0x0001
+EquLine:(1,203,0,1)
+.define C_TimerA_FRTC_EXT2		0x0002
+EquLine:(1,204,0,1)
+.define C_TimerA_EXT1_EXT2		0x0002
+EquLine:(1,205,0,1)
+.define C_TimerA_FPLL_EXT2		0x0003
+EquLine:(1,206,0,1)
+.define C_TimerA_EXT2_64Hz		0x0004
+EquLine:(1,207,0,1)
+.define C_TimerA_EXT2_16Hz		0x0005
+EquLine:(1,208,0,1)
+.define C_TimerA_EXT2_2Hz		0x0006
+EquLine:(1,209,0,1)
+.define C_TimerA_EXT2			0x0007
+EquLine:(1,210,0,1)
+.define C_TimerA_FRTC_64Hz		0x0008
+EquLine:(1,211,0,1)
+.define C_TimerA_EXT1_64Hz		0x0008
+EquLine:(1,212,0,1)
+.define C_TimerA_FRTC_16Hz		0x0009
+EquLine:(1,213,0,1)
+.define C_TimerA_EXT1_16Hz		0x0009
+EquLine:(1,214,0,1)
+.define C_TimerA_FRTC_2Hz		0x000A
+EquLine:(1,215,0,1)
+.define C_TimerA_EXT1_2Hz		0x000A
+EquLine:(1,216,0,1)
+.define C_TimerA_FRTC			0x000B
+EquLine:(1,217,0,1)
+.define C_TimerA_EXT1			0x000B
+EquLine:(1,218,0,1)
+.define C_TimerA_FPLL_64Hz		0x000C
+EquLine:(1,219,0,1)
+.define C_TimerA_FPLL_16Hz		0x000D
+EquLine:(1,220,0,1)
+.define C_TimerA_FPLL_2Hz		0x000E
+EquLine:(1,221,0,1)
+.define C_TimerA_FPLL			0x000F
+CommentLine:(1,222,0,1)
+// bit4~bit7 : TMBSEL
+EquLine:(1,223,0,1)
+.define C_TimerB_Sel			0x00F0
+EquLine:(1,224,0,1)
+.define C_TimerB_Disable		0x0000
+EquLine:(1,225,0,1)
+.define C_TimerB_Software_Count	0x0010
+EquLine:(1,226,0,1)
+.define C_TimerB_FRTC_EXT2		0x0020
+EquLine:(1,227,0,1)
+.define C_TimerB_EXT1_EXT2		0x0020
+EquLine:(1,228,0,1)
+.define C_TimerB_FPLL_EXT2		0x0030
+EquLine:(1,229,0,1)
+.define C_TimerB_EXT2_64Hz		0x0040
+EquLine:(1,230,0,1)
+.define C_TimerB_EXT2_16Hz		0x0050
+EquLine:(1,231,0,1)
+.define C_TimerB_EXT2_2Hz		0x0060
+EquLine:(1,232,0,1)
+.define C_TimerB_EXT2			0x0070
+EquLine:(1,233,0,1)
+.define C_TimerB_FRTC_64Hz		0x0080
+EquLine:(1,234,0,1)
+.define C_TimerB_EXT1_64Hz		0x0080
+EquLine:(1,235,0,1)
+.define C_TimerB_FRTC_16Hz		0x0090
+EquLine:(1,236,0,1)
+.define C_TimerB_EXT1_16Hz		0x0090
+EquLine:(1,237,0,1)
+.define C_TimerB_FRTC_2Hz		0x00A0
+EquLine:(1,238,0,1)
+.define C_TimerB_EXT1_2Hz		0x00A0
+EquLine:(1,239,0,1)
+.define C_TimerB_FRTC			0x00B0
+EquLine:(1,240,0,1)
+.define C_TimerB_EXT1			0x00B0
+EquLine:(1,241,0,1)
+.define C_TimerB_FPLL_64Hz		0x00C0
+EquLine:(1,242,0,1)
+.define C_TimerB_FPLL_16Hz		0x00D0
+EquLine:(1,243,0,1)
+.define C_TimerB_FPLL_2Hz		0x00E0
+EquLine:(1,244,0,1)
+.define C_TimerB_FPLL			0x00F0
+CommentLine:(1,245,0,1)
+// bit8~bit11 : TMCSEL
+EquLine:(1,246,0,1)
+.define C_TimerC_Sel			0x0F00
+EquLine:(1,247,0,1)
+.define C_TimerC_Disable		0x0000
+EquLine:(1,248,0,1)
+.define C_TimerC_Software_Count	0x0100
+EquLine:(1,249,0,1)
+.define C_TimerC_FRTC_EXT2		0x0200
+EquLine:(1,250,0,1)
+.define C_TimerC_EXT1_EXT2		0x0200
+EquLine:(1,251,0,1)
+.define C_TimerC_FPLL_EXT2		0x0300
+EquLine:(1,252,0,1)
+.define C_TimerC_EXT2_64Hz		0x0400
+EquLine:(1,253,0,1)
+.define C_TimerC_EXT2_16Hz		0x0500
+EquLine:(1,254,0,1)
+.define C_TimerC_EXT2_2Hz		0x0600
+EquLine:(1,255,0,1)
+.define C_TimerC_EXT2			0x0700
+EquLine:(1,256,0,1)
+.define C_TimerC_FRTC_64Hz		0x0800
+EquLine:(1,257,0,1)
+.define C_TimerC_EXT1_64Hz		0x0800
+EquLine:(1,258,0,1)
+.define C_TimerC_FRTC_16Hz		0x0900
+EquLine:(1,259,0,1)
+.define C_TimerC_EXT1_16Hz		0x0900
+EquLine:(1,260,0,1)
+.define C_TimerC_FRTC_2Hz		0x0A00
+EquLine:(1,261,0,1)
+.define C_TimerC_EXT1_2Hz		0x0A00
+EquLine:(1,262,0,1)
+.define C_TimerC_FRTC			0x0B00
+EquLine:(1,263,0,1)
+.define C_TimerC_EXT1			0x0B00
+EquLine:(1,264,0,1)
+.define C_TimerC_FPLL_64Hz		0x0C00
+EquLine:(1,265,0,1)
+.define C_TimerC_FPLL_16Hz		0x0D00
+EquLine:(1,266,0,1)
+.define C_TimerC_FPLL_2Hz		0x0E00
+EquLine:(1,267,0,1)
+.define C_TimerC_FPLL			0x0F00
+CommentLine:(1,268,0,1)
+// bit12 : Timer A input source select; 0 for FRTC, 1 for EXT1
+EquLine:(1,269,0,1)
+.define C_TimerA_Input1_FRTC	0x0000
+EquLine:(1,270,0,1)
+.define C_TimerA_Input1_EXT1	0x1000
+CommentLine:(1,271,0,1)
+// bit13 : Timer B input source select; 0 for FRTC, 1 for EXT1
+EquLine:(1,272,0,1)
+.define C_TimerB_Input1_FRTC	0x0000
+EquLine:(1,273,0,1)
+.define C_TimerB_Input1_EXT1	0x2000
+CommentLine:(1,274,0,1)
+// bit14 : Timer C input source select; 0 for FRTC, 1 for EXT1
+EquLine:(1,275,0,1)
+.define C_TimerC_Input1_FRTC	0x0000
+EquLine:(1,276,0,1)
+.define C_TimerC_Input1_EXT1	0x4000
+CommentLine:(1,277,0,1)
+// bit15 : Reserved
+CommentLine:(1,278,0,1)
+//====================================================================================
+CommentLine:(1,279,0,1)
+// P_TimerA_Data (0x2028), P_TimerB_Data (0x202A), P_TimerC_Data(0x202C)
+EquLine:(1,280,0,1)
+.define C_8MHz					8000000
+EquLine:(1,281,0,1)
+.define C_10MHz					10000000
+EquLine:(1,282,0,1)
+.define C_13MHz					13000000
+EquLine:(1,283,0,1)
+.define C_48MHz					48000000
+EquLine:(1,284,0,1)
+.define C_54MHz					54000000
+CommentLine:(1,285,0,1)
+//.define SystemClock			C_8MHz
+CommentLine:(1,286,0,1)
+//.define SystemClock			C_10MHz
+CommentLine:(1,287,0,1)
+//.define SystemClock			C_13MHz
+EquLine:(1,288,0,1)
+.define SystemClock				C_48MHz
+CommentLine:(1,289,0,1)
+//.define SystemClock			C_54MHz
+CommentLine:(1,290,0,1)
+
+EquLine:(1,291,0,1)
+.define C_Timer_Setting_1K    65536 - (SystemClock / 1000)
+EquLine:(1,292,0,1)
+.define C_Timer_Setting_2K    65536 - (SystemClock / 2000)
+EquLine:(1,293,0,1)
+.define C_Timer_Setting_3K    65536 - (SystemClock / 3000)
+EquLine:(1,294,0,1)
+.define C_Timer_Setting_4K    65536 - (SystemClock / 4000)
+EquLine:(1,295,0,1)
+.define C_Timer_Setting_5K    65536 - (SystemClock / 5000)
+EquLine:(1,296,0,1)
+.define C_Timer_Setting_6K    65536 - (SystemClock / 6000)
+EquLine:(1,297,0,1)
+.define C_Timer_Setting_7K    65536 - (SystemClock / 7000)
+EquLine:(1,298,0,1)
+.define C_Timer_Setting_8K    65536 - (SystemClock / 8000)
+EquLine:(1,299,0,1)
+.define C_Timer_Setting_9K    65536 - (SystemClock / 9000)
+EquLine:(1,300,0,1)
+.define C_Timer_Setting_10K    65536 - (SystemClock / 10000)
+EquLine:(1,301,0,1)
+.define C_Timer_Setting_11K    65536 - (SystemClock / 11000)
+EquLine:(1,302,0,1)
+.define C_Timer_Setting_12K    65536 - (SystemClock / 12000)
+EquLine:(1,303,0,1)
+.define C_Timer_Setting_13K    65536 - (SystemClock / 13000)
+EquLine:(1,304,0,1)
+.define C_Timer_Setting_14K    65536 - (SystemClock / 14000)
+EquLine:(1,305,0,1)
+.define C_Timer_Setting_15K    65536 - (SystemClock / 15000)
+EquLine:(1,306,0,1)
+.define C_Timer_Setting_16K    65536 - (SystemClock / 16000)
+EquLine:(1,307,0,1)
+.define C_Timer_Setting_20K    65536 - (SystemClock / 20000)
+EquLine:(1,308,0,1)
+.define C_Timer_Setting_24K    65536 - (SystemClock / 24000)
+EquLine:(1,309,0,1)
+.define C_Timer_Setting_28K    65536 - (SystemClock / 28000)
+EquLine:(1,310,0,1)
+.define C_Timer_Setting_32K    65536 - (SystemClock / 32000)
+EquLine:(1,311,0,1)
+.define C_Timer_Setting_36K    65536 - (SystemClock / 36000)
+EquLine:(1,312,0,1)
+.define C_Timer_Setting_40K    65536 - (SystemClock / 40000)
+EquLine:(1,313,0,1)
+.define C_Timer_Setting_48K    65536 - (SystemClock / 48000)
+EquLine:(1,314,0,1)
+.define C_Timer_Setting_64K    65536 - (SystemClock / 64000)
+CommentLine:(1,315,0,1)
+
+EquLine:(1,316,0,1)
+.define C_Timer_Setting_7913    65536 - (SystemClock / 7913)
+CommentLine:(1,317,0,1)
+
+CommentLine:(1,318,0,1)
+//====================================================================================
+CommentLine:(1,319,0,1)
+// P_Timer_Interval (0x202F)
+CommentLine:(1,320,0,1)
+// bit0~bit3 : Timer A interrupt period (N + 1)
+EquLine:(1,321,0,1)
+.define C_TimerA_INT_Interval		0x000F
+EquLine:(1,322,0,1)
+.define C_TimerA_INT_Interval_1		0x0000
+EquLine:(1,323,0,1)
+.define C_TimerA_INT_Interval_2		0x0001
+EquLine:(1,324,0,1)
+.define C_TimerA_INT_Interval_3		0x0002
+EquLine:(1,325,0,1)
+.define C_TimerA_INT_Interval_4		0x0003
+EquLine:(1,326,0,1)
+.define C_TimerA_INT_Interval_5		0x0004
+EquLine:(1,327,0,1)
+.define C_TimerA_INT_Interval_6		0x0005
+EquLine:(1,328,0,1)
+.define C_TimerA_INT_Interval_7		0x0006
+EquLine:(1,329,0,1)
+.define C_TimerA_INT_Interval_8		0x0007
+EquLine:(1,330,0,1)
+.define C_TimerA_INT_Interval_9		0x0008
+EquLine:(1,331,0,1)
+.define C_TimerA_INT_Interval_10	0x0009
+EquLine:(1,332,0,1)
+.define C_TimerA_INT_Interval_11	0x000A
+EquLine:(1,333,0,1)
+.define C_TimerA_INT_Interval_12	0x000B
+EquLine:(1,334,0,1)
+.define C_TimerA_INT_Interval_13	0x000C
+EquLine:(1,335,0,1)
+.define C_TimerA_INT_Interval_14	0x000D
+EquLine:(1,336,0,1)
+.define C_TimerA_INT_Interval_15	0x000E
+EquLine:(1,337,0,1)
+.define C_TimerA_INT_Interval_16	0x000F
+CommentLine:(1,338,0,1)
+// bit4~bit7 : Timer B interrupt period (N + 1)
+EquLine:(1,339,0,1)
+.define C_TimerB_INT_Interval		0x00F0
+EquLine:(1,340,0,1)
+.define C_TimerB_INT_Interval_1		0x0000
+EquLine:(1,341,0,1)
+.define C_TimerB_INT_Interval_2		0x0010
+EquLine:(1,342,0,1)
+.define C_TimerB_INT_Interval_3		0x0020
+EquLine:(1,343,0,1)
+.define C_TimerB_INT_Interval_4		0x0030
+EquLine:(1,344,0,1)
+.define C_TimerB_INT_Interval_5		0x0040
+EquLine:(1,345,0,1)
+.define C_TimerB_INT_Interval_6		0x0050
+EquLine:(1,346,0,1)
+.define C_TimerB_INT_Interval_7		0x0060
+EquLine:(1,347,0,1)
+.define C_TimerB_INT_Interval_8		0x0070
+EquLine:(1,348,0,1)
+.define C_TimerB_INT_Interval_9		0x0080
+EquLine:(1,349,0,1)
+.define C_TimerB_INT_Interval_10	0x0090
+EquLine:(1,350,0,1)
+.define C_TimerB_INT_Interval_11	0x00A0
+EquLine:(1,351,0,1)
+.define C_TimerB_INT_Interval_12	0x00B0
+EquLine:(1,352,0,1)
+.define C_TimerB_INT_Interval_13	0x00C0
+EquLine:(1,353,0,1)
+.define C_TimerB_INT_Interval_14	0x00D0
+EquLine:(1,354,0,1)
+.define C_TimerB_INT_Interval_15	0x00E0
+EquLine:(1,355,0,1)
+.define C_TimerB_INT_Interval_16	0x00F0
+CommentLine:(1,356,0,1)
+// bit8~bit11 : Timer C interrupt period (N + 1)
+EquLine:(1,357,0,1)
+.define C_TimerC_INT_Interval		0x0F00
+EquLine:(1,358,0,1)
+.define C_TimerC_INT_Interval_1		0x0000
+EquLine:(1,359,0,1)
+.define C_TimerC_INT_Interval_2		0x0100
+EquLine:(1,360,0,1)
+.define C_TimerC_INT_Interval_3		0x0200
+EquLine:(1,361,0,1)
+.define C_TimerC_INT_Interval_4		0x0300
+EquLine:(1,362,0,1)
+.define C_TimerC_INT_Interval_5		0x0400
+EquLine:(1,363,0,1)
+.define C_TimerC_INT_Interval_6		0x0500
+EquLine:(1,364,0,1)
+.define C_TimerC_INT_Interval_7		0x0600
+EquLine:(1,365,0,1)
+.define C_TimerC_INT_Interval_8		0x0700
+EquLine:(1,366,0,1)
+.define C_TimerC_INT_Interval_9		0x0800
+EquLine:(1,367,0,1)
+.define C_TimerC_INT_Interval_10	0x0900
+EquLine:(1,368,0,1)
+.define C_TimerC_INT_Interval_11	0x0A00
+EquLine:(1,369,0,1)
+.define C_TimerC_INT_Interval_12	0x0B00
+EquLine:(1,370,0,1)
+.define C_TimerC_INT_Interval_13	0x0C00
+EquLine:(1,371,0,1)
+.define C_TimerC_INT_Interval_14	0x0D00
+EquLine:(1,372,0,1)
+.define C_TimerC_INT_Interval_15	0x0E00
+EquLine:(1,373,0,1)
+.define C_TimerC_INT_Interval_16	0x0F00
+CommentLine:(1,374,0,1)
+// bit12~bit15 : Reserved
+CommentLine:(1,375,0,1)
+//====================================================================================
+CommentLine:(1,376,0,1)
+// P_Timer_FIFO_Clear (0x2030)
+CommentLine:(1,377,0,1)
+// bit0 : Write '1' to clear TMA_INT_DIV to zero
+EquLine:(1,378,0,1)
+.define C_TMA_INT_DIV_Clear			0x0001
+CommentLine:(1,379,0,1)
+// bit1 : Write '1' to reload Timer A
+EquLine:(1,380,0,1)
+.define C_TMA_Reload				0x0002
+CommentLine:(1,381,0,1)
+// bit2 : Write '1' to clear TMB_INT_DIV to zero
+EquLine:(1,382,0,1)
+.define C_TMB_INT_DIV_Clear			0x0004
+CommentLine:(1,383,0,1)
+// bit3 : Write '1' to reload Timer B
+EquLine:(1,384,0,1)
+.define C_TMB_Reload				0x0008
+CommentLine:(1,385,0,1)
+// bit4 : Write '1' to clear TMC_INT_DIV to zero
+EquLine:(1,386,0,1)
+.define C_TMC_INT_DIV_Clear			0x0010
+CommentLine:(1,387,0,1)
+// bit5 : Write '1' to reload Timer C
+EquLine:(1,388,0,1)
+.define C_TMC_Reload				0x0020
+CommentLine:(1,389,0,1)
+// bit6 : 
+EquLine:(1,390,0,1)
+.define C_FIFO_I					0x0040
+CommentLine:(1,391,0,1)
+// bit7 :
+EquLine:(1,392,0,1)
+.define C_FIFO_O					0x0080
+CommentLine:(1,393,0,1)
+// bit8~bit15 : Reserved
+CommentLine:(1,394,0,1)
+//====================================================================================
+CommentLine:(1,395,0,1)
+// P_Timer_PWM_Ctrl (0x2031)
+CommentLine:(1,396,0,1)
+// bit0~bit1 : APWM source
+EquLine:(1,397,0,1)
+.define C_APWM_SRC					0x0003
+EquLine:(1,398,0,1)
+.define C_APWM_SRC_FRTC_Div_2		0x0000
+EquLine:(1,399,0,1)
+.define C_APWM_SRC_TimerA			0x0001
+EquLine:(1,400,0,1)
+.define C_APWM_SRC_TimerB			0x0002
+EquLine:(1,401,0,1)
+.define C_APWM_SRC_TimerC			0x0003
+CommentLine:(1,402,0,1)
+// bit2 : APWM Output Selection
+EquLine:(1,403,0,1)
+.define C_APWM_IOA8					0x0000
+EquLine:(1,404,0,1)
+.define C_APWM_IOB6					0x0004
+CommentLine:(1,405,0,1)
+// bit3~bit4 : BPWM source
+EquLine:(1,406,0,1)
+.define C_BPWM_SRC					0x0018
+EquLine:(1,407,0,1)
+.define C_BPWM_SRC_FRTC_Div_2		0x0000
+EquLine:(1,408,0,1)
+.define C_BPWM_SRC_TimerA			0x0008
+EquLine:(1,409,0,1)
+.define C_BPWM_SRC_TimerB			0x0010
+EquLine:(1,410,0,1)
+.define C_BPWM_SRC_TimerC			0x0018
+CommentLine:(1,411,0,1)
+// bit5 : BPWM Output Selection
+EquLine:(1,412,0,1)
+.define C_BPWM_IOA9					0x0000
+EquLine:(1,413,0,1)
+.define C_BPWM_IOB7					0x0020
+CommentLine:(1,414,0,1)
+// bit6~bit15 : Reserved
+CommentLine:(1,415,0,1)
+//====================================================================================
+CommentLine:(1,416,0,1)
+// P_APWM_Ctrl (0x2032), P_BPWM_Ctrl (0x2033)
+CommentLine:(1,417,0,1)
+// bit0~bit3 : PWM_Duty
+EquLine:(1,418,0,1)
+.define C_TMR_PWM_OFF				0x0000
+EquLine:(1,419,0,1)
+.define C_TMR_PWM_1_Div_16			0x0001
+EquLine:(1,420,0,1)
+.define C_TMR_PWM_2_Div_16			0x0002
+EquLine:(1,421,0,1)
+.define C_TMR_PWM_3_Div_16			0x0003
+EquLine:(1,422,0,1)
+.define C_TMR_PWM_4_Div_16			0x0004
+EquLine:(1,423,0,1)
+.define C_TMR_PWM_5_Div_16			0x0005
+EquLine:(1,424,0,1)
+.define C_TMR_PWM_6_Div_16			0x0006
+EquLine:(1,425,0,1)
+.define C_TMR_PWM_7_Div_16			0x0007
+EquLine:(1,426,0,1)
+.define C_TMR_PWM_8_Div_16			0x0008
+EquLine:(1,427,0,1)
+.define C_TMR_PWM_9_Div_16			0x0009
+EquLine:(1,428,0,1)
+.define C_TMR_PWM_10_Div_16			0x000A
+EquLine:(1,429,0,1)
+.define C_TMR_PWM_11_Div_16			0x000B
+EquLine:(1,430,0,1)
+.define C_TMR_PWM_12_Div_16			0x000C
+EquLine:(1,431,0,1)
+.define C_TMR_PWM_13_Div_16			0x000D
+EquLine:(1,432,0,1)
+.define C_TMR_PWM_14_Div_16			0x000E
+EquLine:(1,433,0,1)
+.define C_TMR_PWM_1_Div_2			0x000F
+CommentLine:(1,434,0,1)
+//.define C_TMR_PWM_Half_Duty		0x000F
+CommentLine:(1,435,0,1)
+// bit4~bit14 : Reserved
+CommentLine:(1,436,0,1)
+// bit15 : Clear Timer PWM Counter
+EquLine:(1,437,0,1)
+.define C_TMR_PWM_CNTR_Clear		0x8000
+CommentLine:(1,438,0,1)
+//====================================================================================
+CommentLine:(1,439,0,1)
+// P_DAC_Ctrl (0x203C)
+CommentLine:(1,440,0,1)
+// bit0 : FIFO_Ctrl
+EquLine:(1,441,0,1)
+.define C_FIFO_8					0x0000
+EquLine:(1,442,0,1)
+.define C_FIFO_16					0x0001
+CommentLine:(1,443,0,1)
+// bit1~bit2 : DACR_TMR_SEL
+EquLine:(1,444,0,1)
+.define C_DACR_TMR_SEL_Manual		0x0000
+EquLine:(1,445,0,1)
+.define C_DACR_TMR_SEL_TimerA		0x0002
+EquLine:(1,446,0,1)
+.define C_DACR_TMR_SEL_TimerB		0x0004
+EquLine:(1,447,0,1)
+.define C_DACR_TMR_SEL_TimerC		0x0006
+CommentLine:(1,448,0,1)
+// bit3 : Reserved
+CommentLine:(1,449,0,1)
+// bit4 : DAC_EN
+EquLine:(1,450,0,1)
+.define C_DAC_Disable				0x0000
+EquLine:(1,451,0,1)
+.define C_DAC_Enable				0x0010
+CommentLine:(1,452,0,1)
+// bit5 : DAC output
+EquLine:(1,453,0,1)
+.define C_DAC_Out_Disable			0x0000
+EquLine:(1,454,0,1)
+.define C_DAC_Out_Enable			0x0020
+CommentLine:(1,455,0,1)
+// bit6~bit15 : Reserved
+CommentLine:(1,456,0,1)
+
+CommentLine:(1,457,0,1)
+//====================================================================================
+CommentLine:(1,458,0,1)
+// P_ADDA_Ctrl (0x2080)
+CommentLine:(1,459,0,1)
+// bit0 : ADC enable
+EquLine:(1,460,0,1)
+.define C_ADC_Disable				0x0000
+EquLine:(1,461,0,1)
+.define C_ADC_Enable				0x0001
+CommentLine:(1,462,0,1)
+// bit1 : Microphone enable
+EquLine:(1,463,0,1)
+.define C_MIC_Amp_Disable			0x0000
+EquLine:(1,464,0,1)
+.define C_MIC_Amp_Enable			0x0002
+CommentLine:(1,465,0,1)
+// bit2 : PGA enable
+EquLine:(1,466,0,1)
+.define C_PGA_Disable				0x0000
+EquLine:(1,467,0,1)
+.define C_PGA_Enable				0x0004
+CommentLine:(1,468,0,1)
+// bit3 : Comparator enable
+EquLine:(1,469,0,1)
+.define C_CMP_Disable				0x0000
+EquLine:(1,470,0,1)
+.define C_CMP_Enable				0x0008
+CommentLine:(1,471,0,1)
+// bit4 : AGC enable
+EquLine:(1,472,0,1)
+.define C_AGC_Disable				0x0000
+EquLine:(1,473,0,1)
+.define C_AGC_Enable				0x0010
+CommentLine:(1,474,0,1)
+// bit5 : VMIC ON
+EquLine:(1,475,0,1)
+.define C_VMIC_OFF					0x0000
+EquLine:(1,476,0,1)
+.define C_VMIC_ON					0x0020
+CommentLine:(1,477,0,1)
+// bit6~bit7 : Comparator level setting
+EquLine:(1,478,0,1)
+.define C_CMP_Level_1				0x0000		// 8/8 of AVDD
+EquLine:(1,479,0,1)
+.define C_CMP_Level_2				0x0040		// 7/8 of AVDD
+EquLine:(1,480,0,1)
+.define C_CMP_Level_3				0x0080		// 6/8 of AVDD
+EquLine:(1,481,0,1)
+.define C_CMP_Level_4				0x00C0		// 5/8 of AVDD
+CommentLine:(1,482,0,1)
+// bit8~bit11 : PGA level setting
+EquLine:(1,483,0,1)
+.define C_PGA_Gain					0x0F00
+EquLine:(1,484,0,1)
+.define C_PGA_Gain_1				0x0000
+EquLine:(1,485,0,1)
+.define C_PGA_Gain_5				0x0100
+EquLine:(1,486,0,1)
+.define C_PGA_Gain_10				0x0200
+EquLine:(1,487,0,1)
+.define C_PGA_Gain_15				0x0300
+EquLine:(1,488,0,1)
+.define C_PGA_Gain_20				0x0400
+EquLine:(1,489,0,1)
+.define C_PGA_Gain_25				0x0500
+EquLine:(1,490,0,1)
+.define C_PGA_Gain_30				0x0600
+EquLine:(1,491,0,1)
+.define C_PGA_Gain_35				0x0700
+EquLine:(1,492,0,1)
+.define C_PGA_Gain_40				0x0800
+CommentLine:(1,493,0,1)
+// bit12 : Auto scan channel 0 setting
+EquLine:(1,494,0,1)
+.define C_Auto_Scan_Ch0_MIC			0x0000
+EquLine:(1,495,0,1)
+.define C_Auto_Scan_Ch0_AN0			0x1000
+CommentLine:(1,496,0,1)
+// bit13~bit15 : Reserved
+CommentLine:(1,497,0,1)
+//====================================================================================
+CommentLine:(1,498,0,1)
+// P_ADC_Ctrl (0x2081)
+CommentLine:(1,499,0,1)
+// bit0~bit2 : Reserved
+CommentLine:(1,500,0,1)
+// bit3~bit4 : ADC clock setting
+EquLine:(1,501,0,1)
+.define C_ADC_CLK_FPLL_Div_16		0x0000
+EquLine:(1,502,0,1)
+.define C_ADC_CLK_FPLL_Div_32		0x0008
+EquLine:(1,503,0,1)
+.define C_ADC_CLK_FPLL_Div_64		0x0010
+EquLine:(1,504,0,1)
+.define C_ADC_CLK_FPLL_Div_128		0x0018
+CommentLine:(1,505,0,1)
+// bit5~bit7 : ADC manual mode channel setting
+EquLine:(1,506,0,1)
+.define C_ADC_Manual_AN0			0x0000
+EquLine:(1,507,0,1)
+.define C_ADC_Manual_AN1			0x0020
+EquLine:(1,508,0,1)
+.define C_ADC_Manual_AN2			0x0040
+EquLine:(1,509,0,1)
+.define C_ADC_Manual_AN3			0x0060
+EquLine:(1,510,0,1)
+.define C_ADC_Manual_AN4			0x0080
+EquLine:(1,511,0,1)
+.define C_ADC_Manual_AN5			0x00A0
+EquLine:(1,512,0,1)
+.define C_ADC_Manual_AN6			0x00C0
+EquLine:(1,513,0,1)
+.define C_ADC_Manual_AN7			0x00E0
+CommentLine:(1,514,0,1)
+// bit8~bit10 : ADC auto scan channel setting
+EquLine:(1,515,0,1)
+.define C_ADC_Auto_Scan_OFF			0x0000
+EquLine:(1,516,0,1)
+.define C_ADC_Auto_Scan_1			0x0100	// Auto scan AN0
+EquLine:(1,517,0,1)
+.define C_ADC_Auto_Scan_2			0x0200	// Auto scan AN0, AN1
+EquLine:(1,518,0,1)
+.define C_ADC_Auto_Scan_3			0x0300	// Auto scan AN0, AN1, AN2
+EquLine:(1,519,0,1)
+.define C_ADC_Auto_Scan_4			0x0400	// Auto scan AN0, AN1, AN2, AN3
+CommentLine:(1,520,0,1)
+// bit11~bit12 : Timer select for auto scan mode
+EquLine:(1,521,0,1)
+.define C_ADC_Manual				0x0000
+EquLine:(1,522,0,1)
+.define C_ADC_Timer_A				0x0800
+EquLine:(1,523,0,1)
+.define C_ADC_Timer_B				0x1000
+EquLine:(1,524,0,1)
+.define C_ADC_Timer_C				0x1800
+CommentLine:(1,525,0,1)
+// bit13 : FIFO empty (read only)
+EquLine:(1,526,0,1)
+.define C_ADC_FIFO_Empty			0x2000
+CommentLine:(1,527,0,1)
+// bit14 : Auto scan busy (read only)
+EquLine:(1,528,0,1)
+.define C_ADC_Auto_Scan_Busy		0x4000
+CommentLine:(1,529,0,1)
+// bit15 : ADC busy (read only)
+EquLine:(1,530,0,1)
+.define C_ADC_Busy					0x8000
+CommentLine:(1,531,0,1)
+//====================================================================================
+CommentLine:(1,532,0,1)
+// P_INT_Ctrl (0x2040), P_INT_Status (0x2041), P_FIQ_SEL (0x2042)
+EquLine:(1,533,0,1)
+.define C_IRQ0_TMA					0x8000
+EquLine:(1,534,0,1)
+.define C_IRQ1_TMB					0x4000
+EquLine:(1,535,0,1)
+.define C_IRQ2_TMC					0x2000
+EquLine:(1,536,0,1)
+.define C_IRQ3_SPI					0x0800
+EquLine:(1,537,0,1)
+.define C_IRQ5_KEY					0x0100
+EquLine:(1,538,0,1)
+.define C_IRQ5_EXT1					0x0080
+EquLine:(1,539,0,1)
+.define C_IRQ5_EXT2					0x0040
+EquLine:(1,540,0,1)
+.define C_IRQ6_4096Hz				0x0020
+EquLine:(1,541,0,1)
+.define C_IRQ6_2048Hz				0x0010
+EquLine:(1,542,0,1)
+.define C_IRQ6_512Hz				0x0008
+EquLine:(1,543,0,1)
+.define C_IRQ7_64Hz					0x0004
+EquLine:(1,544,0,1)
+.define C_IRQ7_16Hz					0x0002
+EquLine:(1,545,0,1)
+.define C_IRQ7_2Hz					0x0001
+CommentLine:(1,546,0,1)
+//====================================================================================
+CommentLine:(1,547,0,1)
+// P_SIO_Ctrl (0x2060)
+CommentLine:(1,548,0,1)
+// bit0~bit1 : SIO address mode selection bits
+EquLine:(1,549,0,1)
+.define C_SIO_ADDR_MODE_16_Bit		0x0000
+EquLine:(1,550,0,1)
+.define C_SIO_ADDR_MODE_NO_ADDR		0x0001
+EquLine:(1,551,0,1)
+.define C_SIO_ADDR_MODE_8_Bit		0x0002
+EquLine:(1,552,0,1)
+.define C_SIO_ADDR_MODE_24_Bit		0x0003
+CommentLine:(1,553,0,1)
+// bit2~bit3 : SIO baud rate selection bits
+EquLine:(1,554,0,1)
+.define C_SIO_CLK_CPUCLK_Div_16		0x0000
+EquLine:(1,555,0,1)
+.define C_SIO_CLK_CPUCLK_Div_4		0x0004
+EquLine:(1,556,0,1)
+.define C_SIO_CLK_CPUCLK_Div_8		0x0008
+EquLine:(1,557,0,1)
+.define C_SIO_CLK_CPUCLK_Div_32		0x000C
+CommentLine:(1,558,0,1)
+// bit4 : SIO read/write bit definition
+EquLine:(1,559,0,1)
+.define C_SIO_READ_WRITE_NORMAL		0x0000
+EquLine:(1,560,0,1)
+.define C_SIO_READ_WRITE_LOW		0x0010
+CommentLine:(1,561,0,1)
+// bit5 : SIO read/write mode selection bit
+EquLine:(1,562,0,1)
+.define C_SIO_READ_MODE				0x0000
+EquLine:(1,563,0,1)
+.define C_SIO_WRITE_MODE			0x0020
+CommentLine:(1,564,0,1)
+// bit6 : IO mode setting
+EquLine:(1,565,0,1)
+.define C_NORMAL_IO					0x0000
+EquLine:(1,566,0,1)
+.define C_SIO_PIN					0x0040
+CommentLine:(1,567,0,1)
+// bit7 : SIO data width control bit
+EquLine:(1,568,0,1)
+.define C_SIO_Data_8_BIT			0x0000
+EquLine:(1,569,0,1)
+.define C_SIO_Data_16_BIT			0x0080
+CommentLine:(1,570,0,1)
+// bit8 : SIO interrupt enable control bit
+EquLine:(1,571,0,1)
+.define C_SIO_INT_DISABLE			0x0000
+EquLine:(1,572,0,1)
+.define C_SIO_INT_ENABLE			0x0100
+CommentLine:(1,573,0,1)
+// bit9 : SIO auto mode for SPDS30X
+EquLine:(1,574,0,1)
+.define C_SIO_AUTO_DISABLE			0x0000
+EquLine:(1,575,0,1)
+.define C_SIO_AUTO_ENABLE			0x0200
+CommentLine:(1,576,0,1)
+// bit10 : SIO start control bit
+EquLine:(1,577,0,1)
+.define C_SIO_STOP					0x0000
+EquLine:(1,578,0,1)
+.define C_SIO_START					0x0400
+CommentLine:(1,579,0,1)
+//====================================================================================
+CommentLine:(1,580,0,1)
+// P_SIO_Status (0x2061)
+CommentLine:(1,581,0,1)
+//====================================================================================
+CommentLine:(1,582,0,1)
+// bit0 : SIO trigger bit
+EquLine:(1,583,0,1)
+.define C_SIO_Trigger				0x0001;
+CommentLine:(1,584,0,1)
+// bit1 ~ bit13 : reserved
+CommentLine:(1,585,0,1)
+// bit14 : SIO interrupt status bit
+EquLine:(1,586,0,1)
+.define C_SIO_INT					0x4000;
+CommentLine:(1,587,0,1)
+// bit15: SIO ready
+EquLine:(1,588,0,1)
+.define C_SIO_Ready					0x8000;
+CommentLine:(1,589,0,1)
+//====================================================================================
+CommentLine:(1,590,0,1)
+// P_SPI_Ctrl (0x2070)
+CommentLine:(1,591,0,1)
+// bit0~bit2 : SCKSEL
+EquLine:(1,592,0,1)
+.define C_SPI_SCK_SEL				0x0007
+EquLine:(1,593,0,1)
+.define C_SCKSEL_FPLL_Div_4			0x0000
+EquLine:(1,594,0,1)
+.define C_SCKSEL_FPLL_Div_8			0x0001
+EquLine:(1,595,0,1)
+.define C_SCKSEL_FPLL_Div_16		0x0002
+EquLine:(1,596,0,1)
+.define C_SCKSEL_FPLL_Div_32		0x0003
+EquLine:(1,597,0,1)
+.define C_SCKSEL_FPLL_Div_64		0x0004	
+EquLine:(1,598,0,1)
+.define C_SCKSEL_FPLL_Div_128		0x0005
+CommentLine:(1,599,0,1)
+// bit3 : Reserved
+CommentLine:(1,600,0,1)
+// bit4 : SPI Clock Polarity
+EquLine:(1,601,0,1)
+.define C_SPI_Clock_Pol_Normal		0x0000
+EquLine:(1,602,0,1)
+.define C_SPI_Clock_Pol_Inverse		0x0010
+CommentLine:(1,603,0,1)
+// bit5 : SPI Clock Phase
+EquLine:(1,604,0,1)
+.define C_SPI_Clock_Phase_Normal	0x0000
+EquLine:(1,605,0,1)
+.define C_SPI_Clock_Phase_Shift		0x0020  //(POL=0, PHA=1)
+CommentLine:(1,606,0,1)
+// bit6~bit7 : Reserved
+CommentLine:(1,607,0,1)
+// bit8 : SPI Mode
+EquLine:(1,608,0,1)
+.define C_MasterMode				0x0000
+EquLine:(1,609,0,1)
+.define C_SlaveMode  				0x0100
+CommentLine:(1,610,0,1)
+// bit9~bit10 : Reserved
+CommentLine:(1,611,0,1)
+// bit11 : SPI Reset
+EquLine:(1,612,0,1)
+.define C_SPI_RST					0x0800
+CommentLine:(1,613,0,1)
+// bit12~bit14 : Reserved
+CommentLine:(1,614,0,1)
+// bit15 : SPI Enable
+EquLine:(1,615,0,1)
+.define C_SPI_Disable				0x0000
+EquLine:(1,616,0,1)
+.define C_SPI_Enable				0x8000
+CommentLine:(1,617,0,1)
+//====================================================================================
+CommentLine:(1,618,0,1)
+// P_SPI_TX_Status (0x2071)
+CommentLine:(1,619,0,1)
+// bit0~bit4 : SPI TX Flag (read only)
+CommentLine:(1,620,0,1)
+// bit5~bit9 : SPI TX level setting
+EquLine:(1,621,0,1)
+.define C_SPI_TX_FIFO_Level			0x03E0
+EquLine:(1,622,0,1)
+.define C_SPI_TX_FIFO_Level_0		0x0000
+EquLine:(1,623,0,1)
+.define C_SPI_TX_FIFO_Level_1		0x0020
+EquLine:(1,624,0,1)
+.define C_SPI_TX_FIFO_Level_2		0x0040
+EquLine:(1,625,0,1)
+.define C_SPI_TX_FIFO_Level_3		0x0060
+EquLine:(1,626,0,1)
+.define C_SPI_TX_FIFO_Level_4		0x0080
+EquLine:(1,627,0,1)
+.define C_SPI_TX_FIFO_Level_5		0x00A0
+EquLine:(1,628,0,1)
+.define C_SPI_TX_FIFO_Level_6		0x00C0
+EquLine:(1,629,0,1)
+.define C_SPI_TX_FIFO_Level_7		0x00E0
+EquLine:(1,630,0,1)
+.define C_SPI_TX_FIFO_Level_8		0x0100
+EquLine:(1,631,0,1)
+.define C_SPI_TX_FIFO_Level_9		0x0120
+EquLine:(1,632,0,1)
+.define C_SPI_TX_FIFO_Level_10		0x0140
+EquLine:(1,633,0,1)
+.define C_SPI_TX_FIFO_Level_11		0x0160
+EquLine:(1,634,0,1)
+.define C_SPI_TX_FIFO_Level_12		0x0180
+EquLine:(1,635,0,1)
+.define C_SPI_TX_FIFO_Level_13		0x01A0
+EquLine:(1,636,0,1)
+.define C_SPI_TX_FIFO_Level_14		0x01C0
+EquLine:(1,637,0,1)
+.define C_SPI_TX_FIFO_Level_15		0x01E0
+EquLine:(1,638,0,1)
+.define C_SPI_TX_FIFO_Level_16		0x0200
+CommentLine:(1,639,0,1)
+
+CommentLine:(1,640,0,1)
+// bit10 : SPI TX Start
+EquLine:(1,641,0,1)
+.define C_SPI_TX_Start_Clear		0x0000
+EquLine:(1,642,0,1)
+.define C_SPI_TX_Start				0x0400
+CommentLine:(1,643,0,1)
+// bit11~bit13 : Reserved
+CommentLine:(1,644,0,1)
+// bit14 : SPI TX interrupt enable
+EquLine:(1,645,0,1)
+.define C_SPI_TX_INT_DIS			0x0000
+EquLine:(1,646,0,1)
+.define C_SPI_TX_INT_EN				0x4000
+CommentLine:(1,647,0,1)
+// bit15 : SPI TX interrupt flag
+EquLine:(1,648,0,1)
+.define C_SPI_TX_INT_Flag			0x8000
+CommentLine:(1,649,0,1)
+//====================================================================================
+CommentLine:(1,650,0,1)
+// P_SPI_RX_Status (0x2072)
+CommentLine:(1,651,0,1)
+// bit0~bit4 : SPI RX Flag (read only)
+CommentLine:(1,652,0,1)
+// bit5~bit9 : SPI RX full level setting
+EquLine:(1,653,0,1)
+.define C_SPI_RX_FIFO_Level			0x03E0
+CommentLine:(1,654,0,1)
+//.define C_SPI_RX_FIFO_Level_0		0x0000
+EquLine:(1,655,0,1)
+.define C_SPI_RX_FIFO_Level_1		0x0020
+EquLine:(1,656,0,1)
+.define C_SPI_RX_FIFO_Level_2		0x0040
+EquLine:(1,657,0,1)
+.define C_SPI_RX_FIFO_Level_3		0x0060
+EquLine:(1,658,0,1)
+.define C_SPI_RX_FIFO_Level_4		0x0080
+EquLine:(1,659,0,1)
+.define C_SPI_RX_FIFO_Level_5		0x00A0
+EquLine:(1,660,0,1)
+.define C_SPI_RX_FIFO_Level_6		0x00C0
+EquLine:(1,661,0,1)
+.define C_SPI_RX_FIFO_Level_7		0x00E0
+EquLine:(1,662,0,1)
+.define C_SPI_RX_FIFO_Level_8		0x0100
+EquLine:(1,663,0,1)
+.define C_SPI_RX_FIFO_Level_9		0x0120
+EquLine:(1,664,0,1)
+.define C_SPI_RX_FIFO_Level_10		0x0140
+EquLine:(1,665,0,1)
+.define C_SPI_RX_FIFO_Level_11		0x0160
+EquLine:(1,666,0,1)
+.define C_SPI_RX_FIFO_Level_12		0x0180
+EquLine:(1,667,0,1)
+.define C_SPI_RX_FIFO_Level_13		0x01A0
+EquLine:(1,668,0,1)
+.define C_SPI_RX_FIFO_Level_14		0x01C0
+EquLine:(1,669,0,1)
+.define C_SPI_RX_FIFO_Level_15		0x01E0
+EquLine:(1,670,0,1)
+.define C_SPI_RX_FIFO_Level_16		0x0200
+CommentLine:(1,671,0,1)
+// bit10 : SPI RX buffer overwrite (read only)
+EquLine:(1,672,0,1)
+.define C_SPI_RX_BUF_OVER_ERROR		0x0400
+CommentLine:(1,673,0,1)
+// bit11 : SPI RX buffer full (read only)
+EquLine:(1,674,0,1)
+.define C_SPI_RX_BUF_Full			0x0800
+CommentLine:(1,675,0,1)
+// bit12~13 : Reserved
+CommentLine:(1,676,0,1)
+// bit14 : SPI Rx interrupt enable
+EquLine:(1,677,0,1)
+.define C_SPI_RX_INT_DIS			0x0000
+EquLine:(1,678,0,1)
+.define C_SPI_RX_INT_EN				0x4000
+CommentLine:(1,679,0,1)
+// bit15 : SPI RX interrupt flag
+EquLine:(1,680,0,1)
+.define C_SPI_RX_INT_Flag			0x8000
+CommentLine:(1,681,0,1)
+
+CommentLine:(1,682,0,1)
+//====================================================================================
+CommentLine:(1,683,0,1)
+//P_Flash_Ctrl(0x26FF)
+EquLine:(1,684,0,1)
+.define C_FLASH_MATCH				0xAAAA
+EquLine:(1,685,0,1)
+.define C_FLASH_PAGE_ERASE			0x5511
+EquLine:(1,686,0,1)
+.define C_FLASH_PROGRAM				0x5533
+CommentLine:(1,687,0,1)
+
+ConditionLine:(1,688,0,1)
+.endif
+CommentLine:(1,689,0,1)
+//====================================================================================
+CommentLine:(1,690,0,1)
+// End of GPCE001.inc
+CommentLine:(1,691,0,1)
+//====================================================================================
+EndOfFileLine:(1,691,0,1)
+
+DebugLine(instruction):224,1,0,0,0
+DebugLine(path):D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE001A_Example_V41b\GPCE001A Example Code\include/
+DebugLine(file):D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE001A_Example_V41b\GPCE001A Example Code\include\SPI_Flash_CE001.asm
+DebugLine(instruction):192,1,0,0,0
+CommentLine:(0,15,0,0)
+
+CommentLine:(0,16,0,0)
+//**************************************************************************
+CommentLine:(0,17,0,0)
+// Contant Defintion Area
+CommentLine:(0,18,0,0)
+//**************************************************************************
+EquLine:(0,19,0,0)
+.define C_SPI_DO_Bit	0x8000
+EquLine:(0,20,0,0)
+.define C_SPI_SI_Bit	0x4000
+EquLine:(0,21,0,0)
+.define C_SPI_SCK_Bit	0x2000
+EquLine:(0,22,0,0)
+.define C_SPI_CS_Bit	0x1000
+CommentLine:(0,23,0,0)
+
+EquLine:(0,24,0,0)
+.define C_SPI_CS_IO		8		// IOB[8] as SPI CS pin
+CommentLine:(0,25,0,0)
+
+CommentLine:(0,26,0,0)
+//----------- Flash Operation Command Definition -------
+EquLine:(0,27,0,0)
+.define C_SPI_Flash_Read_CMD		0x03
+EquLine:(0,28,0,0)
+.define C_SPI_Flash_Sector_Erase	0xD8
+EquLine:(0,29,0,0)
+.define C_SPI_Flash_Chip_Erase		0x60
+EquLine:(0,30,0,0)
+.define C_SPI_Flash_Page_Program	0x02
+EquLine:(0,31,0,0)
+.define C_SPI_Flash_Read_Status		0x05
+EquLine:(0,32,0,0)
+.define C_SPI_Flash_Write_Status	0x01
+EquLine:(0,33,0,0)
+.define C_SPI_Flash_Write_Enable	0x06
+EquLine:(0,34,0,0)
+.define C_SPI_Flash_Write_Disable	0x04
+EquLine:(0,35,0,0)
+.define C_SPI_Flash_Read_ID			0x9F
+EquLine:(0,36,0,0)
+.define C_SPI_Flash_Fast_Read		0x0B
+EquLine:(0,37,0,0)
+.define C_SPI_Flash_Power_Down		0xB9
+EquLine:(0,38,0,0)
+.define C_SPI_Flash_Release_DP		0xAB
+EquLine:(0,39,0,0)
+.define C_SPI_Flash_Enter_4K		0xA5
+EquLine:(0,40,0,0)
+.define C_SPI_Flash_Exit_4K			0xB5
+EquLine:(0,41,0,0)
+.define C_SPI_Flash_Read_ES			0xAB
+EquLine:(0,42,0,0)
+.define C_SPI_Flash_Read_EMS		0x90
+EquLine:(0,43,0,0)
+.define C_SPI_Flash_Parallel_Mode	0x55
+CommentLine:(0,44,0,0)
+
+CommentLine:(0,45,0,0)
+//----------- Flash Status Port Definition ----------
+EquLine:(0,46,0,0)
+.define C_Flash_Busy				0x01
+EquLine:(0,47,0,0)
+.define C_Flash_WEL					0x02		// Write Enable Latch
+EquLine:(0,48,0,0)
+.define C_Flash_BP0					0x04
+EquLine:(0,49,0,0)
+.define C_Flash_BP1					0x08
+EquLine:(0,50,0,0)
+.define C_Flash_BP2					0x10
+EquLine:(0,51,0,0)
+.define C_Flash_BP3					0x20		
+EquLine:(0,52,0,0)
+.define C_Flash_PEE					0x40		// Program Erase Error
+EquLine:(0,53,0,0)
+.define C_Flash_SRWP				0x80		// Status Register Write Protect
+CommentLine:(0,54,0,0)
+
+CommentLine:(0,55,0,0)
+//**************************************************************************
+CommentLine:(0,56,0,0)
+// Variable Publication Area
+CommentLine:(0,57,0,0)
+//**************************************************************************
+CommentLine:(0,58,0,0)
+
+CommentLine:(0,59,0,0)
+
+CommentLine:(0,60,0,0)
+//**************************************************************************
+CommentLine:(0,61,0,0)
+// Function Call Publication Area
+CommentLine:(0,62,0,0)
+//**************************************************************************
+PublicLine:(0,63,0,0)
+.public  _SPI_Initial
+PublicLine:(0,64,0,0)
+.public F_SPI_Initial
+PublicLine:(0,65,0,0)
+.public  _SPI_ReadAWord
+PublicLine:(0,66,0,0)
+.public F_SPI_ReadAWord
+PublicLine:(0,67,0,0)
+.public  _SPI_ReadNWords
+PublicLine:(0,68,0,0)
+.public F_SPI_ReadNWords
+PublicLine:(0,69,0,0)
+.public  _SPI_SendAWord
+PublicLine:(0,70,0,0)
+.public F_SPI_SendAWord
+PublicLine:(0,71,0,0)
+.public  _SPI_SendNWords
+PublicLine:(0,72,0,0)
+.public F_SPI_SendNWords
+PublicLine:(0,73,0,0)
+.public  _Flash_Write_Enable
+PublicLine:(0,74,0,0)
+.public F_Flash_Write_Enable
+PublicLine:(0,75,0,0)
+.public  _Flash_Write_Disable
+PublicLine:(0,76,0,0)
+.public F_Flash_Write_Disable
+PublicLine:(0,77,0,0)
+.public  _SPI_Read_Status_Register
+PublicLine:(0,78,0,0)
+.public F_SPI_Read_Status_Register
+PublicLine:(0,79,0,0)
+.public  _SPI_Enable_Write_Status_Register
+PublicLine:(0,80,0,0)
+.public F_SPI_Enable_Write_Status_Register
+PublicLine:(0,81,0,0)
+.public  _SPI_Write_Status_Register
+PublicLine:(0,82,0,0)
+.public F_SPI_Write_Status_Register
+PublicLine:(0,83,0,0)
+.public  _SPI_Flash_Sector_Erase
+PublicLine:(0,84,0,0)
+.public F_SPI_Flash_Sector_Erase
+PublicLine:(0,85,0,0)
+.public  _SPI_Flash_Chip_Erase
+PublicLine:(0,86,0,0)
+.public F_SPI_Flash_Chip_Erase
+PublicLine:(0,87,0,0)
+.public  _SPI_Read_Flash_ID
+PublicLine:(0,88,0,0)
+.public F_SPI_Read_Flash_ID
+CommentLine:(0,89,0,0)
+
+CommentLine:(0,90,0,0)
+//**************************************************************************
+CommentLine:(0,91,0,0)
+// External Function Declaration
+CommentLine:(0,92,0,0)
+//**************************************************************************
+CommentLine:(0,93,0,0)
+
+CommentLine:(0,94,0,0)
+//**************************************************************************
+CommentLine:(0,95,0,0)
+// External Table Declaration
+CommentLine:(0,96,0,0)
+//**************************************************************************
+CommentLine:(0,97,0,0)
+
+CommentLine:(0,98,0,0)
+//**************************************************************************
+CommentLine:(0,99,0,0)
+// RAM Definition Area
+CommentLine:(0,100,0,0)
+//**************************************************************************
+DebugLine(instruction):224,1,0,0,0
+DebugLine(instruction):192,6,0,0,0
+SectionLine:(0,101,0,0)
+.RAM
+CommentLine:(0,102,0,0)
+
+CommentLine:(0,103,0,0)
+//*****************************************************************************
+CommentLine:(0,104,0,0)
+// Table Definition Area
+CommentLine:(0,105,0,0)
+//*****************************************************************************
+DebugLine(instruction):224,6,0,0,0
+DebugLine(instruction):192,3,0,0,0
+SectionLine:(0,106,0,0)
+.TEXT
+CommentLine:(0,107,0,0)
+
+CommentLine:(0,108,0,0)
+//**************************************************************************
+CommentLine:(0,109,0,0)
+// CODE Definition Area
+CommentLine:(0,110,0,0)
+//**************************************************************************
+DebugLine(instruction):224,3,0,0,0
+DebugLine(instruction):192,1,0,0,0
+SectionLine:(0,111,0,0)
+.CODE
+CommentLine:(0,112,0,0)
+//****************************************************************
+CommentLine:(0,113,0,0)
+// Function    : F_SPI_Initial
+CommentLine:(0,114,0,0)
+// Description : Initial SPI interface
+CommentLine:(0,115,0,0)
+// Destory     : R1
+CommentLine:(0,116,0,0)
+// Parameter   : None
+CommentLine:(0,117,0,0)
+// Return      : None
+CommentLine:(0,118,0,0)
+// Note        : None
+CommentLine:(0,119,0,0)
+//****************************************************************
+ProcDefStartLine:(0,120,0,0)
+_SPI_Initial: .proc
+InstructionLine:(0,121,0,0)
+F_SPI_Initial:
+DebugLine(instruction):68,1,0,122,0
+InstructionLine:(0,122,0,0)
+	push R1, R2 to [SP];
+CommentLine:(0,123,0,0)
+	// set IOB[8] output high
+DebugLine(instruction):68,1,1,124,0
+InstructionLine:(0,124,0,0)
+	setb [P_IOB_Dir], C_SPI_CS_IO;
+DebugLine(instruction):68,1,3,125,0
+InstructionLine:(0,125,0,0)
+	setb [P_IOB_Attrib], C_SPI_CS_IO;
+DebugLine(instruction):68,1,5,126,0
+InstructionLine:(0,126,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;
+CommentLine:(0,127,0,0)
+	// Set DI as float input; DO, SCK, CS as output low
+DebugLine(instruction):68,1,7,128,0
+InstructionLine:(0,128,0,0)
+	R1 = [P_IOB_Dir];
+DebugLine(instruction):68,1,9,129,0
+InstructionLine:(0,129,0,0)
+	R1 &= ~C_SPI_SI_Bit;
+DebugLine(instruction):68,1,11,130,0
+InstructionLine:(0,130,0,0)
+	R1 |= C_SPI_DO_Bit | C_SPI_SCK_Bit | C_SPI_CS_Bit;
+DebugLine(instruction):68,1,13,131,0
+InstructionLine:(0,131,0,0)
+	[P_IOB_Dir] = R1;
+CommentLine:(0,132,0,0)
+	
+DebugLine(instruction):68,1,15,133,0
+InstructionLine:(0,133,0,0)
+	R1 = [P_IOB_Attrib];
+DebugLine(instruction):68,1,17,134,0
+InstructionLine:(0,134,0,0)
+	R1 |= C_SPI_DO_Bit | C_SPI_SI_Bit | C_SPI_SCK_Bit | C_SPI_CS_Bit;
+DebugLine(instruction):68,1,19,135,0
+InstructionLine:(0,135,0,0)
+	[P_IOB_Attrib] = R1;
+CommentLine:(0,136,0,0)
+	
+DebugLine(instruction):68,1,21,137,0
+InstructionLine:(0,137,0,0)
+	R1 = [P_IOB_Buffer];
+DebugLine(instruction):68,1,23,138,0
+InstructionLine:(0,138,0,0)
+	R1 &= ~(C_SPI_DO_Bit | C_SPI_SI_Bit | C_SPI_SCK_Bit | C_SPI_CS_Bit);
+DebugLine(instruction):68,1,25,139,0
+InstructionLine:(0,139,0,0)
+	R1 |= C_SPI_CS_Bit;
+DebugLine(instruction):68,1,27,140,0
+InstructionLine:(0,140,0,0)
+	[P_IOB_Buffer] = R1;
+CommentLine:(0,141,0,0)
+	
+DebugLine(instruction):68,1,29,142,0
+InstructionLine:(0,142,0,0)
+	R1 = C_SPI_RST;		// software reset SPI
+DebugLine(instruction):68,1,31,143,0
+InstructionLine:(0,143,0,0)
+	[P_SPI_Ctrl] = R1;
+CommentLine:(0,144,0,0)
+
+CommentLine:(0,145,0,0)
+//	R1 = C_SPI_Enable | C_MasterMode | C_SCKSEL_FPLL_Div_4;
+CommentLine:(0,146,0,0)
+//	R1 = C_SPI_Enable | C_MasterMode | C_SCKSEL_FPLL_Div_8;
+CommentLine:(0,147,0,0)
+//	R1 = C_SPI_Enable | C_MasterMode | C_SCKSEL_FPLL_Div_16;
+CommentLine:(0,148,0,0)
+//	R1 = C_SPI_Enable | C_MasterMode | C_SCKSEL_FPLL_Div_32;
+CommentLine:(0,149,0,0)
+//	R1 = C_SPI_Enable | C_MasterMode | C_SCKSEL_FPLL_Div_64;
+CommentLine:(0,150,0,0)
+//	R1 = C_SPI_Enable | C_MasterMode | C_SCKSEL_FPLL_Div_128;
+CommentLine:(0,151,0,0)
+//	R1 = C_SPI_Enable | C_MasterMode | C_SPI_Clock_Pol_Inverse | C_SCKSEL_FPLL_Div_32;
+CommentLine:(0,152,0,0)
+//	R1 = C_SPI_Enable | C_MasterMode | C_SPI_Clock_Phase_Shift | C_SCKSEL_FPLL_Div_32;
+CommentLine:(0,153,0,0)
+//	R1 = C_SPI_Enable | C_MasterMode | C_SPI_Clock_Pol_Inverse | C_SPI_Clock_Phase_Shift | C_SCKSEL_FPLL_Div_128;
+CommentLine:(0,154,0,0)
+//	R1 = C_SPI_Enable | C_SlaveMode | C_SCKSEL_FPLL_Div_128;
+DebugLine(instruction):68,1,33,155,0
+InstructionLine:(0,155,0,0)
+	R1 = C_SPI_Enable | C_MasterMode | C_SPI_Clock_Pol_Inverse | C_SCKSEL_FPLL_Div_8;	
+DebugLine(instruction):68,1,35,156,0
+InstructionLine:(0,156,0,0)
+	[P_SPI_Ctrl] = R1;
+CommentLine:(0,157,0,0)
+	
+DebugLine(instruction):68,1,37,158,0
+InstructionLine:(0,158,0,0)
+	R1 = C_SPI_TX_FIFO_Level_0	//C_SPI_TX_INT_EN | C_SPI_TX_FIFO_Level_0;
+DebugLine(instruction):68,1,38,159,0
+InstructionLine:(0,159,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,160,0,0)
+	
+DebugLine(instruction):68,1,40,161,0
+InstructionLine:(0,161,0,0)
+	R1 = C_SPI_RX_FIFO_Level_1	//C_SPI_RX_INT_EN | C_SPI_RX_FIFO_Level_1;
+DebugLine(instruction):68,1,41,162,0
+InstructionLine:(0,162,0,0)
+	[P_SPI_RX_Status] = R1;
+CommentLine:(0,163,0,0)
+	
+CommentLine:(0,164,0,0)
+//	R1 = [P_INT_Ctrl];
+CommentLine:(0,165,0,0)
+//	R1 |= C_IRQ3_SPI;
+CommentLine:(0,166,0,0)
+//	[P_INT_Ctrl] = R1;
+CommentLine:(0,167,0,0)
+//	irq on;
+CommentLine:(0,168,0,0)
+	
+DebugLine(instruction):68,1,43,169,0
+InstructionLine:(0,169,0,0)
+	pop R1, R2 from [SP];
+DebugLine(instruction):68,1,44,170,0
+InstructionLine:(0,170,0,0)
+	retf;
+ProcDefEndLine:(0,171,0,0)
+	.endp
+CommentLine:(0,172,0,0)
+
+CommentLine:(0,173,0,0)
+//****************************************************************
+CommentLine:(0,174,0,0)
+// Function    : F_SPI_ReadAWord
+CommentLine:(0,175,0,0)
+// Description : Read a word data from flash
+CommentLine:(0,176,0,0)
+// Destory     : R1
+CommentLine:(0,177,0,0)
+// Parameter   : R1 = Address Low, R2 = Address High	
+CommentLine:(0,178,0,0)
+// Return      : R1 = one word of data read
+CommentLine:(0,179,0,0)
+// Note        : None
+CommentLine:(0,180,0,0)
+//****************************************************************
+ProcDefStartLine:(0,181,0,0)
+_SPI_ReadAWord:	.proc
+DebugLine(instruction):68,1,45,182,0
+InstructionLine:(0,182,0,0)
+	R2 = SP + 3;
+DebugLine(instruction):68,1,47,183,0
+InstructionLine:(0,183,0,0)
+	R1 = [R2++];
+DebugLine(instruction):68,1,48,184,0
+InstructionLine:(0,184,0,0)
+	R2 = [R2]; 
+CommentLine:(0,185,0,0)
+	
+InstructionLine:(0,186,0,0)
+F_SPI_ReadAWord:
+DebugLine(instruction):68,1,49,187,0
+InstructionLine:(0,187,0,0)
+	push r2, r4 to [sp];
+DebugLine(instruction):68,1,50,188,0
+InstructionLine:(0,188,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+CommentLine:(0,189,0,0)
+	
+DebugLine(instruction):68,1,52,190,0
+InstructionLine:(0,190,0,0)
+	R4 = C_SPI_Flash_Read_CMD;
+DebugLine(instruction):68,1,53,191,0
+InstructionLine:(0,191,0,0)
+	[P_SPI_TX_Data] = R4;
+DebugLine(instruction):68,1,55,192,0
+InstructionLine:(0,192,0,0)
+	R2 &= 0xFF;					// Address High
+DebugLine(instruction):68,1,57,193,0
+InstructionLine:(0,193,0,0)
+	[P_SPI_TX_Data] = R2;
+DebugLine(instruction):68,1,59,194,0
+InstructionLine:(0,194,0,0)
+	R4 = R1 lsr 4;
+DebugLine(instruction):68,1,60,195,0
+InstructionLine:(0,195,0,0)
+	R4 = R4 lsr 4;				// Address Middle
+DebugLine(instruction):68,1,61,196,0
+InstructionLine:(0,196,0,0)
+	[P_SPI_TX_Data] = R4;
+DebugLine(instruction):68,1,63,197,0
+InstructionLine:(0,197,0,0)
+	R1 &= 0xFF;					// Address Low
+DebugLine(instruction):68,1,65,198,0
+InstructionLine:(0,198,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,199,0,0)
+	
+DebugLine(instruction):68,1,67,200,0
+InstructionLine:(0,200,0,0)
+	R1 = 0x55;					// Read One Word Data dummy clock
+DebugLine(instruction):68,1,69,201,0
+InstructionLine:(0,201,0,0)
+	[P_SPI_TX_Data] = R1;
+DebugLine(instruction):68,1,71,202,0
+InstructionLine:(0,202,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,203,0,0)
+	
+DebugLine(instruction):68,1,73,204,0
+InstructionLine:(0,204,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,75,205,0
+InstructionLine:(0,205,0,0)
+	R1 |= C_SPI_TX_Start;		// Start transmitting read command and address
+DebugLine(instruction):68,1,77,206,0
+InstructionLine:(0,206,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,207,0,0)
+
+InstructionLine:(0,208,0,0)
+?L_Check_TXIF:					// Wait untill command and address have been sent out
+DebugLine(instruction):68,1,79,209,0
+InstructionLine:(0,209,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,81,210,0
+InstructionLine:(0,210,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,83,211,0
+InstructionLine:(0,211,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,84,212,0
+InstructionLine:(0,212,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,213,0,0)
+	
+InstructionLine:(0,214,0,0)
+?L_Check_RXIF:					// Wait untill any data has been received
+DebugLine(instruction):68,1,86,215,0
+InstructionLine:(0,215,0,0)
+	R1 = [P_SPI_RX_Status];
+DebugLine(instruction):68,1,88,216,0
+InstructionLine:(0,216,0,0)
+	test R1, C_SPI_RX_INT_Flag;
+DebugLine(instruction):68,1,90,217,0
+InstructionLine:(0,217,0,0)
+	jz ?L_Check_RXIF;	
+DebugLine(instruction):68,1,91,218,0
+InstructionLine:(0,218,0,0)
+	[P_SPI_RX_Status] = R1;
+CommentLine:(0,219,0,0)
+
+DebugLine(instruction):68,1,93,220,0
+InstructionLine:(0,220,0,0)
+	R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Read Command transmitted   
+DebugLine(instruction):68,1,95,221,0
+InstructionLine:(0,221,0,0)
+	R2 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address High transmitted
+DebugLine(instruction):68,1,97,222,0
+InstructionLine:(0,222,0,0)
+	R3 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address Middle transmitted
+DebugLine(instruction):68,1,99,223,0
+InstructionLine:(0,223,0,0)
+	R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address Low transmitted
+DebugLine(instruction):68,1,101,224,0
+InstructionLine:(0,224,0,0)
+	R2 = [P_SPI_RX_Data];		// Received Valid Data High from slave SPI device
+DebugLine(instruction):68,1,103,225,0
+InstructionLine:(0,225,0,0)
+	R1 = [P_SPI_RX_Data];		// Received Valid Data Low from slave SPI device
+DebugLine(instruction):68,1,105,226,0
+InstructionLine:(0,226,0,0)
+	R1 = R1 LSL 4;
+DebugLine(instruction):68,1,106,227,0
+InstructionLine:(0,227,0,0)
+	R1 = R1 LSL 4;
+DebugLine(instruction):68,1,107,228,0
+InstructionLine:(0,228,0,0)
+	R1 |= R2;					// Return one word data read from FLASH
+CommentLine:(0,229,0,0)
+
+DebugLine(instruction):68,1,108,230,0
+InstructionLine:(0,230,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+DebugLine(instruction):68,1,110,231,0
+InstructionLine:(0,231,0,0)
+	pop R2, R4 from [SP];
+DebugLine(instruction):68,1,111,232,0
+InstructionLine:(0,232,0,0)
+	retf;
+ProcDefEndLine:(0,233,0,0)
+	.endp
+CommentLine:(0,234,0,0)
+
+CommentLine:(0,235,0,0)
+//****************************************************************
+CommentLine:(0,236,0,0)
+// Function    : F_SPI_ReadNWords
+CommentLine:(0,237,0,0)
+// Description : Get N words from external memory to buffer
+CommentLine:(0,238,0,0)
+// Destory     : R1
+CommentLine:(0,239,0,0)
+// Parameter   : R1 : buffer address
+CommentLine:(0,240,0,0)
+//               R2 : data length
+CommentLine:(0,241,0,0)
+//               R3 : external memory address low word
+CommentLine:(0,242,0,0)
+//               R4 : external memory address high word
+CommentLine:(0,243,0,0)
+// Return      : None
+CommentLine:(0,244,0,0)
+// Note        : None
+CommentLine:(0,245,0,0)
+//****************************************************************
+CommentLine:(0,246,0,0)
+
+ProcDefStartLine:(0,247,0,0)
+_SPI_ReadNWords:      .proc
+DebugLine(instruction):68,1,112,248,0
+InstructionLine:(0,248,0,0)
+    R4 = SP + 3;
+DebugLine(instruction):68,1,114,249,0
+InstructionLine:(0,249,0,0)
+    R1 = [R4++];							// buffer address
+DebugLine(instruction):68,1,115,250,0
+InstructionLine:(0,250,0,0)
+    R2 = [R4++];							// data length
+DebugLine(instruction):68,1,116,251,0
+InstructionLine:(0,251,0,0)
+    R3 = [R4++];							// external memory address low byte
+DebugLine(instruction):68,1,117,252,0
+InstructionLine:(0,252,0,0)
+    R4 = [R4];							// external memory address high byte
+CommentLine:(0,253,0,0)
+
+InstructionLine:(0,254,0,0)
+F_SPI_ReadNWords:
+DebugLine(instruction):68,1,118,255,0
+InstructionLine:(0,255,0,0)
+	push R1, R5 to [SP];
+DebugLine(instruction):68,1,119,256,0
+InstructionLine:(0,256,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+CommentLine:(0,257,0,0)
+	
+DebugLine(instruction):68,1,121,258,0
+InstructionLine:(0,258,0,0)
+	R5 = C_SPI_Flash_Read_CMD;
+DebugLine(instruction):68,1,122,259,0
+InstructionLine:(0,259,0,0)
+	[P_SPI_TX_Data] = R5;
+DebugLine(instruction):68,1,124,260,0
+InstructionLine:(0,260,0,0)
+	R4 &= 0xFF;					// Address High
+DebugLine(instruction):68,1,126,261,0
+InstructionLine:(0,261,0,0)
+	[P_SPI_TX_Data] = R4;
+DebugLine(instruction):68,1,128,262,0
+InstructionLine:(0,262,0,0)
+	R4 = R3 lsr 4;
+DebugLine(instruction):68,1,129,263,0
+InstructionLine:(0,263,0,0)
+	R4 = R4 lsr 4;				// Address Middle
+DebugLine(instruction):68,1,130,264,0
+InstructionLine:(0,264,0,0)
+	[P_SPI_TX_Data] = R4;
+DebugLine(instruction):68,1,132,265,0
+InstructionLine:(0,265,0,0)
+	R3 &= 0xFF;					// Address Low
+DebugLine(instruction):68,1,134,266,0
+InstructionLine:(0,266,0,0)
+	[P_SPI_TX_Data] = R3;
+CommentLine:(0,267,0,0)
+	
+CommentLine:(0,268,0,0)
+//	R1 = 0x55;					// Read One Word Data dummy clock
+CommentLine:(0,269,0,0)
+//	[P_SPI_TX_Data] = R1;
+CommentLine:(0,270,0,0)
+//	[P_SPI_TX_Data] = R1;
+CommentLine:(0,271,0,0)
+	
+DebugLine(instruction):68,1,136,272,0
+InstructionLine:(0,272,0,0)
+	R4 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,138,273,0
+InstructionLine:(0,273,0,0)
+	R4 |= C_SPI_TX_Start;		// Start transmitting read command and address
+DebugLine(instruction):68,1,140,274,0
+InstructionLine:(0,274,0,0)
+	[P_SPI_TX_Status] = R4;
+CommentLine:(0,275,0,0)
+
+InstructionLine:(0,276,0,0)
+?L_Check_TXIF:					// Wait untill command and address have been sent out
+DebugLine(instruction):68,1,142,277,0
+InstructionLine:(0,277,0,0)
+	R4 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,144,278,0
+InstructionLine:(0,278,0,0)
+	test R4, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,146,279,0
+InstructionLine:(0,279,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,147,280,0
+InstructionLine:(0,280,0,0)
+	[P_SPI_TX_Status] = R4;
+DebugLine(instruction):68,1,149,281,0
+InstructionLine:(0,281,0,0)
+	R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Read Command transmitted   
+DebugLine(instruction):68,1,151,282,0
+InstructionLine:(0,282,0,0)
+	R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address High transmitted
+DebugLine(instruction):68,1,153,283,0
+InstructionLine:(0,283,0,0)
+	R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address Middle transmitted
+DebugLine(instruction):68,1,155,284,0
+InstructionLine:(0,284,0,0)
+	R4 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO at Address Low transmitted
+CommentLine:(0,285,0,0)
+
+InstructionLine:(0,286,0,0)
+?L_GetNWordLoop:
+DebugLine(instruction):68,1,157,287,0
+InstructionLine:(0,287,0,0)
+	[P_SPI_TX_Data] = R3;		// Read One Word Data dummy clock
+DebugLine(instruction):68,1,159,288,0
+InstructionLine:(0,288,0,0)
+	[P_SPI_TX_Data] = R3;
+DebugLine(instruction):68,1,161,289,0
+InstructionLine:(0,289,0,0)
+	R4 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,163,290,0
+InstructionLine:(0,290,0,0)
+	R4 |= C_SPI_TX_Start;		// Start transmitting read command and address
+DebugLine(instruction):68,1,165,291,0
+InstructionLine:(0,291,0,0)
+	[P_SPI_TX_Status] = R4;
+InstructionLine:(0,292,0,0)
+?L_GetNWordLoop_Check_TXIF:		// Wait untill command and address have been sent out
+DebugLine(instruction):68,1,167,293,0
+InstructionLine:(0,293,0,0)
+	R4 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,169,294,0
+InstructionLine:(0,294,0,0)
+	test R4, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,171,295,0
+InstructionLine:(0,295,0,0)
+	jz ?L_GetNWordLoop_Check_TXIF;
+DebugLine(instruction):68,1,172,296,0
+InstructionLine:(0,296,0,0)
+	[P_SPI_TX_Status] = R4;
+DebugLine(instruction):68,1,174,297,0
+InstructionLine:(0,297,0,0)
+	R3 = [P_SPI_RX_Data];		// low byte data
+DebugLine(instruction):68,1,176,298,0
+InstructionLine:(0,298,0,0)
+	R4 = [P_SPI_RX_Data];		// high byte data
+DebugLine(instruction):68,1,178,299,0
+InstructionLine:(0,299,0,0)
+	R4 = R4 lsl 4;
+DebugLine(instruction):68,1,179,300,0
+InstructionLine:(0,300,0,0)
+	R4 = R4 lsl 4;
+DebugLine(instruction):68,1,180,301,0
+InstructionLine:(0,301,0,0)
+	R4 |= R3;					// Return one word data read from FLASH
+DebugLine(instruction):68,1,181,302,0
+InstructionLine:(0,302,0,0)
+	[R1++] = R4;
+DebugLine(instruction):68,1,182,303,0
+InstructionLine:(0,303,0,0)
+	R2 -= 1;
+DebugLine(instruction):68,1,183,304,0
+InstructionLine:(0,304,0,0)
+	jnz ?L_GetNWordLoop;
+CommentLine:(0,305,0,0)
+
+DebugLine(instruction):68,1,184,306,0
+InstructionLine:(0,306,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+CommentLine:(0,307,0,0)
+	
+InstructionLine:(0,308,0,0)
+?_Finish_Last:
+DebugLine(instruction):68,1,186,309,0
+InstructionLine:(0,309,0,0)
+	pop R1, R5 from [SP];
+CommentLine:(0,310,0,0)
+//    R3 += R2 lsl 1;
+CommentLine:(0,311,0,0)
+//    R4 += 0, carry;
+DebugLine(instruction):68,1,187,312,0
+InstructionLine:(0,312,0,0)
+	retf;
+ProcDefEndLine:(0,313,0,0)
+.endp
+CommentLine:(0,314,0,0)
+
+CommentLine:(0,315,0,0)
+//****************************************************************
+CommentLine:(0,316,0,0)
+// Function    : F_SPI_SendAWord
+CommentLine:(0,317,0,0)
+// Description : Write a word data to flash
+CommentLine:(0,318,0,0)
+// Destory     : R1
+CommentLine:(0,319,0,0)
+// Parameter   : R1 = Address Low, R2 = Address High, R3 = one word of data
+CommentLine:(0,320,0,0)
+// Return      : None
+CommentLine:(0,321,0,0)
+// Note        : None
+CommentLine:(0,322,0,0)
+//****************************************************************
+ProcDefStartLine:(0,323,0,0)
+_SPI_SendAWord:	.proc
+DebugLine(instruction):68,1,188,324,0
+InstructionLine:(0,324,0,0)
+	R3 = SP + 3;
+DebugLine(instruction):68,1,190,325,0
+InstructionLine:(0,325,0,0)
+	R1 = [R3++];
+DebugLine(instruction):68,1,191,326,0
+InstructionLine:(0,326,0,0)
+	R2 = [R3++];
+DebugLine(instruction):68,1,192,327,0
+InstructionLine:(0,327,0,0)
+	R3 = [R3];
+CommentLine:(0,328,0,0)
+	
+InstructionLine:(0,329,0,0)
+F_SPI_SendAWord:
+DebugLine(instruction):68,1,193,330,0
+InstructionLine:(0,330,0,0)
+	push R1, R5 to [SP];
+CommentLine:(0,331,0,0)
+	
+DebugLine(instruction):68,1,194,332,0
+InstructionLine:(0,332,0,0)
+	call F_Flash_Write_Enable		// Flash must be written enable firstly before it is programmed or erased.
+CommentLine:(0,333,0,0)
+
+DebugLine(instruction):68,1,196,334,0
+InstructionLine:(0,334,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+CommentLine:(0,335,0,0)
+
+DebugLine(instruction):68,1,198,336,0
+InstructionLine:(0,336,0,0)
+	R4 = C_SPI_Flash_Page_Program;
+DebugLine(instruction):68,1,199,337,0
+InstructionLine:(0,337,0,0)
+	[P_SPI_TX_Data] = R4;
+DebugLine(instruction):68,1,201,338,0
+InstructionLine:(0,338,0,0)
+	R2 &= 0xFF;						// Address High
+DebugLine(instruction):68,1,203,339,0
+InstructionLine:(0,339,0,0)
+	[P_SPI_TX_Data] = R2;
+DebugLine(instruction):68,1,205,340,0
+InstructionLine:(0,340,0,0)
+	R4 = R1 lsr 4;
+DebugLine(instruction):68,1,206,341,0
+InstructionLine:(0,341,0,0)
+	R4 = R4 lsr 4;					// Address Middle
+DebugLine(instruction):68,1,207,342,0
+InstructionLine:(0,342,0,0)
+	[P_SPI_TX_Data] = R4;
+DebugLine(instruction):68,1,209,343,0
+InstructionLine:(0,343,0,0)
+	R1 &= 0xFF;						// Address Low
+DebugLine(instruction):68,1,211,344,0
+InstructionLine:(0,344,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,345,0,0)
+	
+DebugLine(instruction):68,1,213,346,0
+InstructionLine:(0,346,0,0)
+	[P_SPI_TX_Data] = R3;			// Data Low Byte
+DebugLine(instruction):68,1,215,347,0
+InstructionLine:(0,347,0,0)
+	R3 = R3 lsr 4;
+DebugLine(instruction):68,1,216,348,0
+InstructionLine:(0,348,0,0)
+	R3 = R3 lsr 4;
+DebugLine(instruction):68,1,217,349,0
+InstructionLine:(0,349,0,0)
+	[P_SPI_TX_Data] = R3;			// Data High Byte
+CommentLine:(0,350,0,0)
+	
+DebugLine(instruction):68,1,219,351,0
+InstructionLine:(0,351,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,221,352,0
+InstructionLine:(0,352,0,0)
+	R1 |= C_SPI_TX_Start;			// Start transmitting command, address and data
+DebugLine(instruction):68,1,223,353,0
+InstructionLine:(0,353,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,354,0,0)
+
+InstructionLine:(0,355,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,225,356,0
+InstructionLine:(0,356,0,0)
+	R1 = [P_SPI_TX_Status];			// Wait untill all datas have been sent out
+DebugLine(instruction):68,1,227,357,0
+InstructionLine:(0,357,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,229,358,0
+InstructionLine:(0,358,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,230,359,0
+InstructionLine:(0,359,0,0)
+	[P_SPI_RX_Status] = R1;
+CommentLine:(0,360,0,0)
+	
+DebugLine(instruction):68,1,232,361,0
+InstructionLine:(0,361,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+CommentLine:(0,362,0,0)
+
+DebugLine(instruction):68,1,234,363,0
+InstructionLine:(0,363,0,0)
+	R1 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+DebugLine(instruction):68,1,236,364,0
+InstructionLine:(0,364,0,0)
+	R2 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+DebugLine(instruction):68,1,238,365,0
+InstructionLine:(0,365,0,0)
+	R3 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+DebugLine(instruction):68,1,240,366,0
+InstructionLine:(0,366,0,0)
+	R4 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+DebugLine(instruction):68,1,242,367,0
+InstructionLine:(0,367,0,0)
+	R1 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+DebugLine(instruction):68,1,244,368,0
+InstructionLine:(0,368,0,0)
+	R1 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+CommentLine:(0,369,0,0)
+	
+InstructionLine:(0,370,0,0)
+?L_Check_Busy:						// Wait untill one word data has been written into flash successfully (about 3 to 12ms).
+DebugLine(instruction):68,1,246,371,0
+InstructionLine:(0,371,0,0)
+	call F_SPI_Read_Status_Register; // WatchDog overflow can escape from dead loop
+DebugLine(instruction):68,1,248,372,0
+InstructionLine:(0,372,0,0)
+	test R1, C_Flash_Busy;
+DebugLine(instruction):68,1,249,373,0
+InstructionLine:(0,373,0,0)
+	jnz ?L_Check_Busy;
+CommentLine:(0,374,0,0)
+	
+DebugLine(instruction):68,1,250,375,0
+InstructionLine:(0,375,0,0)
+	pop R1, R5 from [SP];
+DebugLine(instruction):68,1,251,376,0
+InstructionLine:(0,376,0,0)
+	retf;	
+ProcDefEndLine:(0,377,0,0)
+	.endp
+CommentLine:(0,378,0,0)
+
+CommentLine:(0,379,0,0)
+
+CommentLine:(0,380,0,0)
+//****************************************************************
+CommentLine:(0,381,0,0)
+// Function    : F_SPI_SendNWords
+CommentLine:(0,382,0,0)
+// Description : Send N words to external memory from internal buffer
+CommentLine:(0,383,0,0)
+// Destory     : None
+CommentLine:(0,384,0,0)
+// Parameter   : R1 : buffer address
+CommentLine:(0,385,0,0)
+//               R2 : data length
+CommentLine:(0,386,0,0)
+//               R3 : external memory address low word
+CommentLine:(0,387,0,0)
+//               R4 : external memory address high word
+CommentLine:(0,388,0,0)
+// Return      : None
+CommentLine:(0,389,0,0)
+// Note        : None
+CommentLine:(0,390,0,0)
+//****************************************************************
+ProcDefStartLine:(0,391,0,0)
+ _SPI_SendNWords:	.proc
+DebugLine(instruction):68,1,252,392,0
+InstructionLine:(0,392,0,0)
+	R4 = SP + 4;
+DebugLine(instruction):68,1,254,393,0
+InstructionLine:(0,393,0,0)
+	R1 = [R4++];
+DebugLine(instruction):68,1,255,394,0
+InstructionLine:(0,394,0,0)
+	R2 = [R4++];
+DebugLine(instruction):68,1,256,395,0
+InstructionLine:(0,395,0,0)
+	R3 = [R4++];
+DebugLine(instruction):68,1,257,396,0
+InstructionLine:(0,396,0,0)
+	R4 = [R4];
+InstructionLine:(0,397,0,0)
+F_SPI_SendNWords:
+DebugLine(instruction):68,1,258,398,0
+InstructionLine:(0,398,0,0)
+	push R1, R5 to [SP];
+CommentLine:(0,399,0,0)
+
+InstructionLine:(0,400,0,0)
+?L_WriteData:
+DebugLine(instruction):68,1,259,401,0
+InstructionLine:(0,401,0,0)
+	setb [P_IOB_Buffer], 0;
+CommentLine:(0,402,0,0)
+	
+DebugLine(instruction):68,1,261,403,0
+InstructionLine:(0,403,0,0)
+	call F_Flash_Write_Enable		// Flash must be written enable firstly before it is programmed or erased.
+CommentLine:(0,404,0,0)
+
+DebugLine(instruction):68,1,263,405,0
+InstructionLine:(0,405,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+CommentLine:(0,406,0,0)
+
+DebugLine(instruction):68,1,265,407,0
+InstructionLine:(0,407,0,0)
+	R5 = C_SPI_Flash_Page_Program;
+DebugLine(instruction):68,1,266,408,0
+InstructionLine:(0,408,0,0)
+	[P_SPI_TX_Data] = R5;
+CommentLine:(0,409,0,0)
+//	R4 &= 0xFF;						// Address High
+DebugLine(instruction):68,1,268,410,0
+InstructionLine:(0,410,0,0)
+	[P_SPI_TX_Data] = R4;
+DebugLine(instruction):68,1,270,411,0
+InstructionLine:(0,411,0,0)
+	R5 = R3 lsr 4;
+DebugLine(instruction):68,1,271,412,0
+InstructionLine:(0,412,0,0)
+	R5 = R5 lsr 4;					// Address Middle
+DebugLine(instruction):68,1,272,413,0
+InstructionLine:(0,413,0,0)
+	[P_SPI_TX_Data] = R5;
+CommentLine:(0,414,0,0)
+//	R3 &= 0xFF;						// Address Low
+DebugLine(instruction):68,1,274,415,0
+InstructionLine:(0,415,0,0)
+	R5 = R3 & 0xFF;					// Address Low
+DebugLine(instruction):68,1,276,416,0
+InstructionLine:(0,416,0,0)
+	[P_SPI_TX_Data] = R5;
+CommentLine:(0,417,0,0)
+	
+DebugLine(instruction):68,1,278,418,0
+InstructionLine:(0,418,0,0)
+	R5 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,280,419,0
+InstructionLine:(0,419,0,0)
+	R5 |= C_SPI_TX_Start;			// Start transmitting command, address and data
+DebugLine(instruction):68,1,282,420,0
+InstructionLine:(0,420,0,0)
+	[P_SPI_TX_Status] = R5;
+CommentLine:(0,421,0,0)
+
+InstructionLine:(0,422,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,284,423,0
+InstructionLine:(0,423,0,0)
+	R5 = [P_SPI_TX_Status];			// Wait untill all datas have been sent out
+DebugLine(instruction):68,1,286,424,0
+InstructionLine:(0,424,0,0)
+	test R5, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,288,425,0
+InstructionLine:(0,425,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,289,426,0
+InstructionLine:(0,426,0,0)
+	R5 &= ~C_SPI_TX_Start;
+DebugLine(instruction):68,1,291,427,0
+InstructionLine:(0,427,0,0)
+	[P_SPI_RX_Status] = R5;
+CommentLine:(0,428,0,0)
+	
+DebugLine(instruction):68,1,293,429,0
+InstructionLine:(0,429,0,0)
+	R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+DebugLine(instruction):68,1,295,430,0
+InstructionLine:(0,430,0,0)
+	R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+DebugLine(instruction):68,1,297,431,0
+InstructionLine:(0,431,0,0)
+	R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+DebugLine(instruction):68,1,299,432,0
+InstructionLine:(0,432,0,0)
+	R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+CommentLine:(0,433,0,0)
+
+InstructionLine:(0,434,0,0)
+?L_SendDataLoop:
+DebugLine(instruction):68,1,301,435,0
+InstructionLine:(0,435,0,0)
+	R5 = [R1++];
+DebugLine(instruction):68,1,302,436,0
+InstructionLine:(0,436,0,0)
+	[P_SPI_TX_Data] = R5;			// Data Low Byte
+DebugLine(instruction):68,1,304,437,0
+InstructionLine:(0,437,0,0)
+	R5 = R5 lsr 4;
+DebugLine(instruction):68,1,305,438,0
+InstructionLine:(0,438,0,0)
+	R5 = R5 lsr 4;
+DebugLine(instruction):68,1,306,439,0
+InstructionLine:(0,439,0,0)
+	[P_SPI_TX_Data] = R5;			// Data High Byte
+CommentLine:(0,440,0,0)
+
+DebugLine(instruction):68,1,308,441,0
+InstructionLine:(0,441,0,0)
+	R5 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,310,442,0
+InstructionLine:(0,442,0,0)
+	R5 |= C_SPI_TX_Start;			// Start transmitting command, address and data
+DebugLine(instruction):68,1,312,443,0
+InstructionLine:(0,443,0,0)
+	[P_SPI_TX_Status] = R5;
+CommentLine:(0,444,0,0)
+
+InstructionLine:(0,445,0,0)
+?L_Check_TXIF_2:
+DebugLine(instruction):68,1,314,446,0
+InstructionLine:(0,446,0,0)
+	R5 = [P_SPI_TX_Status];			// Wait untill all datas have been sent out
+DebugLine(instruction):68,1,316,447,0
+InstructionLine:(0,447,0,0)
+	test R5, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,318,448,0
+InstructionLine:(0,448,0,0)
+	jz ?L_Check_TXIF_2;
+DebugLine(instruction):68,1,319,449,0
+InstructionLine:(0,449,0,0)
+	R5 &= ~C_SPI_TX_Start;
+DebugLine(instruction):68,1,321,450,0
+InstructionLine:(0,450,0,0)
+	[P_SPI_RX_Status] = R5;
+DebugLine(instruction):68,1,323,451,0
+InstructionLine:(0,451,0,0)
+	R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO 
+DebugLine(instruction):68,1,325,452,0
+InstructionLine:(0,452,0,0)
+	R5 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO
+DebugLine(instruction):68,1,327,453,0
+InstructionLine:(0,453,0,0)
+	R2 -= 1;
+DebugLine(instruction):68,1,328,454,0
+InstructionLine:(0,454,0,0)
+	jz ?L_SendDataEnd;
+DebugLine(instruction):68,1,329,455,0
+InstructionLine:(0,455,0,0)
+	R3 += 2;
+DebugLine(instruction):68,1,330,456,0
+InstructionLine:(0,456,0,0)
+	test R3, 0x00FF;
+CommentLine:(0,457,0,0)
+//	jnz ?L_CheckLength;
+DebugLine(instruction):68,1,332,458,0
+InstructionLine:(0,458,0,0)
+	jnz ?L_SendDataLoop;
+InstructionLine:(0,459,0,0)
+?L_JumpToNextPage:
+DebugLine(instruction):68,1,333,460,0
+InstructionLine:(0,460,0,0)
+	cmp R3, 0x0000;
+DebugLine(instruction):68,1,334,461,0
+InstructionLine:(0,461,0,0)
+	jne ?L_WriteCurrentPage;
+DebugLine(instruction):68,1,335,462,0
+InstructionLine:(0,462,0,0)
+	R4 += 1;
+InstructionLine:(0,463,0,0)
+?L_WriteCurrentPage:
+DebugLine(instruction):68,1,336,464,0
+InstructionLine:(0,464,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+DebugLine(instruction):68,1,338,465,0
+InstructionLine:(0,465,0,0)
+	push R1 to [SP];
+InstructionLine:(0,466,0,0)
+?L_Check_Busy_1:					// Wait untill one word data has been written into flash successfully (about 3 to 12ms).
+DebugLine(instruction):68,1,339,467,0
+InstructionLine:(0,467,0,0)
+	call F_SPI_Read_Status_Register; // WatchDog overflow can escape from dead loop
+DebugLine(instruction):68,1,341,468,0
+InstructionLine:(0,468,0,0)
+	test R1, C_Flash_Busy;
+DebugLine(instruction):68,1,342,469,0
+InstructionLine:(0,469,0,0)
+	jnz ?L_Check_Busy_1;
+DebugLine(instruction):68,1,343,470,0
+InstructionLine:(0,470,0,0)
+	pop R1 from [SP];
+DebugLine(instruction):68,1,344,471,0
+InstructionLine:(0,471,0,0)
+	pc = ?L_WriteData;
+CommentLine:(0,472,0,0)
+
+InstructionLine:(0,473,0,0)
+?L_SendDataEnd:
+CommentLine:(0,474,0,0)
+//	R2 -= 1;
+CommentLine:(0,475,0,0)
+//	jnz ?L_SendDataLoop;
+DebugLine(instruction):68,1,346,476,0
+InstructionLine:(0,476,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+CommentLine:(0,477,0,0)
+//	jmp ?L_Check_Busy;	
+CommentLine:(0,478,0,0)
+
+InstructionLine:(0,479,0,0)
+?L_Check_Busy:						// Wait untill one word data has been written into flash successfully (about 3 to 12ms).
+DebugLine(instruction):68,1,348,480,0
+InstructionLine:(0,480,0,0)
+	call F_SPI_Read_Status_Register; // WatchDog overflow can escape from dead loop
+DebugLine(instruction):68,1,350,481,0
+InstructionLine:(0,481,0,0)
+	test R1, C_Flash_Busy;
+DebugLine(instruction):68,1,351,482,0
+InstructionLine:(0,482,0,0)
+	jnz ?L_Check_Busy;
+CommentLine:(0,483,0,0)
+	
+DebugLine(instruction):68,1,352,484,0
+InstructionLine:(0,484,0,0)
+	clrb [P_IOB_Buffer], 0
+CommentLine:(0,485,0,0)
+
+DebugLine(instruction):68,1,354,486,0
+InstructionLine:(0,486,0,0)
+	pop R1, R5 from [SP];
+DebugLine(instruction):68,1,355,487,0
+InstructionLine:(0,487,0,0)
+	retf;
+ProcDefEndLine:(0,488,0,0)
+	.endp
+CommentLine:(0,489,0,0)
+
+CommentLine:(0,490,0,0)
+//****************************************************************
+CommentLine:(0,491,0,0)
+// Function    : F_Flash_Write_Enable
+CommentLine:(0,492,0,0)
+// Description : Enable flash to be written or erased
+CommentLine:(0,493,0,0)
+// Destory     : None
+CommentLine:(0,494,0,0)
+// Parameter   : None
+CommentLine:(0,495,0,0)
+// Return      : None
+CommentLine:(0,496,0,0)
+// Note        : None
+CommentLine:(0,497,0,0)
+//****************************************************************
+ProcDefStartLine:(0,498,0,0)
+_Flash_Write_Enable:	.proc
+InstructionLine:(0,499,0,0)
+F_Flash_Write_Enable:
+DebugLine(instruction):68,1,356,500,0
+InstructionLine:(0,500,0,0)
+	push r1 to [sp];
+CommentLine:(0,501,0,0)
+
+DebugLine(instruction):68,1,357,502,0
+InstructionLine:(0,502,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+DebugLine(instruction):68,1,359,503,0
+InstructionLine:(0,503,0,0)
+	R1 = C_SPI_Flash_Write_Enable;
+DebugLine(instruction):68,1,360,504,0
+InstructionLine:(0,504,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,505,0,0)
+
+DebugLine(instruction):68,1,362,506,0
+InstructionLine:(0,506,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,364,507,0
+InstructionLine:(0,507,0,0)
+	R1 |= C_SPI_TX_Start;		// Start transmission flash write enable command 
+DebugLine(instruction):68,1,366,508,0
+InstructionLine:(0,508,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,509,0,0)
+
+InstructionLine:(0,510,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,368,511,0
+InstructionLine:(0,511,0,0)
+	R1 = [P_SPI_TX_Status];		// Wait untill command has been transmitted.
+DebugLine(instruction):68,1,370,512,0
+InstructionLine:(0,512,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,372,513,0
+InstructionLine:(0,513,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,373,514,0
+InstructionLine:(0,514,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,515,0,0)
+
+DebugLine(instruction):68,1,375,516,0
+InstructionLine:(0,516,0,0)
+	R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+CommentLine:(0,517,0,0)
+	
+DebugLine(instruction):68,1,377,518,0
+InstructionLine:(0,518,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+DebugLine(instruction):68,1,379,519,0
+InstructionLine:(0,519,0,0)
+	pop r1 from [sp];
+DebugLine(instruction):68,1,380,520,0
+InstructionLine:(0,520,0,0)
+	retf;
+ProcDefEndLine:(0,521,0,0)
+	.endp
+CommentLine:(0,522,0,0)
+
+CommentLine:(0,523,0,0)
+//****************************************************************
+CommentLine:(0,524,0,0)
+// Function    : F_Flash_Write_Disable
+CommentLine:(0,525,0,0)
+// Description : Disable flash to be written or erased
+CommentLine:(0,526,0,0)
+// Destory     : None
+CommentLine:(0,527,0,0)
+// Parameter   : None
+CommentLine:(0,528,0,0)
+// Return      : None
+CommentLine:(0,529,0,0)
+// Note        : None
+CommentLine:(0,530,0,0)
+//****************************************************************
+ProcDefStartLine:(0,531,0,0)
+_Flash_Write_Disable:	.proc
+InstructionLine:(0,532,0,0)
+F_Flash_Write_Disable:
+DebugLine(instruction):68,1,381,533,0
+InstructionLine:(0,533,0,0)
+	push r1 to [sp];
+CommentLine:(0,534,0,0)
+	
+DebugLine(instruction):68,1,382,535,0
+InstructionLine:(0,535,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+DebugLine(instruction):68,1,384,536,0
+InstructionLine:(0,536,0,0)
+	R1 = C_SPI_Flash_Write_Disable;
+DebugLine(instruction):68,1,385,537,0
+InstructionLine:(0,537,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,538,0,0)
+
+DebugLine(instruction):68,1,387,539,0
+InstructionLine:(0,539,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,389,540,0
+InstructionLine:(0,540,0,0)
+	R1 |= C_SPI_TX_Start;			// Start transmission flash write disable command
+DebugLine(instruction):68,1,391,541,0
+InstructionLine:(0,541,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,542,0,0)
+
+InstructionLine:(0,543,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,393,544,0
+InstructionLine:(0,544,0,0)
+	R1 = [P_SPI_TX_Status];			// Wait untill command has been transmitted.
+DebugLine(instruction):68,1,395,545,0
+InstructionLine:(0,545,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,397,546,0
+InstructionLine:(0,546,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,398,547,0
+InstructionLine:(0,547,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,548,0,0)
+	
+DebugLine(instruction):68,1,400,549,0
+InstructionLine:(0,549,0,0)
+	R1 = [P_SPI_RX_Data];			// Clear dummy data in RX FIFO
+CommentLine:(0,550,0,0)
+	
+DebugLine(instruction):68,1,402,551,0
+InstructionLine:(0,551,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+DebugLine(instruction):68,1,404,552,0
+InstructionLine:(0,552,0,0)
+	pop r1 from [sp];
+DebugLine(instruction):68,1,405,553,0
+InstructionLine:(0,553,0,0)
+	retf;
+ProcDefEndLine:(0,554,0,0)
+	.endp
+CommentLine:(0,555,0,0)
+
+CommentLine:(0,556,0,0)
+//****************************************************************
+CommentLine:(0,557,0,0)
+// Function    : F_SPI_Read_Status_Register
+CommentLine:(0,558,0,0)
+// Description : Read status register in flash
+CommentLine:(0,559,0,0)
+// Destory     : None
+CommentLine:(0,560,0,0)
+// Parameter   : None
+CommentLine:(0,561,0,0)
+// Return      : None
+CommentLine:(0,562,0,0)
+// Note        : None
+CommentLine:(0,563,0,0)
+//****************************************************************
+ProcDefStartLine:(0,564,0,0)
+_SPI_Read_Status_Register:	.proc
+InstructionLine:(0,565,0,0)
+F_SPI_Read_Status_Register:
+DebugLine(instruction):68,1,406,566,0
+InstructionLine:(0,566,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+DebugLine(instruction):68,1,408,567,0
+InstructionLine:(0,567,0,0)
+	R1 = C_SPI_Flash_Read_Status;
+DebugLine(instruction):68,1,409,568,0
+InstructionLine:(0,568,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,569,0,0)
+	
+DebugLine(instruction):68,1,411,570,0
+InstructionLine:(0,570,0,0)
+	R1 = 0x00;						// Read Status Reigster dummy clock
+DebugLine(instruction):68,1,412,571,0
+InstructionLine:(0,571,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,572,0,0)
+		
+DebugLine(instruction):68,1,414,573,0
+InstructionLine:(0,573,0,0)
+	R1 = [P_SPI_TX_Status];			// Start sending command to slave 
+DebugLine(instruction):68,1,416,574,0
+InstructionLine:(0,574,0,0)
+	R1 |= C_SPI_TX_Start;
+DebugLine(instruction):68,1,418,575,0
+InstructionLine:(0,575,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,576,0,0)
+
+InstructionLine:(0,577,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,420,578,0
+InstructionLine:(0,578,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,422,579,0
+InstructionLine:(0,579,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,424,580,0
+InstructionLine:(0,580,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,425,581,0
+InstructionLine:(0,581,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,582,0,0)
+
+CommentLine:(0,583,0,0)
+//	r1=0x5555;
+CommentLine:(0,584,0,0)
+//    [P_Watchdog_Clear]=r1;
+CommentLine:(0,585,0,0)
+
+DebugLine(instruction):68,1,427,586,0
+InstructionLine:(0,586,0,0)
+	R1 = [P_SPI_RX_Data];			// Received Dummy Data at Cmd transmitted
+DebugLine(instruction):68,1,429,587,0
+InstructionLine:(0,587,0,0)
+	R1 = [P_SPI_RX_Data];			// Received Status Register Data
+CommentLine:(0,588,0,0)
+	
+DebugLine(instruction):68,1,431,589,0
+InstructionLine:(0,589,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+DebugLine(instruction):68,1,433,590,0
+InstructionLine:(0,590,0,0)
+	retf;
+ProcDefEndLine:(0,591,0,0)
+	.endp
+CommentLine:(0,592,0,0)
+
+CommentLine:(0,593,0,0)
+
+CommentLine:(0,594,0,0)
+//****************************************************************
+CommentLine:(0,595,0,0)
+// Function    : F_SPI_Enable_Write_Status_Register
+CommentLine:(0,596,0,0)
+// Description : Enable status register in flash to be written
+CommentLine:(0,597,0,0)
+// Destory     : None
+CommentLine:(0,598,0,0)
+// Parameter   : None
+CommentLine:(0,599,0,0)
+// Return      : None
+CommentLine:(0,600,0,0)
+// Note        : None
+CommentLine:(0,601,0,0)
+//****************************************************************
+ProcDefStartLine:(0,602,0,0)
+_SPI_Enable_Write_Status_Register:	.proc
+InstructionLine:(0,603,0,0)
+F_SPI_Enable_Write_Status_Register:
+DebugLine(instruction):68,1,434,604,0
+InstructionLine:(0,604,0,0)
+	push R1 to [SP];
+DebugLine(instruction):68,1,435,605,0
+InstructionLine:(0,605,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+DebugLine(instruction):68,1,437,606,0
+InstructionLine:(0,606,0,0)
+	R1 = C_SPI_Flash_Write_Status;
+DebugLine(instruction):68,1,438,607,0
+InstructionLine:(0,607,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,608,0,0)
+	
+DebugLine(instruction):68,1,440,609,0
+InstructionLine:(0,609,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,442,610,0
+InstructionLine:(0,610,0,0)
+	R1 |= C_SPI_TX_Start;			// Start sending command to slave
+DebugLine(instruction):68,1,444,611,0
+InstructionLine:(0,611,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,612,0,0)
+
+InstructionLine:(0,613,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,446,614,0
+InstructionLine:(0,614,0,0)
+	R1 = [P_SPI_TX_Status];			// Wati untill command has been sent
+DebugLine(instruction):68,1,448,615,0
+InstructionLine:(0,615,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,450,616,0
+InstructionLine:(0,616,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,451,617,0
+InstructionLine:(0,617,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,618,0,0)
+
+DebugLine(instruction):68,1,453,619,0
+InstructionLine:(0,619,0,0)
+	R1 = [P_SPI_RX_Data];			// Clear Dummy Data in RX FIFO at Cmd transmitted 
+CommentLine:(0,620,0,0)
+
+DebugLine(instruction):68,1,455,621,0
+InstructionLine:(0,621,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+DebugLine(instruction):68,1,457,622,0
+InstructionLine:(0,622,0,0)
+	pop R1 from [SP];
+DebugLine(instruction):68,1,458,623,0
+InstructionLine:(0,623,0,0)
+	retf;
+ProcDefEndLine:(0,624,0,0)
+	.endp
+CommentLine:(0,625,0,0)
+	
+CommentLine:(0,626,0,0)
+//****************************************************************
+CommentLine:(0,627,0,0)
+// Function    : F_SPI_Write_Status_Register
+CommentLine:(0,628,0,0)
+// Description : Write data to status register in flash
+CommentLine:(0,629,0,0)
+// Destory     : None
+CommentLine:(0,630,0,0)
+// Parameter   : None
+CommentLine:(0,631,0,0)
+// Return      : None
+CommentLine:(0,632,0,0)
+// Note        : None
+CommentLine:(0,633,0,0)
+//****************************************************************
+ProcDefStartLine:(0,634,0,0)
+_SPI_Write_Status_Register:	.proc
+DebugLine(instruction):68,1,459,635,0
+InstructionLine:(0,635,0,0)
+	R1 = SP + 3;
+DebugLine(instruction):68,1,461,636,0
+InstructionLine:(0,636,0,0)
+	R1 = [R1];
+CommentLine:(0,637,0,0)
+	
+InstructionLine:(0,638,0,0)
+F_SPI_Write_Status_Register:
+DebugLine(instruction):68,1,462,639,0
+InstructionLine:(0,639,0,0)
+	push R1, R2 to [SP];
+DebugLine(instruction):68,1,463,640,0
+InstructionLine:(0,640,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+DebugLine(instruction):68,1,465,641,0
+InstructionLine:(0,641,0,0)
+	R2 = C_SPI_Flash_Write_Status;
+DebugLine(instruction):68,1,466,642,0
+InstructionLine:(0,642,0,0)
+	[P_SPI_TX_Data] = R2;
+DebugLine(instruction):68,1,468,643,0
+InstructionLine:(0,643,0,0)
+	[P_SPI_TX_Data] = R1;		// Write data to status register in flash
+CommentLine:(0,644,0,0)
+	
+DebugLine(instruction):68,1,470,645,0
+InstructionLine:(0,645,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,472,646,0
+InstructionLine:(0,646,0,0)
+	R1 |= C_SPI_TX_Start;		// Start sending command and data to slave
+DebugLine(instruction):68,1,474,647,0
+InstructionLine:(0,647,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,648,0,0)
+
+InstructionLine:(0,649,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,476,650,0
+InstructionLine:(0,650,0,0)
+	R1 = [P_SPI_TX_Status];		// Wait untill command and data have been transmitted
+DebugLine(instruction):68,1,478,651,0
+InstructionLine:(0,651,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,480,652,0
+InstructionLine:(0,652,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,481,653,0
+InstructionLine:(0,653,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,654,0,0)
+	
+DebugLine(instruction):68,1,483,655,0
+InstructionLine:(0,655,0,0)
+	R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+DebugLine(instruction):68,1,485,656,0
+InstructionLine:(0,656,0,0)
+	R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+CommentLine:(0,657,0,0)
+	
+DebugLine(instruction):68,1,487,658,0
+InstructionLine:(0,658,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+DebugLine(instruction):68,1,489,659,0
+InstructionLine:(0,659,0,0)
+	pop R1, R2 from [SP];
+DebugLine(instruction):68,1,490,660,0
+InstructionLine:(0,660,0,0)
+	retf;
+ProcDefEndLine:(0,661,0,0)
+	.endp
+CommentLine:(0,662,0,0)
+
+CommentLine:(0,663,0,0)
+//****************************************************************
+CommentLine:(0,664,0,0)
+// Function    : F_SPI_Flash_Sector_Erase
+CommentLine:(0,665,0,0)
+// Description : Erase one sector of flash 
+CommentLine:(0,666,0,0)
+// Destory     : None
+CommentLine:(0,667,0,0)
+// Parameter   : R1 = Sector Address Low, R2 = Sector Address High
+CommentLine:(0,668,0,0)
+// Return      : None
+CommentLine:(0,669,0,0)
+// Note        : None
+CommentLine:(0,670,0,0)
+//****************************************************************
+ProcDefStartLine:(0,671,0,0)
+_SPI_Flash_Sector_Erase:	.proc
+CommentLine:(0,672,0,0)
+//	R2 = SP + 3;
+CommentLine:(0,673,0,0)
+//	R1 = [R2++];
+CommentLine:(0,674,0,0)
+//	R2 = [R2];
+DebugLine(instruction):68,1,491,675,0
+InstructionLine:(0,675,0,0)
+	R1 = SP + 3;
+DebugLine(instruction):68,1,493,676,0
+InstructionLine:(0,676,0,0)
+	R1 = [R1];
+CommentLine:(0,677,0,0)
+	
+InstructionLine:(0,678,0,0)
+F_SPI_Flash_Sector_Erase:
+DebugLine(instruction):68,1,494,679,0
+InstructionLine:(0,679,0,0)
+	push R1, R3 to [SP];
+DebugLine(instruction):68,1,495,680,0
+InstructionLine:(0,680,0,0)
+	call F_Flash_Write_Enable;	// Enable sector erase command 
+CommentLine:(0,681,0,0)
+		
+ConditionLine:(0,682,0,0)
+.if 0		// for GPR25L005, GPR25L010, GPR25L020, GPR25L040, GPR25L080
+ConditionLine:(0,683,0,0)
+	R2 = SECTOR_SIZE;
+ConditionLine:(0,684,0,0)
+	MR = R1 * R2;
+ConditionLine:(0,685,0,0)
+	R1 = R3;
+ConditionLine:(0,686,0,0)
+	R2 = R4;
+ConditionLine:(0,687,0,0)
+.endif
+CommentLine:(0,688,0,0)
+
+ConditionLine:(0,689,0,0)
+.if 1		// for GPR25L160, GPR25L320, GPR25L640
+DebugLine(instruction):68,1,497,690,0
+InstructionLine:(0,690,0,0)
+	R2 = R1;
+DebugLine(instruction):68,1,498,691,0
+InstructionLine:(0,691,0,0)
+	R1 = 0x0000;
+ConditionLine:(0,692,0,0)
+.endif
+CommentLine:(0,693,0,0)
+
+DebugLine(instruction):68,1,499,694,0
+InstructionLine:(0,694,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+DebugLine(instruction):68,1,501,695,0
+InstructionLine:(0,695,0,0)
+	R3 = C_SPI_Flash_Sector_Erase;
+DebugLine(instruction):68,1,503,696,0
+InstructionLine:(0,696,0,0)
+	[P_SPI_TX_Data] = R3;
+DebugLine(instruction):68,1,505,697,0
+InstructionLine:(0,697,0,0)
+	[P_SPI_TX_Data] = R2;		// Sector index : Sector size = 64K bytes
+DebugLine(instruction):68,1,507,698,0
+InstructionLine:(0,698,0,0)
+	R3 = R1 lsr 4;			
+DebugLine(instruction):68,1,508,699,0
+InstructionLine:(0,699,0,0)
+	R3 = R3 lsr 4;
+DebugLine(instruction):68,1,509,700,0
+InstructionLine:(0,700,0,0)
+	[P_SPI_TX_Data] = R3;
+DebugLine(instruction):68,1,511,701,0
+InstructionLine:(0,701,0,0)
+	R1 &= 0x00FF;
+DebugLine(instruction):68,1,513,702,0
+InstructionLine:(0,702,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,703,0,0)
+
+DebugLine(instruction):68,1,515,704,0
+InstructionLine:(0,704,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,517,705,0
+InstructionLine:(0,705,0,0)
+	R1 |= C_SPI_TX_Start;		// Start sending command and data
+DebugLine(instruction):68,1,519,706,0
+InstructionLine:(0,706,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,707,0,0)
+
+InstructionLine:(0,708,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,521,709,0
+InstructionLine:(0,709,0,0)
+	R1 = [P_SPI_TX_Status];		// Wait untill all command and data have been sent out.
+DebugLine(instruction):68,1,523,710,0
+InstructionLine:(0,710,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,525,711,0
+InstructionLine:(0,711,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,526,712,0
+InstructionLine:(0,712,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,713,0,0)
+	
+DebugLine(instruction):68,1,528,714,0
+InstructionLine:(0,714,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+CommentLine:(0,715,0,0)
+
+DebugLine(instruction):68,1,530,716,0
+InstructionLine:(0,716,0,0)
+	R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+DebugLine(instruction):68,1,532,717,0
+InstructionLine:(0,717,0,0)
+	R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+DebugLine(instruction):68,1,534,718,0
+InstructionLine:(0,718,0,0)
+	R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+DebugLine(instruction):68,1,536,719,0
+InstructionLine:(0,719,0,0)
+	R1 = [P_SPI_RX_Data];		// Clear dummy data in RX FIFO
+CommentLine:(0,720,0,0)
+	
+InstructionLine:(0,721,0,0)
+?L_Check_Busy:					// Wait untill sector has been erased successfully (about 1 to 3 seconds)
+DebugLine(instruction):68,1,538,722,0
+InstructionLine:(0,722,0,0)
+	R1 = C_Watchdog_Clear;
+DebugLine(instruction):68,1,540,723,0
+InstructionLine:(0,723,0,0)
+    [P_Watchdog_Clear] = R1;
+DebugLine(instruction):68,1,542,724,0
+InstructionLine:(0,724,0,0)
+	call F_SPI_Read_Status_Register;
+DebugLine(instruction):68,1,544,725,0
+InstructionLine:(0,725,0,0)
+	test R1, C_Flash_Busy;
+DebugLine(instruction):68,1,545,726,0
+InstructionLine:(0,726,0,0)
+	jnz ?L_Check_Busy;
+CommentLine:(0,727,0,0)
+	
+DebugLine(instruction):68,1,546,728,0
+InstructionLine:(0,728,0,0)
+	pop R1, R3 from [SP];
+DebugLine(instruction):68,1,547,729,0
+InstructionLine:(0,729,0,0)
+	retf;
+ProcDefEndLine:(0,730,0,0)
+	.endp
+CommentLine:(0,731,0,0)
+
+CommentLine:(0,732,0,0)
+//****************************************************************
+CommentLine:(0,733,0,0)
+// Function    : F_SPI_Flash_Chip_Erase
+CommentLine:(0,734,0,0)
+// Description : Erase hole chip of flash
+CommentLine:(0,735,0,0)
+// Destory     : None
+CommentLine:(0,736,0,0)
+// Parameter   : None
+CommentLine:(0,737,0,0)
+// Return      : None
+CommentLine:(0,738,0,0)
+// Note        : None
+CommentLine:(0,739,0,0)
+//****************************************************************
+ProcDefStartLine:(0,740,0,0)
+_SPI_Flash_Chip_Erase:	.proc
+InstructionLine:(0,741,0,0)
+F_SPI_Flash_Chip_Erase:
+DebugLine(instruction):68,1,548,742,0
+InstructionLine:(0,742,0,0)
+	push R1 to [SP];
+DebugLine(instruction):68,1,549,743,0
+InstructionLine:(0,743,0,0)
+	call F_Flash_Write_Enable;		// Enable chip erase command 
+CommentLine:(0,744,0,0)
+	
+DebugLine(instruction):68,1,551,745,0
+InstructionLine:(0,745,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+DebugLine(instruction):68,1,553,746,0
+InstructionLine:(0,746,0,0)
+	R1 = C_SPI_Flash_Chip_Erase;
+DebugLine(instruction):68,1,555,747,0
+InstructionLine:(0,747,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,748,0,0)
+
+DebugLine(instruction):68,1,557,749,0
+InstructionLine:(0,749,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,559,750,0
+InstructionLine:(0,750,0,0)
+	R1 |= C_SPI_TX_Start;			// Start sending command
+DebugLine(instruction):68,1,561,751,0
+InstructionLine:(0,751,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,752,0,0)
+
+InstructionLine:(0,753,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,563,754,0
+InstructionLine:(0,754,0,0)
+	R1 = [P_SPI_TX_Status];			// Wait untill command has been transmitted
+DebugLine(instruction):68,1,565,755,0
+InstructionLine:(0,755,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,567,756,0
+InstructionLine:(0,756,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,568,757,0
+InstructionLine:(0,757,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,758,0,0)
+	
+DebugLine(instruction):68,1,570,759,0
+InstructionLine:(0,759,0,0)
+	R1 = [P_SPI_RX_Data];
+CommentLine:(0,760,0,0)
+
+InstructionLine:(0,761,0,0)
+?L_Check_Busy:						// Wait untill chip has been erased successfully (about 128 to 256 seconds)
+DebugLine(instruction):68,1,572,762,0
+InstructionLine:(0,762,0,0)
+	R1 = C_Watchdog_Clear;
+DebugLine(instruction):68,1,574,763,0
+InstructionLine:(0,763,0,0)
+    [P_Watchdog_Clear] = R1;
+DebugLine(instruction):68,1,576,764,0
+InstructionLine:(0,764,0,0)
+	call F_SPI_Read_Status_Register;
+DebugLine(instruction):68,1,578,765,0
+InstructionLine:(0,765,0,0)
+	test R1, C_Flash_Busy;
+DebugLine(instruction):68,1,579,766,0
+InstructionLine:(0,766,0,0)
+	jnz ?L_Check_Busy;
+CommentLine:(0,767,0,0)
+
+DebugLine(instruction):68,1,580,768,0
+InstructionLine:(0,768,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+DebugLine(instruction):68,1,582,769,0
+InstructionLine:(0,769,0,0)
+	pop R1 from [SP];
+DebugLine(instruction):68,1,583,770,0
+InstructionLine:(0,770,0,0)
+	retf;
+ProcDefEndLine:(0,771,0,0)
+	.endp
+CommentLine:(0,772,0,0)
+
+CommentLine:(0,773,0,0)
+//****************************************************************
+CommentLine:(0,774,0,0)
+// Function    : F_SPI_Read_Flash_ID
+CommentLine:(0,775,0,0)
+// Description : Read flash manufacturer,memory and individual device ID
+CommentLine:(0,776,0,0)
+// Destory     : None
+CommentLine:(0,777,0,0)
+// Parameter   : None
+CommentLine:(0,778,0,0)
+// Return      : R1 = Manufacturer and memory ID, R2 = Individual Device ID
+CommentLine:(0,779,0,0)
+// Note        : None
+CommentLine:(0,780,0,0)
+//****************************************************************
+ProcDefStartLine:(0,781,0,0)
+_SPI_Read_Flash_ID:	.proc
+InstructionLine:(0,782,0,0)
+F_SPI_Read_Flash_ID:
+DebugLine(instruction):68,1,584,783,0
+InstructionLine:(0,783,0,0)
+	push R3, R4 to [SP];
+DebugLine(instruction):68,1,585,784,0
+InstructionLine:(0,784,0,0)
+	clrb [P_IOB_Data], C_SPI_CS_IO;		// enable SPI Flash
+DebugLine(instruction):68,1,587,785,0
+InstructionLine:(0,785,0,0)
+	R4 = C_SPI_Flash_Read_ID;
+DebugLine(instruction):68,1,589,786,0
+InstructionLine:(0,786,0,0)
+	[P_SPI_TX_Data] = R4;
+CommentLine:(0,787,0,0)
+		
+DebugLine(instruction):68,1,591,788,0
+InstructionLine:(0,788,0,0)
+	R1 = 0x00;					// Read One Byte Data dummy clock
+DebugLine(instruction):68,1,592,789,0
+InstructionLine:(0,789,0,0)
+	[P_SPI_TX_Data] = R1;
+DebugLine(instruction):68,1,594,790,0
+InstructionLine:(0,790,0,0)
+	[P_SPI_TX_Data] = R1;
+DebugLine(instruction):68,1,596,791,0
+InstructionLine:(0,791,0,0)
+	[P_SPI_TX_Data] = R1;
+CommentLine:(0,792,0,0)
+	
+DebugLine(instruction):68,1,598,793,0
+InstructionLine:(0,793,0,0)
+	R1 = [P_SPI_TX_Status];
+DebugLine(instruction):68,1,600,794,0
+InstructionLine:(0,794,0,0)
+	R1 |= C_SPI_TX_Start;		// Start transmission read flash ID command 
+DebugLine(instruction):68,1,602,795,0
+InstructionLine:(0,795,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,796,0,0)
+
+InstructionLine:(0,797,0,0)
+?L_Check_TXIF:
+DebugLine(instruction):68,1,604,798,0
+InstructionLine:(0,798,0,0)
+	R1 = [P_SPI_TX_Status];		// Wait untill command has been sent out
+DebugLine(instruction):68,1,606,799,0
+InstructionLine:(0,799,0,0)
+	test R1, C_SPI_TX_INT_Flag;
+DebugLine(instruction):68,1,608,800,0
+InstructionLine:(0,800,0,0)
+	jz ?L_Check_TXIF;
+DebugLine(instruction):68,1,609,801,0
+InstructionLine:(0,801,0,0)
+	[P_SPI_TX_Status] = R1;
+CommentLine:(0,802,0,0)
+	
+InstructionLine:(0,803,0,0)
+?L_Check_RXIF:
+DebugLine(instruction):68,1,611,804,0
+InstructionLine:(0,804,0,0)
+	R1 = [P_SPI_RX_Status];		// Wait untill any data has been received
+DebugLine(instruction):68,1,613,805,0
+InstructionLine:(0,805,0,0)
+	test R1, C_SPI_RX_INT_Flag;
+DebugLine(instruction):68,1,615,806,0
+InstructionLine:(0,806,0,0)
+	jz ?L_Check_RXIF;	
+DebugLine(instruction):68,1,616,807,0
+InstructionLine:(0,807,0,0)
+	[P_SPI_RX_Status] = R1;
+CommentLine:(0,808,0,0)
+
+DebugLine(instruction):68,1,618,809,0
+InstructionLine:(0,809,0,0)
+	R1 = [P_SPI_RX_Data];		// Clear Dummy Data in RX FIFO at Read Cmd transmitted   
+DebugLine(instruction):68,1,620,810,0
+InstructionLine:(0,810,0,0)
+	R2 = [P_SPI_RX_Data];		// Read Manufacturer ID
+DebugLine(instruction):68,1,622,811,0
+InstructionLine:(0,811,0,0)
+	R3 = [P_SPI_RX_Data];		// Read Memory ID
+DebugLine(instruction):68,1,624,812,0
+InstructionLine:(0,812,0,0)
+	R4 = [P_SPI_RX_Data];		// Read Individual Device ID
+DebugLine(instruction):68,1,626,813,0
+InstructionLine:(0,813,0,0)
+	R1 = R3 LSL 4;
+DebugLine(instruction):68,1,627,814,0
+InstructionLine:(0,814,0,0)
+	R1 = R1 LSL 4;
+DebugLine(instruction):68,1,628,815,0
+InstructionLine:(0,815,0,0)
+	R1 |= R2;
+DebugLine(instruction):68,1,629,816,0
+InstructionLine:(0,816,0,0)
+	R2 = R4;
+CommentLine:(0,817,0,0)
+
+DebugLine(instruction):68,1,630,818,0
+InstructionLine:(0,818,0,0)
+	setb [P_IOB_Data], C_SPI_CS_IO;	// disable SPI Flash
+DebugLine(instruction):68,1,632,819,0
+InstructionLine:(0,819,0,0)
+	pop R3, R4 from [SP];
+DebugLine(instruction):68,1,633,820,0
+InstructionLine:(0,820,0,0)
+	retf;
+ProcDefEndLine:(0,821,0,0)
+	.endp
+CommentLine:(0,822,0,0)
+
+EndOfFileLine:(0,822,0,0)
+

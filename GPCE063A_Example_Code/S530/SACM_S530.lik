@@ -1,0 +1,48 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.4\startupcode\startupD.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\Debug\Resource.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\Debug\Isr.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\Debug\main.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\Debug\System.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\Debug\SACM_S530_User.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\Debug\d2_s53.res"
+Obj: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\Debug\d1_s53.res"
+Lib: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\..\library\SACM_S530_V41b_Beta02.lib"
+Output: "D:\WorkingFolder\Library_Release\SACMV41b_Beta\GPCE063A_Example_V41b\GPCE063A Example Code\S530\Debug\SACM_S530.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 8009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at 9E91  linkat 1AE 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 1A6 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_S530_User.obj" at 1AA 
+;Align: RAM in "SACM_S530_User.obj" with 0 
+;Locate: OVERLAP_S530_API_BLOCK in "SACM_S530_API" of "SACM_S530_V41b_Beta02.lib"  at 1 
+;Align: OVERLAP_S530_API_BLOCK in "SACM_S530_API" of "SACM_S530_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_S530_RAM_BLOCK in "SACM_S530_Decode" of "SACM_S530_V41b_Beta02.lib"  at 18 
+;Align: OVERLAP_S530_RAM_BLOCK in "SACM_S530_Decode" of "SACM_S530_V41b_Beta02.lib"  with 0 
+;Locate: OVERLAP_S530_DM_BLOCK in "S530_K~1" of "SACM_S530_V41b_Beta02.lib"  at C2 
+;Align: OVERLAP_S530_DM_BLOCK in "S530_K~1" of "SACM_S530_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "main.obj" at 9AB7 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at 9CD6 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_S530_User.obj" at 9D99 
+;Align: CODE in "SACM_S530_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 973F 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_D2_S53 in "d2_s53.res" at 9E97 
+;Align: __sn_section_RES_D2_S53 in "d2_s53.res" with 0 
+;Locate: __sn_section_RES_D1_S53 in "d1_s53.res" at A62D 
+;Align: __sn_section_RES_D1_S53 in "d1_s53.res" with 0 
+;Locate: CODE in "SACM_S530_API" of "SACM_S530_V41b_Beta02.lib"  at 9E17 
+;Align: CODE in "SACM_S530_API" of "SACM_S530_V41b_Beta02.lib"  with 0 
+;Locate: SACM_S530_ROM_BLOCK in "SACM_S530_API" of "SACM_S530_V41b_Beta02.lib"  at 9943 
+;Align: SACM_S530_ROM_BLOCK in "SACM_S530_API" of "SACM_S530_V41b_Beta02.lib"  with 0 
+;Locate: SACM_S530_DECODE_ROM_BLOCK in "SACM_S530_Decode" of "SACM_S530_V41b_Beta02.lib"  at 9BD6 
+;Align: SACM_S530_DECODE_ROM_BLOCK in "SACM_S530_Decode" of "SACM_S530_V41b_Beta02.lib"  with 0 
+;Locate: CODE in "S530_K~1" of "SACM_S530_V41b_Beta02.lib"  at 9245 
+;Align: CODE in "S530_K~1" of "SACM_S530_V41b_Beta02.lib"  with 0 
+;Locate: __sn_init_table at 8000 

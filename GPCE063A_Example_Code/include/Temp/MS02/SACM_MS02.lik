@@ -1,0 +1,51 @@
+Version: 3.0
+Options: m37
+Obj: "C:\Program Files\Generalplus\unSPIDE 3.0.3\startupcode\startupD.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\Resource.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\Isr.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\main.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\System.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\SACM_MS02_User.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\SPI_Flash_CE063.obj"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\LAPUTA_1_bin.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\joysong_1_bin.res"
+Obj: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\MS02_GPF8_lib.res"
+Lib: "D:\GPCE_Serial\GPCE063\SACM\MS02\..\library\SACM_MS02_V41b_Beta03.lib"
+Output: "D:\GPCE_Serial\GPCE063\SACM\MS02\Debug\SACM_MS02.S37"
+;Locate: unSP_StartUp in "startupD.obj" at 5009 
+;Align: unSP_StartUp in "startupD.obj" with 0 
+;Locate: IRAM in "main.obj" at 6B10  linkat 317 
+;Align: IRAM in "main.obj" with 0 
+;Locate: RAM in "System.obj" at 311 
+;Align: RAM in "System.obj" with 0 
+;Locate: RAM in "SACM_MS02_User.obj" at 315 
+;Align: RAM in "SACM_MS02_User.obj" with 0 
+;Locate: OVERLAP_MS02_API_BLOCK in "SACM_MS02_API" of "SACM_MS02_V41b_Beta03.lib"  at 1 
+;Align: OVERLAP_MS02_API_BLOCK in "SACM_MS02_API" of "SACM_MS02_V41b_Beta03.lib"  with 0 
+;Locate: OVERLAP_RAM_BLOCK in "Ms02" of "SACM_MS02_V41b_Beta03.lib"  at 18 
+;Align: OVERLAP_RAM_BLOCK in "Ms02" of "SACM_MS02_V41b_Beta03.lib"  with 0 
+;Locate: OVERLAP_MS02_RAM_BLOCK in "SACM_MS02_Decode" of "SACM_MS02_V41b_Beta03.lib"  at 144 
+;Align: OVERLAP_MS02_RAM_BLOCK in "SACM_MS02_Decode" of "SACM_MS02_V41b_Beta03.lib"  with 0 
+;Locate: CODE in "main.obj" at 67C4 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "System.obj" at 68CE 
+;Align: CODE in "System.obj" with 0 
+;Locate: CODE in "SACM_MS02_User.obj" at 699D 
+;Align: CODE in "SACM_MS02_User.obj" with 0 
+;Locate: CODE in "SPI_Flash_CE063.obj" at 6421 
+;Align: CODE in "SPI_Flash_CE063.obj" with 0 
+;Locate: __sn_section_RES_LAPUTA_1_BIN in "LAPUTA_1_bin.res" at 40F76 
+;Align: __sn_section_RES_LAPUTA_1_BIN in "LAPUTA_1_bin.res" with 0 
+;Locate: __sn_section_RES_JOYSONG_1_BIN in "joysong_1_bin.res" at 41987 
+;Align: __sn_section_RES_JOYSONG_1_BIN in "joysong_1_bin.res" with 0 
+;Locate: __sn_section_RES_MS02_GPF8_LIB in "MS02_GPF8_lib.res" at 6B14 
+;Align: __sn_section_RES_MS02_GPF8_LIB in "MS02_GPF8_lib.res" with 0 
+;Locate: CODE in "SACM_MS02_API" of "SACM_MS02_V41b_Beta03.lib"  at 6A2B 
+;Align: CODE in "SACM_MS02_API" of "SACM_MS02_V41b_Beta03.lib"  with 0 
+;Locate: SACM_MS02_ROM_BLOCK in "SACM_MS02_API" of "SACM_MS02_V41b_Beta03.lib"  at 66A1 
+;Align: SACM_MS02_ROM_BLOCK in "SACM_MS02_API" of "SACM_MS02_V41b_Beta03.lib"  with 0 
+;Locate: CODE in "Ms02" of "SACM_MS02_V41b_Beta03.lib"  at 5445 
+;Align: CODE in "Ms02" of "SACM_MS02_V41b_Beta03.lib"  with 0 
+;Locate: SACM_MS02_DECODE_ROM_BLOCK in "SACM_MS02_Decode" of "SACM_MS02_V41b_Beta03.lib"  at 6AA1 
+;Align: SACM_MS02_DECODE_ROM_BLOCK in "SACM_MS02_Decode" of "SACM_MS02_V41b_Beta03.lib"  with 0 
+;Locate: __sn_init_table at 5000 
